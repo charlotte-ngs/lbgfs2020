@@ -1,0 +1,20 @@
+title: Livestock Breeding and Genomics
+
+url:
+
+template:
+  params:
+    bootswatch: united
+
+navbar:
+  title:
+  type: default
+  left:
+  - text: Course Notes
+    href:
+  - text: Exercises
+    href:
+  - text: Solutions
+    href:
+  - text: Additional Material
+    href:
