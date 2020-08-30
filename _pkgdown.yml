@@ -11,10 +11,12 @@ navbar:
   type: default
   left:
   - text: Course Notes
-    href:
+    href: articles/course_notes.html
   - text: Exercises
-    href:
+    href: articles/course_exercises.html
   - text: Solutions
-    href:
+    href: articles/course_solutions.html
   - text: Additional Material
-    href:
+    href: articles/course_additional_material.html
+  - text: News
+    href: news/index.html

@@ -14,7 +14,7 @@ RoxygenNote: 6.1.1
 Depends:
   R (>= 3.5.0),
 Suggests:
-  knitr,
-  pkgdown
+    knitr,
+    pkgdown,
+    rmarkdown
 VignetteBuilder: knitr
-
