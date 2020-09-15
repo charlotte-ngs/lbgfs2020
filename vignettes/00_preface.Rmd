@@ -1,7 +1,8 @@
 ---
 output:
-  pdf_document: default
-  bookdown::pdf_document2: default
+  rmarkdown::html_vignette: default
+  bookdown::pdf_document2: 
+    toc: false
 ---
 
 ```{r setup, include=FALSE}
