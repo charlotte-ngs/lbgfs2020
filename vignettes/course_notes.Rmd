@@ -40,7 +40,7 @@ tbl_app <- tibble::tibble(Nr    = c(1, 2),
                             "R Programming"
                           ),
                           Link  = c(
-                            paste0("[html](", s_cn_url, "A1_intro-linalg.html), [pdf](", s_cn_url, "A1_intro_linalg.pdf)", collapse = ""),
+                            paste0("[html](", s_cn_url, "A1_intro-linalg.html), [pdf](", s_cn_url, "A1_intro-linalg.pdf)", collapse = ""),
                             ""
                           ))
 knitr::kable(tbl_app)
