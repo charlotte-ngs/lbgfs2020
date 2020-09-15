@@ -19,9 +19,14 @@ This page contains the list of links pointing to the different chapters in the c
 ## Chapters
 
 ```{r chpt-table, echo=FALSE}
-tbl_chpt <- tibble::tibble(Chapter = c(1),
-                           Title   = c("Introduction"),
-                           Link    = c(""))
+s_cn_url <- 'https://charlotte-ngs.github.io/lbgfs2020/articles/'
+tbl_chpt <- tibble::tibble(Chapter = c(0, 1),
+                           Title   = c(
+                             "Preface",
+                             "Introduction"),
+                           Link    = c(
+                             paste0("[html](", s_cn_url, "00_preface.html), [pdf]", s_cn_url, "00_preface.pdf)", collapse = ""),
+                             ""))
 knitr::kable(tbl_chpt)
 ```
 
