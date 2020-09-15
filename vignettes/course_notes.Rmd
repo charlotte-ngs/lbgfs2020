@@ -25,7 +25,7 @@ tbl_chpt <- tibble::tibble(Chapter = c(0, 1),
                              "Preface",
                              "Introduction"),
                            Link    = c(
-                             paste0("[html](", s_cn_url, "00_preface.html), [pdf]", s_cn_url, "00_preface.pdf)", collapse = ""),
+                             paste0("[html](", s_cn_url, "00_preface.html), [pdf](", s_cn_url, "00_preface.pdf)", collapse = ""),
                              ""))
 knitr::kable(tbl_chpt)
 ```
