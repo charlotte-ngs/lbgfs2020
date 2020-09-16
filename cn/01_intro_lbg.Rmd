@@ -1,4 +1,4 @@
-# Introduction to Livestock Breeding and Genomics {#intro-lbg}
+# Introduction {#intro-lbg}
 ```{r mrmt-intro-lbg-reset, echo=FALSE}
 s_this_rmd_file <- rmdhelp::get_this_rmd_file()
 mrmt$set_this_rmd_file(ps_this_rmd_file = s_this_rmd_file)
