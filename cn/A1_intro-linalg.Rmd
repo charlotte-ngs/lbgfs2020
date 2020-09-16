@@ -1,28 +1,14 @@
----
-output: 
-  bookdown::pdf_document2: 
-    toc: false
-  rmarkdown::html_vignette: default
-bibliography: [lbgfs2020.bib]
-biblio-style: apalike  
----
+\cleardoublepage 
 
+# (APPENDIX) Appendix {-}
+
+# Introduction To Linear Algebra {#intro-linalg}
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-# rmdhelp::show_knit_hook_call()
-knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
-# mendeley
-mrmt <- rmdhelp::MendeleyExportToolR6$new()
-mrmt$set_local_bib_file(ps_local_bib_file = 'lbgfs2020.bib')
 mrmt$set_this_rmd_file(ps_this_rmd_file = ifelse(rstudioapi::isAvailable(),
                               rstudioapi::getActiveDocumentContext()$path,
                               rprojroot::thisfile()))
 ```
 
-# Introduction To Linear Algebra {#intro-linalg}
 
 Linear Algebra is a large area from which we only need the following three topics
 
@@ -366,4 +352,3 @@ $$
 are not consistent. From this example, we can already see that non-consistent equations do not have any solutions. But consistent equations $Ax = y$ have a solution which can be written as $x = Gy$ if and only if, $AGA = A$ which means that $G$ is a so-called generalized inverse of $A$. The matrix $G$ is often written as $A^-$. The proof of this statement is given on page 9 of `r mrmt$add('Searle1971')`. 
 
 
-# References

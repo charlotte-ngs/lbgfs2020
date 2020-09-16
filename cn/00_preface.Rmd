@@ -1,15 +1,9 @@
----
-output:
-  bookdown::pdf_document2: 
-    toc: false
-  rmarkdown::html_vignette: default
----
+# Preface {-}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Preface {-}
 Livestock Breeding and Genomics is a masters course taught in the Institute of Agricultural Sciences at ETH Zurich. The aim of this course is to introduce the basic concepts of livestock breeding and genomics to the students. 
 
 
