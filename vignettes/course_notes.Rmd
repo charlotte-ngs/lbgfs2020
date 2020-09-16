@@ -41,7 +41,7 @@ tbl_app <- tibble::tibble(Nr    = c("A1", "A2"),
                              "2020-09-18"
                            ),
                           Topic = c(
-                            paste0("[Linear Algebra](", s_cn_url, "A1_intro-linalg.pdf)", collapse = ""),
+                            paste0("[Linear Algebra](", s_cn_url, "A1_intro_linalg.pdf)", collapse = ""),
                             paste0("[R Programming](", s_cn_url, "A2_intro_rstats.pdf)", collapse = "")
                           ))
 knitr::kable(tbl_app)
