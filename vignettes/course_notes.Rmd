@@ -21,12 +21,13 @@ This page contains the list of links pointing to the different chapters in the c
 ```{r chpt-table, echo=FALSE}
 s_cn_url <- 'https://charlotte-ngs.github.io/lbgfs2020/cn/'
 tbl_chpt <- tibble::tibble(Nr      = c(0, 1),
-                           Title   = c(
-                             "Preface",
-                             "Introduction to Livestock Breeding and Genomics"),
-                           Link    = c(
-                             paste0("[html](", s_cn_url, "00_preface.html), [pdf](", s_cn_url, "00_preface.pdf)", collapse = ""),
-                             ""))
+                           Date    = c(
+                             "2020-09-18",
+                             "2020-09-18"
+                           ),
+                           Topic   = c(
+                             paste0("[Preface](", s_cn_url, "00_preface.pdf)", collapse = ""),
+                             paste0("[Introduction to Livestock Breeding and Genomics](", s_cn_url, "01_intro_lbg.pdf)", collapse = "")))
 knitr::kable(tbl_chpt)
 ```
 
@@ -34,14 +35,14 @@ knitr::kable(tbl_chpt)
 ## Appendix
 
 ```{r app-table, echo=FALSE}
-tbl_app <- tibble::tibble(Nr    = c(1, 2),
-                          Title = c(
-                            "Linear Algebra",
-                            "R Programming"
-                          ),
-                          Link  = c(
-                            paste0("[html](", s_cn_url, "A1_intro-linalg.html), [pdf](", s_cn_url, "A1_intro-linalg.pdf)", collapse = ""),
-                            ""
+tbl_app <- tibble::tibble(Nr    = c("A1", "A2"),
+                          Date  = c(
+                             "2020-09-18",
+                             "2020-09-18"
+                           ),
+                          Topic = c(
+                            paste0("[Linear Algebra](", s_cn_url, "A1_intro-linalg.pdf)", collapse = ""),
+                            paste0("[R Programming](", s_cn_url, "A2_intro_rstats.pdf)", collapse = "")
                           ))
 knitr::kable(tbl_app)
 ```
