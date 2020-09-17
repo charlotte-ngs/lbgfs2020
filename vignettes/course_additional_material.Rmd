@@ -28,7 +28,7 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2),
                          ),
                          Topic   = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", s_sl_url, "lbgfs2020_slides_w01_intro_lbg.pdf)", collapse = ''),
-                           paste0("[Review of Quantitative Genetics](", s_sl_url, "lbg_fs_2020_slides_w02_basics_qg.pdf)", collapse = '')
+                           paste0("[Review of Quantitative Genetics](", s_sl_url, "lbgfs2020_slides_w02_basics_qg.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_sl)
 ```
