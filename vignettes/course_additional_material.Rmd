@@ -48,6 +48,20 @@ knitr::kable(tbl_vd)
 ```
 
 
+## Pictures From Overhead
+
+```{r ohp-table, echo=FALSE}
+s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
+tbl_ohp <- tibble::tibble(Nr = c(1),
+                          Date = c(
+                           "2020-09-18"
+                         ),
+                         Topic = c(
+                           paste0("[Introduction to Livestock Breeding and Genomics](", s_misc_url, "20200918_ohp_lecture01.pdf)", collapse = '')
+                         ))
+knitr::kable(tbl_ohp)
+```
+
 ## Questionnaire
 
 ```{r qu-table, echo=FALSE}
