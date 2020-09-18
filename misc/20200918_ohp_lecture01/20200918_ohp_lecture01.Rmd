@@ -1,0 +1,76 @@
+---
+title: "Overhead Pictures"
+author: "Peter von Rohr"
+date: "9/18/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+## Breeding and Production
+
+```{r ohp-01, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-01.odg')
+knitr::include_graphics(path = "odg/ohp-01.png")
+```
+ 
+
+## Deep Cow Families
+
+```{r ohp-02, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-02.odg')
+knitr::include_graphics(path = "odg/ohp-02.png")
+```
+ 
+ 
+## Prerequisites
+
+```{r ohp-03, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-03.odg')
+knitr::include_graphics(path = "odg/ohp-03.png")
+```
+ 
+
+## Breeding
+
+```{r ohp-04, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-04.odg')
+knitr::include_graphics(path = "odg/ohp-04.png")
+```
+ 
+
+## Breeding II
+
+```{r ohp-05, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-05.odg')
+knitr::include_graphics(path = "odg/ohp-05.png")
+```
+ 
+
+## Breeding III
+
+```{r ohp-06, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-06.odg')
+knitr::include_graphics(path = "odg/ohp-06.png")
+```
+ 
+
+## Decomposition of $P$
+
+```{r ohp-07, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-07.odg')
+knitr::include_graphics(path = "odg/ohp-07.png")
+```
+ 
+
+## CDMB
+
+```{r ohp-08, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ohp-08.odg')
+knitr::include_graphics(path = "odg/ohp-08.png")
+```
+ 
