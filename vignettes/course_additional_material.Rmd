@@ -34,6 +34,20 @@ knitr::kable(tbl_sl)
 ```
 
 
+## Videos
+
+```{r}
+tbl_vd <- tibble::tibble(Nr  = c(1),
+                         Date = c(
+                           "2020-09-18"
+                         ),
+                         Topic = c(
+                           "[Introduction to Livestock Breeding and Genomics](https://youtu.be/Mkx2ixBoVF4)"
+                         ))
+knitr::kable(tbl_vd)
+```
+
+
 ## Questionnaire
 
 ```{r qu-table, echo=FALSE}
