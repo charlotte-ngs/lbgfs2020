@@ -32,3 +32,19 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2),
                          ))
 knitr::kable(tbl_sl)
 ```
+
+
+## Questionnaire
+
+```{r qu-table, echo=FALSE}
+s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
+tbl_misc <- tibble::tibble(Nr  = c(1),
+                           Date = c(
+                              "2020-09-18"
+                           ),
+                           Topic = c(
+                             paste0("[Questionnaire](", s_misc_url, "20200918_students_questionnaire.pdf)", collapse = '')
+                           ))
+knitr::kable(tbl_misc)
+```
+
