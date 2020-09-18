@@ -36,7 +36,7 @@ knitr::kable(tbl_sl)
 
 ## Videos
 
-```{r}
+```{r vd-table, echo=FALSE}
 tbl_vd <- tibble::tibble(Nr  = c(1),
                          Date = c(
                            "2020-09-18"
