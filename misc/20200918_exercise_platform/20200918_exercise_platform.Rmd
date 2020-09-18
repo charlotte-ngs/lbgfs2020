@@ -1,0 +1,27 @@
+---
+title: "Setting Up Exercise Platform"
+author: "Peter von Rohr"
+date: "9/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Disclaimer
+So far the exercise platform was run on a bare-metal installation of the rstudio server on a rented computing machine. This causes a lot of maintenance work, mainly after the semester when the course is over. The main work consists of stepping through user accounts and deleting them. To reduce this burden, we are looking for an alternative way which causes less administrative work. 
+
+
+## Alternatives
+The alternatives that we are testing consist of running an rstudio server inside of a docker container. There are different options for this. 
+
+1. One container instance per user
+2. Single container instance with multiple users inside of that one instance
+
+
+## One Container Instance per User
+
+
+
+## Single Multi-User Container Instance
