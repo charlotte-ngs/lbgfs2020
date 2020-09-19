@@ -21,7 +21,22 @@ The alternatives that we are testing consist of running an rstudio server inside
 
 
 ## One Container Instance per User
+From the point of view of separation and isolation of the data and configuration for the different users, it might be easier to set up a separate container for each user. The advantage of this approach is that we do not need any user management inside of the container. Furthermore, the home directory or any given subdirectory could be volume-bound to a directory on the host machine which would make the backing up of the user generated data much easier. The volume-binding would allow to do the deployment of new exercises and solutions on the host directly without running any commands inside of the docker container. The recovery of the whole system after a crash can be done by just re-starting the individual containers. All the user data would still be on the host which has already a running backup system in place. 
 
+But this solution requires a lot of work to be done on the host. The different running containers must be monitored and the setup process requires many details to be correct. Furthermore every instance must be bound to a different host-port and this must be communicated to the users which is error prone. It is much easier to have the same link for all the users which is not possible with this solution.
+
+
+## Single Container - Multiple Users
+A single container is set up and running. Inside this container, separate accounts for all the users are created. The advantage of this solution is that the preparatory work on the host is minimal and all users can access the single container via the same link. Users do not have to worry about knowing their own port or their private link to their instance. 
+
+The problem with this solution is that the home directories of the individual user accounts cannot be volume-bound to a directory on the host machine. At least this is what is described under https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image. If the volume-binding is not possible, the backing-up of data and recoveries after a crash of the system are tedious tasks. Furthermore with this approach, users would need to remember usernames and passwords.  
+
+
+## References
+Good sources for running rstudio under docker are 
+
+* https://www.rocker-project.org/ and
+* http://ropenscilabs.github.io/r-docker-tutorial/
 
 
 ## Single Multi-User Container Instance
