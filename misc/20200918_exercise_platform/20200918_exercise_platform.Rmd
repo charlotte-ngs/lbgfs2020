@@ -25,6 +25,28 @@ From the point of view of separation and isolation of the data and configuration
 
 But this solution requires a lot of work to be done on the host. The different running containers must be monitored and the setup process requires many details to be correct. Furthermore every instance must be bound to a different host-port and this must be communicated to the users which is error prone. It is much easier to have the same link for all the users which is not possible with this solution.
 
+The following commands show how this can be run.
+
+```
+docker run -d -p 10087:8787 -e PASSWORD=pvrpass -v /Users/pvr/lbgfs2020/home/pvr:/home/rstudio --name pvr_rstudio rocker/verse
+```
+
+This pulls the docker image 'rocker/verse' and starts the container under the name 'rstudio'. The option '-d' tells docker to run the image in 'detached' mode. The status of the container can be checked with 
+
+```
+docker ps -a
+```
+
+The running rstudio server can be accessed in the browser with `http://localhost:10087`
+
+More users can be added by changing the host port and by changing the mapped volumen on the host. Adding users `alice` and `bob` might look as follows.
+
+
+```
+docker run -d -p 10088:8787 -e PASSWORD=alicepass -v /Users/pvr/lbgfs2020/home/alice:/home/rstudio --name alice_rstudio rocker/verse
+docker run -d -p 10089:8787 -e PASSWORD=bobpass -v /Users/pvr/lbgfs2020/home/bob:/home/rstudio --name bob_rstudio rocker/verse
+```
+
 
 ## Single Container - Multiple Users
 A single container is set up and running. Inside this container, separate accounts for all the users are created. The advantage of this solution is that the preparatory work on the host is minimal and all users can access the single container via the same link. Users do not have to worry about knowing their own port or their private link to their instance. 
