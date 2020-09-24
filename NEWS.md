@@ -1,5 +1,7 @@
 # lbgfs2020 0.2.1
 
+* Corrected link to course notes
+
 # lbgfs2020 0.2.0
 
 * Release of course notes for week 2.
