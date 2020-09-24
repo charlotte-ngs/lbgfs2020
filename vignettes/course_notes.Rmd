@@ -29,7 +29,7 @@ tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2),
                            Topic   = c(
                              paste0("[Preface](", s_cn_url, "00_preface.pdf)", collapse = ""),
                              paste0("[Introduction to Livestock Breeding and Genomics](", s_cn_url, "01_intro_lbg.pdf)", collapse = ""),
-                             paste0("[Review of Quantitative Genetics](", s_cn_url, "02_intro_qg.pdf", collapse = '')))
+                             paste0("[Review of Quantitative Genetics](", s_cn_url, "02_intro_qg.pdf)", collapse = '')))
 knitr::kable(tbl_chpt)
 ```
 
