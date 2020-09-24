@@ -1,0 +1,8 @@
+deuberj,deuberj@student.ethz.ch,Deuber,Jessica
+fomasid,fomasid@student.ethz.ch,Fomasi,Diana
+pahofman,pahofman@student.ethz.ch,Hofmann,Pascal
+jungenr,jungenr@student.ethz.ch,Jungen,Regula
+penlin,penlin@student.ethz.ch,Lin,Peng
+xenamarie.mapel,xenamarie.mapel@usys.ethz.ch,Mapel,Xena
+kmessmer,kmessmer@student.ethz.ch,Messmer,Hans
+clemence.nanchen,clemence.nanchen@usys.ethz.ch,Nanchen,Clémence
