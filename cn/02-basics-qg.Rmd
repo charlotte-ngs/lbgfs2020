@@ -520,9 +520,9 @@ This section shows how the genetic variance in equation \@ref(eq:FinalGeneticVar
 From the last two lines of \@ref(eq:GenVarZWD) it follows that $\sigma_A^2 = 2pq\alpha^2$ and $\sigma_D^2 = \left(2pqd \right)^2$. It can be shown that $\sigma_A^2$ corresponds to the squared breeding values times the associated genotype frequencies. Because the expected values of the breeding values is zero, $\sigma_A^2$ is equivalent to the variance of the breeding values.
 
 \begin{align}
-\sigma_A^2 &= Var\left[ BV \right] = (BV_{11} - E\left[ BV \right])^2 * f(G_1G_1) 
-              + (BV_{12} - E\left[ BV \right])^2 * f(G_1G_2) 
-              + (BV_{22} - E\left[ BV \right])^2 * f(G_2G_2) \notag \\
+\sigma_A^2 &= Var\left[ BV \right] = (BV_{11} - E\left[ BV \right])^2 * f(G_1G_1)  \notag \\
+           &   + (BV_{12} - E\left[ BV \right])^2 * f(G_1G_2)  \notag \\
+           &   + (BV_{22} - E\left[ BV \right])^2 * f(G_2G_2) \notag \\
            &= BV_{11}^2 * f(G_1G_1) + BV_{12}^2 * f(G_1G_2) + BV_{22}^2 * f(G_2G_2) \notag \\
            &= \left(2q \alpha \right)^2 * p^2 +  \left((q-p) \alpha \right)^2 * 2pq + \left(-2p \alpha \right)^2 * q^2 \notag \\
            &= 4p^2 q^2 \alpha^2 + \left(q^2 \alpha^2 -2pq\alpha^2 + p^2 \alpha^2 \right) * 2pq + 4p^2q^2\alpha^2 \notag \\
