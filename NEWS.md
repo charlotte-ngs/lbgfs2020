@@ -1,3 +1,9 @@
+# lbgfs2020 0.2.0
+
+# lbgfs2020 0.2.1
+
+* Release of course notes for week 2.
+
 # lbgfs2020 0.1.1
 
 * Initial release of course page on github pages.
