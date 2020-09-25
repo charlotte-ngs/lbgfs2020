@@ -1,3 +1,7 @@
+# lbgfs2020 0.2.2
+
+* Released first exercise
+
 # lbgfs2020 0.2.1
 
 * Corrected link to course notes
