@@ -35,7 +35,9 @@ Methods for analysing livestock data, in particular for the estimation of breedi
     + Time: 09:15 - 11:15
     + Room: LFW C 11
     
-### Exercise Platform    
+### Exercise Platform
+The exercise platform is available under: `http://2-htz.quagzws.com:<PORT>` where `<PORT>` must be replaced by the number that you received by E-Mail. The username is 'rstudio' and the password is also in the E-Mail.
+
 
 ## Questions
 Questions can be asked during the lecture and during the exercise hour or via e-mail: 
