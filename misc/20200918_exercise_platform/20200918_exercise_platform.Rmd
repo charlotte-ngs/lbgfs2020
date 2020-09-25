@@ -128,6 +128,60 @@ done
 docker rm $(docker ps --filter "status=exited" -q)
 ```
 
+### Sending E-Mails
+
+```
+#cat pvr_email.txt | ssmtp peter.vonrohr@usys.ethz.ch
+
+#LBGHOME=/home/quagadmin/lbgfs2020/home
+if [ ! -d "email_sent" ]; then mkdir -p email_sent;fi
+cat test_students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  email=$(echo $s | cut -d ',' -f2)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat ${user}_email.txt | ssmtp $email
+  sleep 2
+  mv ${user}_email.txt email_sent
+done
+# students
+cat students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  email=$(echo $s | cut -d ',' -f2)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat ${user}_email.txt | ssmtp $email
+  sleep 2
+  mv ${user}_email.txt email_sent
+  sleep 2
+done
+
+```
+
+### Clone
+
+```
+LBGHOME=/home/quagadmin/lbgfs2020/home
+cat test_students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  cd $LBGHOME/$user
+  echo " * Cloning repo for $user ..."
+  git clone https://github.com/charlotte-ngs/lbgfs2020.git -b rexpf
+  sleep 2
+done
+# students
+LBGHOME=/home/quagadmin/lbgfs2020/home
+cat students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  cd $LBGHOME/$user
+  echo " * Cloning repo for $user ..."
+  git clone https://github.com/charlotte-ngs/lbgfs2020.git -b rexpf
+  sleep 2
+done
+
+```
 
 
 ## Single Container - Multiple Users
