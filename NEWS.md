@@ -1,3 +1,7 @@
+# lbgfs2020 0.2.3
+
+* Added information about exercise platform to webpage.
+
 # lbgfs2020 0.2.2
 
 * Released first exercise
