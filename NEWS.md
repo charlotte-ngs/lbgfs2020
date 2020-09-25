@@ -1,3 +1,7 @@
+# lbgfs2020 0.2.5
+
+* Added ohp and link to video
+
 # lbgfs2020 0.2.4
 
 * Introduction to RMarkdown
