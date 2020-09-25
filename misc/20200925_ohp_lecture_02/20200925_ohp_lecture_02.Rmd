@@ -1,0 +1,100 @@
+---
+title: "Overhead Pictures"
+author: "Peter von Rohr"
+date: "9/18/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+## Genetic Model
+
+```{r genetic-model, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/genetic-model.odg')
+knitr::include_graphics(path = "odg/genetic-model.png")
+```
+ 
+
+## Single Locus
+
+```{r single-locus, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/single-locus.odg')
+knitr::include_graphics(path = "odg/single-locus.png")
+```
+ 
+
+## Frequencies
+
+```{r frequencies, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/frequencies.odg')
+knitr::include_graphics(path = "odg/frequencies.png")
+```
+ 
+
+## Hardy-Weinberg
+
+```{r hwe, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/hwe.odg')
+knitr::include_graphics(path = "odg/hwe.png")
+```
+ 
+ 
+HWE II
+
+```{r hweII, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/hweII.odg')
+knitr::include_graphics(path = "odg/hweII.png")
+```
+ 
+
+## No Association
+
+```{r loc-no-assoc, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/loc-no-assoc.odg')
+knitr::include_graphics(path = "odg/loc-no-assoc.png")
+```
+
+
+## Locus With Association
+
+```{r loc-with-assoc, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/loc-with-assoc.odg')
+knitr::include_graphics(path = "odg/loc-with-assoc.png")
+```
+
+  
+## Population Mean
+
+```{r pop-mean, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/pop-mean.odg')
+knitr::include_graphics(path = "odg/pop-mean.png")
+```
+ 
+
+## Breeding Value I
+
+```{r bvI, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/bvI.odg')
+knitr::include_graphics(path = "odg/bvI.png")
+```
+
+
+## Breeding Value II
+
+```{r bvII, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/bvII.odg')
+knitr::include_graphics(path = "odg/bvII.png")
+```
+
+
+## Breeding Value III
+
+```{r bvIII, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/bvIII.odg')
+knitr::include_graphics(path = "odg/bvIII.png")
+```
+   

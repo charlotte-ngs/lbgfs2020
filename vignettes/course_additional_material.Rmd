@@ -39,12 +39,14 @@ knitr::kable(tbl_sl)
 ## Videos
 
 ```{r vd-table, echo=FALSE}
-tbl_vd <- tibble::tibble(Nr  = c(1),
+tbl_vd <- tibble::tibble(Nr  = c(1,2),
                          Date = c(
-                           "2020-09-18"
+                           "2020-09-18",
+                           "2020-09-25"
                          ),
                          Topic = c(
-                           "[Introduction to Livestock Breeding and Genomics](https://youtu.be/Mkx2ixBoVF4)"
+                           "[Introduction to Livestock Breeding and Genomics](https://youtu.be/Mkx2ixBoVF4)",
+                           "[Review of Quantitative Genetics](https://youtu.be/3nezvbFDDas)"
                          ))
 knitr::kable(tbl_vd)
 ```
@@ -56,10 +58,12 @@ knitr::kable(tbl_vd)
 s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
 tbl_ohp <- tibble::tibble(Nr = c(1),
                           Date = c(
-                           "2020-09-18"
+                           "2020-09-18",
+                           "2020-09-25"
                          ),
                          Topic = c(
-                           paste0("[Introduction to Livestock Breeding and Genomics](", s_misc_url, "20200918_ohp_lecture01.pdf)", collapse = '')
+                           paste0("[Introduction to Livestock Breeding and Genomics](", s_misc_url, "20200918_ohp_lecture01.pdf)", collapse = ''),
+                           paste0("[Review of Quantitative Genetics](", s_misc_url, "20200925_ohp_lecture_02.pdf", collapse = '')
                          ))
 knitr::kable(tbl_ohp)
 ```
