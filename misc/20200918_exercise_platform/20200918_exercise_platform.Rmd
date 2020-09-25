@@ -82,11 +82,13 @@ do
   name=$(echo $s | cut -d ',' -f3)
   firstname=$(echo $s | cut -d ',' -f4)
   pass=`tr -dc A-Za-z0-9_ < /dev/urandom | head -c8`
-  dcmd="sudo docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse"
+  dcmd="docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse"
   echo $dcmd
-  sudo docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse
+  docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse
   sudo chmod -R 777 $LBGHOME/${user}
   printf "To: $email \nSubject: Exercise Platform \n\nDear $firstname $name \nThis e-mail contains the required information for the exercise platform. \n\nPort: $RSTPORT \nPassword: $pass \n\nBest regards, Peter" > ${user}_email.txt
+  # firewall
+  sudo ufw allow $RSTPORT/tcp
   RSTPORT=$((RSTPORT+1))
 done
 # real students
@@ -98,12 +100,32 @@ do
   pass=`tr -dc A-Za-z0-9_ < /dev/urandom | head -c8`
   dcmd="docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse"
   echo $dcmd
-  sudo docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse
+  docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse
   sudo chmod -R 777 $LBGHOME/${user}
   printf "To: $email \nSubject: Exercise Platform \n\nDear $firstname $name \nThis e-mail contains the required information for the exercise platform. \n\nPort: $RSTPORT \nPassword: $pass \n\nBest regards, Peter" > ${user}_email.txt
+  # firewall
+  sudo ufw allow $RSTPORT/tcp
   RSTPORT=$((RSTPORT+1))
+  sleep 2
+done
+```
+
+Stopping all instances 
+
+```
+cat test_students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  docker stop ${user}_rstudio
+done
+cat students_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  docker stop ${user}_rstudio
+  sleep 2
 done
 
+docker rm $(docker ps --filter "status=exited" -q)
 ```
 
 
