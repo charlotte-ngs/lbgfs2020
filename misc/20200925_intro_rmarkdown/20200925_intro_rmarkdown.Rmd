@@ -1,0 +1,66 @@
+---
+title: "Introduction To RMarkdown"
+author: "Peter von Rohr"
+date: "9/25/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+## Types of Document Creation
+
+Two fundamentally different ways to create a document
+
+1. "What You See Is What You Get" (WYSIWYG) - Word ...
+2. Command-based formatting in source file to produce different types of output - LaTeX, RMarkdown
+
+Advantage of 
+
+* 1 over 2: Easy to use, fast if you know how, many people use it ...
+* 2 over 1: Reproducibility
+
+
+## Resources for RMarkdown
+
+* Cheatsheet - https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+* https://rmarkdown.rstudio.com/
+* https://bookdown.org/yihui/rmarkdown/
+
+
+## Workflow
+
+```{r rmd-workflow, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/rmd-workflow.odg')
+knitr::include_graphics(path = "odg/rmd-workflow.png")
+```
+ 
+ 
+## Getting Started
+
+Open a file in RStudio
+
+```{r rmd-openfile, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/rmd-openfile.odg')
+knitr::include_graphics(path = "odg/rmd-openfile.png")
+```
+ 
+
+## RMarkdown Syntax
+
+```{r rmd-syntax, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/rmd-syntax.odg')
+knitr::include_graphics(path = "odg/rmd-syntax.png")
+```
+ 
+
+## RMarkdown Syntax II
+
+```{r rmd-syntax2, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/rmd-syntax2.odg')
+knitr::include_graphics(path = "odg/rmd-syntax2.png")
+```
+ 
