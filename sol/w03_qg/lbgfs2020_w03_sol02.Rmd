@@ -1,0 +1,274 @@
+---
+title:  Livestock Breeding and Genomics - Solution 2
+author: Peter von Rohr
+date: 2020-10-02
+output: 
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+
+## Problem 1: Breeding Values For a Monogenic Trait
+We assume that the absorption of cholesterol is determined by a certain enzyme. The level of enzyme production is determined by a single bi-allelic locus $E$. The genotype frequencies and the genotypic values for the two dairy cattle populations `Original Braunvieh` and `Brown Swiss` are given in the following table.
+
+```{r table-geno-freq-value, echo=FALSE}
+l_maf <- list(ob = 0.25, bs = 0.1)
+l_a <- list(ob = 15, bs = 29)
+l_d <- list(ob = 3, bs = 0)
+tbl_geno_freq_value <- tibble::tibble(Variable = c(
+  "$f(E_1E_1)$",
+  "$f(E_1E_2)$",
+  "$f(E_2E_2)$",
+  "$a$",
+  "$d$"),
+  `Original Braunvieh` = c(
+    l_maf$ob^2, 
+    2*l_maf$ob*(1-l_maf$ob),
+    (1-l_maf$ob)^2,
+    l_a$ob,
+    l_d$ob
+  ),
+  `Brown Swiss` = c(
+    l_maf$bs^2,
+    2*l_maf$bs * (1-l_maf$bs),
+    (1-l_maf$bs),
+    l_a$bs,
+    l_d$bs
+  ))
+knitr::kable(tbl_geno_freq_value, booktabs = TRUE, escape = FALSE)
+```
+
+
+### Hints
+* Assume that allele $E_1$ is the allele with the positive effect on the enzyme level
+* Assume that the Hardy-Weinberg Equilibrium holds in both populations
+
+
+### Your Task
+Compute the breeding values for all three genotypes in both populations. 
+
+
+### Solution
+The breeding values are computed as shown in the following table.
+
+```{r table-bv, echo=FALSE}
+tbl_bv <- tibble::tibble(Genotype = c(
+   "$E_1E_1$",
+  "$E_1E_2$",
+  "$E_2E_2$"),
+  `Breeding Value` = c(
+    "$2q\\alpha$",
+    "$(q-p)\\alpha$",
+    "$-2p\\alpha$"
+  ))
+knitr::kable(tbl_bv, booktabs = TRUE, escape = FALSE)
+```
+
+with $\alpha = a + (q-p)d$. The values for $a$ and $d$ are given in the task and the allele frequencies $p$ and $q$ can be computed from the given genotype frequencies. 
+
+$$p = f(E_1) = f(E_1E1) + {1\over 2}f(E_1E_2)$$
+and $q = 1-p$
+
+For the two populations we get
+
+```{r table-allele-freq-alpha, echo=FALSE}
+l_alpha <- list(ob = l_a$ob + (1-2*l_maf$ob)*l_d$ob,
+                bs = l_a$bs + (1-2*l_maf$bs)*l_d$bs)
+tbl_allele_freq_alpha <- tibble::tibble(Variable = c(
+  "$p$",
+  "$q$",
+  "$\\alpha$"),
+  `Original Braunvieh` = c(
+    l_maf$ob,
+    1-l_maf$ob,
+    l_alpha$ob),
+  `Brown Swiss` =  c(
+    l_maf$bs,
+    1-l_maf$bs,
+    l_alpha$bs))
+knitr::kable(tbl_allele_freq_alpha, booktabs = TRUE, escape = FALSE)
+```
+
+The breeding values for the two breeds are given in the following table
+
+```{r table-bv-result, echo=FALSE}
+tbl_table_bv_result <- tibble::tibble(Genotype = c(
+   "$E_1E_1$",
+  "$E_1E_2$",
+  "$E_2E_2$"),
+  `Original Braunvieh` = c(
+    2 * (1-l_maf$ob) * l_alpha$ob,
+    (1-2*l_maf$ob) * l_alpha$ob,
+    -2 * l_maf$ob * l_alpha$ob
+  ),
+  `Brown Swiss` =  c(
+    2 * (1-l_maf$bs) * l_alpha$bs,
+    (1-2*l_maf$bs) * l_alpha$bs,
+    -2 * l_maf$bs  * l_alpha$bs))
+knitr::kable(tbl_table_bv_result, booktabs = TRUE, escape = FALSE)
+```
+
+
+## Problem 2: Matrices in R
+In R, matrices are constructed using the function `matrix()`. This function accepts different options. We want to see, how these options work.
+
+__Your Task__: Construct matrices using the different options to better understand the meaning of the different options.
+
+
+### Parameter `data`
+* `data`: Specify the different matrix elements
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matA <- matrix(data = c(1:9), nrow = 3, ncol = 3))
+```
+
+* `data`: without specifying the matrix elements
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matB <- matrix(nrow = 3, ncol = 3))
+```
+
+* `data`: specifying not all matrix elements
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matC <- matrix(data = c(1,2,3), nrow = 3, ncol = 3))
+```
+
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matC2 <- matrix(data = c(1,2,3,4), nrow = 3, ncol = 3))
+```
+
+\pagebreak
+
+### Parameters `nrow` and `ncol`
+* Leaving out one of both parameters
+
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matD <- matrix(data = c(1:9), nrow = 3))
+```
+
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matE <- matrix(data = c(1:9), ncol = 3))
+```
+
+### Parameter `byrow`
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matF <- matrix(data = c(1:9), nrow = 3, ncol = 3, byrow = TRUE))
+```
+
+```{r echo=TRUE, results='markup', eval=TRUE}
+(matG <- matrix(data = c(1:9), nrow = 3, ncol = 3, byrow = FALSE))
+```
+
+
+## Problem 3: Matrix multiplication in R
+In R, matrices can be multiplied using the operator `%*%` or with the functions `crossprod()` or `tcrossprod()`. With `crossprod()` and `tcrossprod()` vectors and matrices can be multiplied directly. The conversion of vectors to matrices is done automatically inside of these functions. The result will always be a matrix. When doing matrix-vector multiplications with `%*%` the vector has to be converted first into a matrix using the function `as.matrix()`.
+
+In a first part of this problem, compare the results of the functions `crossprod()`, `tcrossprod()` and `%*%`. 
+
+a) Given are the following matrices
+
+```{r MatMultMatDef, echo=TRUE, results='markup'}
+matA <- matrix(data = c(1:9), ncol = 3)
+matB <- matrix(data = c(2:10), ncol = 3)
+```
+
+Find out which matrix multiplication with `%*%` corresponds to the following statement?
+
+```{r, echo=TRUE, results='markup', eval=TRUE}
+crossprod(matA,matB)
+```
+
+### Solution
+The statement `crossprod(matA,matB)` corresponds to 
+
+```{r, echo=TRUE, results='markup'}
+t(matA) %*% matB
+```
+
+Alternatively there is the function `tcrossprod()`. Find out which matrix multiplication is executed by
+
+```{r, echo=TRUE, results='markup', eval=TRUE}
+tcrossprod(matA, matB)
+```
+
+
+### Solution
+```{r, echo=TRUE, results='markup'}
+matA %*% t(matB)
+```
+
+
+b) Given is the vector `vecB`
+
+```{r, echo=TRUE}
+vecB <- c(-3,16,1)
+```
+
+Multiply the matrix `matA` with the vector `vecB` once using `%*%` and then with the function `crossprod()`.
+
+__Hint__: a vector can be converted to a matrix using the function `as.matrix()`.
+
+
+### Solution
+```{r echo=TRUE, results='markup'}
+matA %*% as.matrix(vecB)
+```
+
+```{r echo=TRUE, results='markup'}
+crossprod(t(matA), vecB)
+```
+
+
+\pagebreak
+
+
+## Problem 4: Quantitative Genetics
+In a population the following numbers of genotypes were counted for a given genetic locus called $A$. 
+
+```{r GenotypeFreqs}
+dfGenotypeFreq <- data.frame(Genotypes = c("$A_1A_1$", "$A_1A_2$", "$A_2A_2$"),
+                             Numbers   = c(24, 53, 23),
+                             stringsAsFactors = FALSE)
+knitr::kable(dfGenotypeFreq)
+```
+
+a) Compute the genotype frequencies
+
+### Solution
+```{r echo=TRUE, results='markup'}
+nTotNrInd <- sum(dfGenotypeFreq$Numbers)
+vGenoTypeFreq <- dfGenotypeFreq$Numbers / nTotNrInd
+cat(paste("genotype-frequency", dfGenotypeFreq$Genotypes[1]), ": ", vGenoTypeFreq[1])
+cat(paste("genotype-frequency", dfGenotypeFreq$Genotypes[2]), ": ", vGenoTypeFreq[2])
+cat(paste("genotype-frequency", dfGenotypeFreq$Genotypes[3]), ": ", vGenoTypeFreq[3])
+```
+
+b) Compute the allele frequencies
+
+### Solution
+```{r echo=TRUE, results='markup'}
+vGenFreqP <- vGenoTypeFreq[1] + 0.5*vGenoTypeFreq[2]
+vGenFreqQ <-  vGenoTypeFreq[3] + 0.5*vGenoTypeFreq[2]
+cat("allele frequency for A1: ", vGenFreqP)
+cat("allele frequency for A2: ", vGenFreqQ)
+```
+
+c) Compute the population mean $\mu$ under the following assumptions
+
+* the difference between the genotypic values of the homozygous genotypes is $20$ and
+* the genotypic value of the heterozygous genotype is $2$.
+
+### Solution
+```{r echo=TRUE, results='markup'}
+nDeltaHom <- 20
+### # additive value A
+nAddValue <- nDeltaHom / 2
+nDom <- 2
+### # population mean
+nMu <- (vGenFreqP-vGenFreqQ) * nAddValue + 2 * vGenFreqP * vGenFreqQ * nDom
+cat("Population mean: ", nMu, "\n")
+```
+
