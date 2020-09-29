@@ -154,7 +154,6 @@ b <- c(2, 21, x )
 crossprod(a, b)
 ```
 
-\pagebreak
 
 ## Problem 4: Phenotypes and Genotypes
 ```{r MilkYieldDelilah, echo=FALSE}
