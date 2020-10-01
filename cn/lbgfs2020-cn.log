@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.9.16)  24 SEP 2020 17:56
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.9.16)  1 OCT 2020 23:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -884,13 +884,13 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 2.
-)
+[3])
 \tf@toc=\write4
 \openout4 = `lbgfs2020-cn.toc'.
 
-[3] [4
+[4] [5
 
-] [5] [6]
+] [6]
 Chapter 1.
 [7
 
@@ -935,51 +935,72 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [30] [31] [32
 
 ]
+Chapter 3.
+
+Underfull \vbox (badness 2865) has occurred while \output is active []
+
+[33]
+File: odg/basicmodelrearrterm.png Graphic file (type bmp)
+<odg/basicmodelrearrterm.png>
+[34] [35]
+Underfull \vbox (badness 3407) has occurred while \output is active []
+
+[36]
+File: odg/regbreedingvaluesinglerecord.png Graphic file (type bmp)
+<odg/regbreedingvaluesinglerecord.png>
+
+Underfull \vbox (badness 2012) has occurred while \output is active []
+
+[37] [38] [39] [40] [41] [42]
+Underfull \vbox (badness 3954) has occurred while \output is active []
+
+[43] [44]
 Appendix A.
-[33
+[45
+
 
 ]
 File: odg/vector-physics-perspective.png Graphic file (type bmp)
 <odg/vector-physics-perspective.png>
-[34]
+[46]
 File: odg/vector-cs-perspecitve.png Graphic file (type bmp)
 <odg/vector-cs-perspecitve.png>
-[35]
+[47]
 File: odg/coordinate-system.png Graphic file (type bmp)
 <odg/coordinate-system.png>
-[36]
+[48]
 File: odg/vector-sum.png Graphic file (type bmp)
 <odg/vector-sum.png>
-[37]
+[49]
 File: odg/vector-scalar-multiplication.png Graphic file (type bmp)
 <odg/vector-scalar-multiplication.png>
-[38] [39] [40] [41] [42] [43] [44]
+[50] [51] [52] [53] [54] [55] [56]
 Appendix B.
-(./lbgfs2020-cn.bbl [45
+(./lbgfs2020-cn.bbl [57
 
-] [46
+] [58
 
-] [47] [48])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1343.
-[49]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1343.
+] [59] [60])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1670.
+[61]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1670.
 (./lbgfs2020-cn.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1343.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1343.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1670.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1670.
 
 Package rerunfilecheck Info: File `lbgfs2020-cn.out' has not changed.
-(rerunfilecheck)             Checksum: EF5AABCC68C4E91460474128629D4EDC;3964.
+(rerunfilecheck)             Checksum: BC348D067D7030D6A103989103583F50;4830.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18683 strings out of 481674
- 325859 string characters out of 5932416
- 766179 words of memory out of 5000000
- 35486 multiletter control sequences out of 15000+600000
+ 18731 strings out of 481674
+ 327179 string characters out of 5932416
+ 771959 words of memory out of 5000000
+ 35532 multiletter control sequences out of 15000+600000
  541685 words of font info for 88 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 52i,11n,118p,1524b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 52i,11n,118p,1650b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on lbgfs2020-cn.pdf (49 pages).
+Output written on lbgfs2020-cn.pdf (61 pages).
