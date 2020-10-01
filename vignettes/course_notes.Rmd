@@ -20,7 +20,7 @@ This page contains the list of links pointing to the different chapters in the c
 
 ```{r chpt-table, echo=FALSE}
 s_cn_url <- 'https://charlotte-ngs.github.io/lbgfs2020/cn/'
-tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2),
+tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3),
                            Date    = c(
                              "2020-09-18",
                              "2020-09-18",
