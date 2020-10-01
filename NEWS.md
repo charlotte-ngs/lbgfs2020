@@ -1,3 +1,7 @@
+# lbgfs2020 0.3.1
+
+* Exercise 2 and Solution 1 released
+
 # lbgfs2020 0.3.0
 
 * Cource notes for week 3
