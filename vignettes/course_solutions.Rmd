@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 The following table contains a list with solutions to the exercises.
 
 ```{r solution-table, echo=FALSE}
-s_ex_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sol/'
+s_sol_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sol/'
 tbl_sol <- tibble::tibble(Nr = c(2),
                           Date  = c(
                             "2020-09-25"),
