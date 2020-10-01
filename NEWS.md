@@ -1,3 +1,7 @@
+# lbgfs2020 0.3.0
+
+* Cource notes for week 3
+
 # lbgfs2020 0.2.5
 
 * Added ohp and link to video
