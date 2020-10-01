@@ -18,10 +18,12 @@ The links to the exercises are given in the following table.
 
 ```{r exercise-table, echo=FALSE}
 s_ex_url <- 'https://charlotte-ngs.github.io/lbgfs2020/ex/'
-tbl_ex <- tibble::tibble(Nr = c(2),
+tbl_ex <- tibble::tibble(Nr = c(2, 3),
                          Date = c(
-                           "2020-09-25"),
+                           "2020-09-25",
+                           "2020-10-02"),
                          Topic  = c(
-                           paste0("[Linear Algebra](", s_ex_url, "lbgfs2020_w02_ex01_linalg.pdf)", collapse = '')))
+                           paste0("[Linear Algebra](", s_ex_url, "lbgfs2020_w02_ex01_linalg.pdf)", collapse = ''),
+                           paste0("[Quantitative Genetics](", s_ex_url, "lbgfs2020_w03_ex02.pdf)", collapse = '')))
 knitr::kable(tbl_ex)
 ```

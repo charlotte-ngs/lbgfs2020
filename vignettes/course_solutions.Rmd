@@ -17,8 +17,11 @@ knitr::opts_chunk$set(
 The following table contains a list with solutions to the exercises.
 
 ```{r solution-table, echo=FALSE}
-tbl_sol <- tibble::tibble(Nr = c(1),
-                          Topic = c(""),
-                          Link  = c(""))
+s_ex_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sol/'
+tbl_sol <- tibble::tibble(Nr = c(2),
+                          Date  = c(
+                            "2020-09-25"),
+                          Topic = c(
+                            paste0("[Linear Algebra](", s_sol_url, "lbgfs2020_w02_sol01_linalg.pdf)", collapse = '')))
 knitr::kable(tbl_sol)
 ```
