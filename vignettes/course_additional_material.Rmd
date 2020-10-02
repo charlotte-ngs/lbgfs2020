@@ -60,14 +60,16 @@ knitr::kable(tbl_vd)
 
 ```{r ohp-table, echo=FALSE}
 s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
-tbl_ohp <- tibble::tibble(Nr = c(1,2),
+tbl_ohp <- tibble::tibble(Nr = c(1,2,3),
                           Date = c(
                            "2020-09-18",
-                           "2020-09-25"
+                           "2020-09-25",
+                           "2020-10-02"
                          ),
                          Topic = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", s_misc_url, "20200918_ohp_lecture01.pdf)", collapse = ''),
-                           paste0("[Review of Quantitative Genetics](", s_misc_url, "20200925_ohp_lecture_02.pdf)", collapse = '')
+                           paste0("[Review of Quantitative Genetics](", s_misc_url, "20200925_ohp_lecture_02.pdf)", collapse = ''),
+                           paste0("[Genetic Evaluation](", s_misc_url, "20201002_ohp_lecture_03.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_ohp)
 ```
