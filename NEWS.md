@@ -1,3 +1,7 @@
+# lbgfs2020 0.3.3
+
+* OHP of lecture 3 added
+
 # lbgfs2020 0.3.2
 
 * Slides for week 3
