@@ -1,3 +1,7 @@
+# lbgfs2020 0.3.2
+
+* Slides for week 3
+
 # lbgfs2020 0.3.1
 
 * Exercise 2 and Solution 1 released
