@@ -21,7 +21,7 @@ This page contains lists of additional material.
 
 ```{r slides-table, echo=FALSE}
 s_sl_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sl/'
-tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2),
+tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3),
                          Date    = c(
                            "2020-09-18",
                            "2020-09-25",
