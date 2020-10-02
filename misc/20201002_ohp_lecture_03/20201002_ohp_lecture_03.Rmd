@@ -1,0 +1,133 @@
+---
+title: "Overhead Pictures"
+author: "Peter von Rohr"
+date: "10/2/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+
+## Recap Definition
+
+```{r img-1, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-1.odg')
+knitr::include_graphics(path = "odg/img-1.png")
+```
+
+
+## Result
+
+```{r img-2, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-2.odg')
+knitr::include_graphics(path = "odg/img-2.png")
+```
+
+
+## Allele Substitution
+
+```{r img-3, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-3.odg')
+knitr::include_graphics(path = "odg/img-3.png")
+```
+
+
+## Summary BV
+
+```{r img-4, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-4.odg')
+knitr::include_graphics(path = "odg/img-4.png")
+```
+
+
+## Dominance
+
+```{r img-5, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-5.odg')
+knitr::include_graphics(path = "odg/img-5.png")
+```
+
+
+## Variance
+
+```{r img-6, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-6.odg')
+knitr::include_graphics(path = "odg/img-6.png")
+```
+
+
+## Variance II
+
+```{r img-7, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-7.odg')
+knitr::include_graphics(path = "odg/img-7.png")
+```
+
+
+## Decompositions
+
+```{r img-8, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-8.odg')
+knitr::include_graphics(path = "odg/img-8.png")
+```
+
+
+## More Loci
+
+```{r img-9, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-9.odg')
+knitr::include_graphics(path = "odg/img-9.png")
+```
+
+
+## Two Loci
+
+```{r img-10, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-10.odg')
+knitr::include_graphics(path = "odg/img-10.png")
+```
+
+
+## Genetic Model
+
+```{r img-11, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-11.odg')
+knitr::include_graphics(path = "odg/img-11.png")
+```
+
+
+## Breeding Value
+
+```{r img-12, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-12.odg')
+knitr::include_graphics(path = "odg/img-12.png")
+```
+
+
+## CLT
+
+```{r img-13, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-13.odg')
+knitr::include_graphics(path = "odg/img-13.png")
+```
+
+
+## Parent - Offspring
+
+```{r img-14, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-14.odg')
+knitr::include_graphics(path = "odg/img-14.png")
+```
+
+
+## Matrix in R
+
+```{r img-15, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/img-15.odg')
+knitr::include_graphics(path = "odg/img-15.png")
+```
+               
