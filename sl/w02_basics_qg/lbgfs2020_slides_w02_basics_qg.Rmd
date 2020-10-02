@@ -236,7 +236,7 @@ with $\alpha = a + (q-p)d$
 
 \begin{tabular}{|c|c|c|c|}
 \hline
-Genotyp  &  genotypic value     &  Breeding Value    &  Dominance Deviation \\
+Genotype  &  genotypic value     &  Breeding Value    &  Dominance Deviation \\
 $G_iG_j$ &  $V_{ij}$            &  $BV_{ij}$         &  $D_{ij}$           \\
 \hline
 $G_1G_1$ &  $a$                 &  $2q\alpha$        &  $-2q^2d$          \\
@@ -253,3 +253,71 @@ $G_2G_2$ &  $-a$                &  $-2p\alpha$       & $-2p^2d$           \\
 \begin{align}
 V_{ij} &=   \mu + BV_{ij} + D_{ij} \notag
 \end{align}
+
+## Variances 
+
+\begin{equation}
+Var\left[X\right] = \sum_{x_i \in \mathcal{X}} (x_i - \mu_X)^2 * f(x_i)  \notag
+\end{equation}
+
+ \vspace*{1ex}
+  \begin{tabular}{p{1cm}p{1cm}p{6cm}}
+  where & $\mathcal{X}$: &  set of all possible $x$-values\\
+        & $f(x_i)$       &  probability that $x$ assumes the value of $x_i$ \\
+        & $\mu_X $       &  expected value $E\left[X\right]$ of $X$
+  \end{tabular}
+  
+
+## Variance Computation
+
+\begin{align}
+\sigma_G^2 = Var\left[V\right] &=   (V_{11} - \mu)^2 * f(G_1G_1) \notag \\
+                               &  +\  (V_{12} - \mu)^2 * f(G_1G_2) \notag \\
+                               &  +\  (V_{22} - \mu)^2 * f(G_2G_2)  \notag
+\end{align}
+
+where $\mu = (p - q)a + 2pqd$ the population mean.
+
+
+## Simplification
+
+\begin{align}
+\sigma_G^2 = Var\left[V\right] &=   (BV_{11} + D_{11})^2 * f(G_1G_1) \notag \\
+                               &  +\  (BV_{12} + D_{12})^2 * f(G_1G_2) \notag \\
+                               &  +\  (BV_{22} + D_{22})^2 * f(G_2G_2)  \notag
+\end{align}
+
+
+## Result
+
+\begin{align}
+  \sigma_G^2 &=  2pq\alpha^2 + \left(2pqd \right)^2 \notag\\
+             &=  \sigma_A^2 + \sigma_D^2  \notag
+\end{align}
+
+## Two and more Loci
+
+Two loci $G$ and $H$ have an effect on the same quantitative trait.
+
+\small
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Genotype       &  genotypic value     &  Breeding Value    &  Dominance   &  Epistasis \\
+$G_iG_jH_kH_l$ &  $V_{ijkl}$          &  $BV_{ijkl}$       &  $D_{ijkl}$  &  $I_{ijkl}$  \\
+\hline
+$G_1G_1H_1H_1$ &  $V_{1111}$          &  $BV_{1111}$       &  $D_{1111}$  &  $I_{1111}$      \\
+\hline
+$G_1G_2H_1H_1$ &           &       &      &        \\
+\hline
+$G_2G_2H_1H_1$ &           &       &      &      \\
+\hline
+...            &           &       &      &      \\
+\hline
+\end{tabular}
+
+\normalsize
+
+Because breeding values are additive 
+
+$$ BV_{ijkl} = BV_{ij} + BV_{kl}$$
