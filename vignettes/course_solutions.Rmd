@@ -24,6 +24,6 @@ tbl_sol <- tibble::tibble(Nr = c(2, 3),
                            "2020-10-02"),
                           Topic = c(
                             paste0("[Linear Algebra](", s_sol_url, "lbgfs2020_w02_sol01_linalg.pdf)", collapse = ''),
-                            paste0("[Quantitative Genetics](", s_ex_url, "lbgfs2020_w03_sol02.pdf)", collapse = '')))
+                            paste0("[Quantitative Genetics](", s_sol_url, "lbgfs2020_w03_sol02.pdf)", collapse = '')))
 knitr::kable(tbl_sol)
 ```
