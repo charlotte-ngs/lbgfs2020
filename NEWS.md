@@ -1,3 +1,7 @@
+# lbgfs2020 0.4.0
+
+* Release of solution and exercise for week 4.
+
 # lbgfs2020 0.3.3
 
 * OHP of lecture 3 added
