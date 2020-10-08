@@ -144,16 +144,16 @@ where $i$, the selection intensity refers to the superiority of selected individ
 When animals get older, it is likely that we can observe multiple measurements for the same trait. An example is milk yield in dairy cows where a cow might have repeated lactation records. The breeding value of an animal may be predicted based on the mean of the repeated records. With repeated records, an additional resemblance between the records of an animal due to permanent environmental factors occurs. The between-animal variance is partly genetic and partly caused by permanent environmental effects. The within-animal variance is attributed to differences between the successive measurements of the animal arising from temporary environmental variations, i.e., from environmental factors that change over time. The variance of observations ($var(y)$) can therefore be partitioned as 
 
 \begin{equation}
-var(y) = var(g) + var(pe) + var(te)
+var(y) = var(u) + var(pe) + var(te)
 (\#eq:varrepeatedrecords)
 \end{equation}
 
-where $var(g)$ is the genetic variance, $var(pe)$ the variance due to permanent environmental effects and $var(te)$ the variance due to temporary environmental effects. 
+where $var(u)$ is the genetic additive variance, $var(pe)$ the variance due to permanent environmental effects and $var(te)$ the variance due to temporary environmental effects. 
 
 The intra-class correlation $t$ is defined as the ratio of the genetic plus the permanent environmental variance divided by the phenotypic variance.
 
 \begin{equation}
-t = \frac{var(g) + var(pe)}{var(y)}
+t = \frac{var(u) + var(pe)}{var(y)}
 (\#eq:intraclasscorrelation)
 \end{equation}
 
@@ -166,10 +166,12 @@ The term $t$ is also called __repeatability__ and it measures the correlation be
 
 With this model, it is assumed that the repeated records on the animal are the same trait. Therefore the genetic correlation between all pairs of records is one. We also assume that all records have equal variance and that the environmental correlations between all pairs of records are equal. Let $\tilde{y}$ represent the mean of $n$ records on animal $i$ which means
 
-\begin{equation}
-\tilde{y_i} = {1\over n} \sum_{k=1}^n y_{ik}
+\begin{align}
+\tilde{y_i} &= {1\over n} \sum_{k=1}^n y_{ik} \notag \\
+            &= {1\over n} \sum_{k=1}^n ( \mu + u_i + pe_i + te_{ik}) \notag \\
+            &= \mu + u_i + pe_i + \sum_{k=1}^n te_{ik}
 (\#eq:meanrepeatedrecords)
-\end{equation}
+\end{align}
 
 In this case, we use the mean ($\tilde{y_i}$) to predict the breeding value ($\hat{u_i}$)
 
@@ -188,14 +190,14 @@ b = \frac{cov(u,\tilde{y})}{var(\tilde{y})}
 The single elements are computed as
 
 \begin{equation}
-cov(u,\tilde{y}) = cov(u, g + pe + {1\over n} \sum_{k=1}^n te_k) = \sigma_a^2
+cov(u,\tilde{y}) = cov(u, \mu + u + pe + {1\over n} \sum_{k=1}^n te_k) = var(u) = \sigma_u^2
 (\#eq:covayrepeatedrecords)
 \end{equation}
 
 and 
 
 \begin{equation}
-var(\tilde{y}) = var(g) + var(pe) + {1\over n} var(te)
+var(\tilde{y}) = var(u) + var(pe) + {1\over n} var(te)
 (\#eq:varyrepeatedrecords)
 \end{equation}
 
@@ -255,23 +257,37 @@ b = \frac{cov(u, \bar{y})}{var(\bar{y})}
 (\#eq:regressioncoefficientprogeny)
 \end{equation}
 
+and 
+
+\begin{align}
+\bar{y} &= {1 \over n} \sum_{k=1}^n y_k \notag \\
+        &= {1 \over n} \sum_{k=1}^n (\mu + u_k + e_k) \notag \\
+        &= \mu + {1 \over n} \sum_{k=1}^n (u_k + e_k) \notag \\
+        &= \mu + {1 \over n} \sum_{k=1}^n (1/2 u_s + 1/2 u_{dk} + m_k + e_k) \notag \\
+        &= \mu + 1/2 u_s + {1 \over n} \sum_{k=1}^n (1/2 u_{dk} + m_k + e_k) \notag \\
+        &= \mu + 1/2 u_s + {1 \over n} \sum_{k=1}^n 1/2 u_{dk} + {1 \over n} \sum_{k=1}^n e_k
+\end{align}
+
+
 In the current case of using progeny records to predict a breeding value, we have 
 
 \begin{align}
-cov(u, \bar{y}) &= cov(u, {1\over 2}u_s + {1\over 2}u_d + {1\over n}\sum_{k=1}^n m_k + {1\over n}\sum_{k=1}^n e_k) \notag \\
+cov(u, \bar{y}) &= cov(u, {1\over 2}u_s + {1\over 2}{1\over n}\sum_{k=1}^n u_{d,k} + {1\over n}\sum_{k=1}^n m_k + {1\over n}\sum_{k=1}^n e_k) \notag \\
                 &= cov(u, {1\over 2}u_s) \notag \\
                 &= {1\over 2} cov(u, u_s) \notag \\
                 &= {1\over 2} \sigma_u^2
 \end{align}
 
-where $u_s$ and $u_d$ denote the breeding values of sire $s$ and dam $d$, respectively and $m_k$ and $e_k$ stand for the mendelian sampling and the environmental effect of daughter $k$. Using the same principles as in section \@ref(repeatedrecords), we get
+where $u_s$ and $u_{d,k}$ denote the breeding values of sire $s$ and dam $d$ of offspring $k$, respectively and $m_k$ and $e_k$ stand for the mendelian sampling and the environmental effect of daughter $k$. Using the same principles as in section \@ref(repeatedrecords), we get
 
 \begin{equation}
 var(\bar{y}) = (t + (1-t)/n) \sigma_y^2
 (\#eq:variancedaughtermean)
 \end{equation}
 
-assuming there is no environmental covariance between half-sib records and the intra-class correlation $t$ is $\frac{1/4 \sigma_u^2}{\sigma_y^2}$. Then we can compute the regression coefficient as 
+where $\sigma_y^2 = var(u) + var(e) = \sigma_u^2 + \sigma_e^2$.
+
+Assuming there is no environmental covariance between half-sib records and the intra-class correlation $t$ is $\frac{1/4 \sigma_u^2}{\sigma_y^2}$. Then we can compute the regression coefficient as 
 
 <!-- ---------------------------------------------------- --
   -- TODO: Explain how $var(\bar{y})$ is derived          --
