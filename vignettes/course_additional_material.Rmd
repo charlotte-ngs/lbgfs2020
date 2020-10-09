@@ -43,16 +43,18 @@ knitr::kable(tbl_sl)
 ## Videos
 
 ```{r vd-table, echo=FALSE}
-tbl_vd <- tibble::tibble(Nr  = c(1,2,3),
+tbl_vd <- tibble::tibble(Nr  = c(1,2,3,4),
                          Date = c(
                            "2020-09-18",
                            "2020-09-25",
-                           "2020-10-02"
+                           "2020-10-02",
+                           "2020-10-09"
                          ),
                          Topic = c(
                            "[Introduction to Livestock Breeding and Genomics](https://youtu.be/Mkx2ixBoVF4)",
                            "[Review of Quantitative Genetics](https://youtu.be/3nezvbFDDas)",
-                           "[Genetic Evaluation](https://youtu.be/J5kTsEz_UCM)"
+                           "[Genetic Evaluation](https://youtu.be/J5kTsEz_UCM)",
+                           "[BLUP](https://youtu.be/V1A6Yne5maM)"
                          ))
 knitr::kable(tbl_vd)
 ```
