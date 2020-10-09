@@ -2,7 +2,7 @@
 title: "Genetic Evaluation"
 author: "Peter von Rohr"
 date: "02 Oktober 2020"
-output: beamer_presentation
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
