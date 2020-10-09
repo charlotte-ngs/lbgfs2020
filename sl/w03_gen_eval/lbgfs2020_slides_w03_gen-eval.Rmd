@@ -2,7 +2,7 @@
 title: "Genetic Evaluation"
 author: "Peter von Rohr"
 date: "02 Oktober 2020"
-output: github_document
+output: beamer_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -140,12 +140,19 @@ knitr::include_graphics(path = "odg/regbreedingvaluesinglerecord.png")
 
 * red line denotes __regression line__ from $u_i$ onto $y_i$
 * because phenotypes have genetic basis $\rightarrow$ connection between $u_i$ and $y_i$
-* measure for connection: regression coefficient $b$
-* new model can be interpreted as regression
+* measure for slope: regression coefficient $b$
+* new genetic model can be interpreted as regression
 
 \begin{equation}
 u_i = y_{ij} - \mu_i - e_{ij}^* \notag
 \end{equation}
+
+* Allowing for different slopes in a statistical model, introduces $b$
+
+\begin{equation}
+u_i = b * (y_{ij} - \mu_i) + e_{ij}^{**} \notag
+\end{equation}
+
 
 ## Regression Coefficient
 
@@ -184,6 +191,10 @@ r_{u,y} &= \frac{cov(u, y)}{\sigma_u \ \sigma_y} \notag \\
 
 
 ## Response To Selection
+
+* Why is the accuracy important? 
+* Response to selection depends on it
+* Example of single record
 
 \begin{equation}
 R = i * r_{u,y}^2 * \sigma_y = i * h^2 * \sigma_y \notag
@@ -266,7 +277,7 @@ cov(u_i, \bar{y_i}) &= cov(u_i, {1\over 2}u_i
 var(\bar{y_i}) = (t + (1-t)/n) \sigma_y^2 \notag
 \end{equation}
 
-with $t = \sigma_u^2 / 4$
+with $t = h^2 / 4$
 
 ## Intra-Class $t$
 
