@@ -145,7 +145,6 @@ __Your Task__: Construct matrices using the different options to better understa
 (matC2 <- matrix(data = c(1,2,3,4), nrow = 3, ncol = 3))
 ```
 
-\pagebreak
 
 ### Parameters `nrow` and `ncol`
 * Leaving out one of both parameters
