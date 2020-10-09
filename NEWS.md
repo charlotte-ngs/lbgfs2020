@@ -1,3 +1,7 @@
+# lbgfs2020 0.4.3
+
+* Added link to video of lecture 4
+
 # lbgfs2020 0.4.2
 
 * Released slides for week 4
