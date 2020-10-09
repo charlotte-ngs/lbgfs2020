@@ -1,3 +1,7 @@
+# lbgfs2020 0.4.2
+
+* Released slides for week 4
+
 # lbgfs2020 0.4.1
 
 * Release of chapter 4
