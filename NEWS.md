@@ -1,3 +1,7 @@
+# lbgfs2020 0.4.1
+
+* Release of chapter 4
+
 # lbgfs2020 0.4.0
 
 * Release of solution and exercise for week 4.
