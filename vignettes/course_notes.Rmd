@@ -35,7 +35,7 @@ tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3, 4, 5),
                              paste0("[Review of Quantitative Genetics](", s_cn_url, "02_intro_qg.pdf)", collapse = ''),
                              paste0("[Genetic Evaluation](", s_cn_url, "03_gen_eval.pdf)", collapse = ''),
                              paste0("[BLUP](", s_cn_url, "04_blup.pdf)", collapse = ''),
-                             paste0("[Genetic Relationships](", s_cn_url, "05_gencov.pdf", collapse = '')))
+                             paste0("[Genetic Covariances](", s_cn_url, "05_gencov.pdf)", collapse = '')))
 knitr::kable(tbl_chpt)
 ```
 
