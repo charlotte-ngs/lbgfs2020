@@ -1,3 +1,7 @@
+# lbgfs2020 0.5.0
+
+* Exercise and solutions for week 5
+
 # lbgfs2020 0.4.3
 
 * Added link to video of lecture 4
