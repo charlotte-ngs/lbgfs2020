@@ -1,3 +1,7 @@
+# lbgfs2020 0.5.1
+
+* Course notes for week 5
+
 # lbgfs2020 0.5.0
 
 * Exercise and solutions for week 5
