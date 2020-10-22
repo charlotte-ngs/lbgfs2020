@@ -1,3 +1,7 @@
+# lbgfs2020 0.5.4
+
+* Included link to video of lecture 5
+
 # lbgfs2020 0.5.3
 
 * Released slides
