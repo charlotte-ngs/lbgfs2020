@@ -18,14 +18,17 @@ The following table contains a list with solutions to the exercises.
 
 ```{r solution-table, echo=FALSE}
 s_sol_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sol/'
-tbl_sol <- tibble::tibble(Nr = c(2, 3, 4),
+tbl_sol <- tibble::tibble(Nr = c(2, 3, 4, 5),
                           Date  = c(
                             "2020-09-25",
                             "2020-10-02",
-                            "2020-10-09"),
+                            "2020-10-09",
+                            "2020-10-16"),
                           Topic = c(
                             paste0("[Linear Algebra](", s_sol_url, "lbgfs2020_w02_sol01_linalg.pdf)", collapse = ''),
                             paste0("[Quantitative Genetics](", s_sol_url, "lbgfs2020_w03_sol02.pdf)", collapse = ''),
-                            paste0("[Breeding Values](", s_sol_url, "lbgfs2020_w04_sol03.pdf)", collapse = '')))
+                            paste0("[Breeding Values](", s_sol_url, "lbgfs2020_w04_sol03.pdf)", collapse = ''),
+                            paste0("[Prediction of Breeding Values and Accuracy](", s_sol_url, "lbgfs2020_w05_sol04.pdf)", collapse = '')
+                           ))
 knitr::kable(tbl_sol)
 ```

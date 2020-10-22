@@ -250,7 +250,7 @@ mat_x_sire <- matrix(data = c(1, 0,
                               0, 1,
                               0, 1), ncol = 2, byrow = TRUE)
 # vec_betahat_sire <- c("\\beta_1", "\\beta_2")
-vec_beta_sire <- rmddochelper::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = n_nr_herd, psResult = "latex")
+vec_beta_sire <- rmdhelp::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = n_nr_herd, psResult = "latex")
 mat_z_sire <- matrix(data = c(1, 0, 0,
                               1, 0, 0,
                               1, 0, 0,
@@ -268,31 +268,19 @@ mat_z_sire <- matrix(data = c(1, 0, 0,
                               0, 0, 1,
                               0, 0, 1), ncol = 3, byrow = TRUE)
 # vec_sirehat_sire <- c("s_1", "s_2", "s_3")
-vec_sire_sire <- rmddochelper::vecGetVecElem(psBaseElement = "s", pnVecLen = n_nr_sire, psResult = "latex")
+vec_sire_sire <- rmdhelp::vecGetVecElem(psBaseElement = "s", pnVecLen = n_nr_sire, psResult = "latex")
 # vec_res_sire <- c("e_1", "e_2", "e_3", "e_4", "e_5", "e_6", "e_7", "e_8", "e_9", "e_{10}", "e_{11}", "e_{12}", "e_{13}", "e_{14}", "e_{15}", "e_{16}")
-vec_res_sire <- rmddochelper::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_observation, psResult = "latex")
+vec_res_sire <- rmdhelp::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_observation, psResult = "latex")
 cat("$$ \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = tbl_beef_data$`Weaning Weight`), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = tbl_beef_data$`Weaning Weight`), sep = "\n"),"\n")
 cat("= \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_x_sire, pnDigits = 0), sep = "\n"), "\n")
-cat("\\right] \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_beta_sire), sep = "\n"), "\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_x_sire), sep = "\n"), "\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_beta_sire), sep = "\n"), "\n")
 cat("+ \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_z_sire, pnDigits = 0), sep = "\n"), "\n")
-cat("\\right] \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_sire_sire), sep = "\n"), "\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_z_sire), sep = "\n"), "\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_sire_sire), sep = "\n"), "\n")
 cat("+ \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_res_sire), sep = "\n"), "\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_res_sire), sep = "\n"), "\n")
 cat("$$ \n")
 ```
 
@@ -382,8 +370,8 @@ mat_ztzginv_sire <- mat_ztz_sire + diag(1, nrow = nrow(mat_ztz_sire)) * 4 * lamb
 ### # put together coefficient matrix
 mat_coeff_sire <- rbind(cbind(mat_xtx_sire, mat_xtz_sire), cbind(mat_ztx_sire, mat_ztzginv_sire))
 ### # vector of estimates
-vec_betahat_sire <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = n_nr_herd, psResult = "latex")
-vec_sirehat_sire <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{s}", pnVecLen = n_nr_sire, psResult = "latex")
+vec_betahat_sire <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = n_nr_herd, psResult = "latex")
+vec_sirehat_sire <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{s}", pnVecLen = n_nr_sire, psResult = "latex")
 vec_estpred_sire <- c(vec_betahat_sire, vec_sirehat_sire)
 ### # righthandside
 vec_weight_sire <- as.vector(tbl_beef_data$`Weaning Weight`)
@@ -396,16 +384,10 @@ vec_sol <- solve(mat_coeff_sire, vec_rhs_sire)
 
 ```{r mmedisplay, echo=FALSE, results='asis'}
 cat("$$ \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coeff_sire, pnDigits = 4), sep = "\n"), "\n")
-cat("\\right] \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_estpred_sire), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_coeff_sire), sep = "\n"), "\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_estpred_sire), sep = "\n"),"\n")
 cat("= \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_rhs_sire), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rhs_sire), sep = "\n"),"\n")
 cat("$$ \n")
 ```
 
@@ -415,20 +397,13 @@ The solution consists of the estimates for the fixed effects and the predictions
 
 ```{r soldisplay, echo=FALSE, results='asis'}
 cat("$$ \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_estpred_sire), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_estpred_sire), sep = "\n"),"\n")
 cat("= \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coeff_sire, pnDigits = 4), sep = "\n"), "\n")
-cat("\\right]^{-1} \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_rhs_sire), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_coeff_sire), sep = "\n"), "\n")
+cat("^{-1} \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rhs_sire), sep = "\n"),"\n")
 cat("= \n")
-cat("\\left[ \n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_sol, pnDigits = 4), sep = "\n"),"\n")
-cat("\\right] \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_sol), sep = "\n"),"\n")
 cat("$$ \n")
 ```
 
