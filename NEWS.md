@@ -1,3 +1,7 @@
+# lbgfs2020 0.5.3
+
+* Released slides
+
 # lbgfs2020 0.5.2
 
 * ohp shots for lecture 5
