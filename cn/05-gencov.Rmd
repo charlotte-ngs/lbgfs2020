@@ -326,7 +326,7 @@ This type of decomposition can also be done for the grand-parents of animal $i$ 
 Ordering all animals in a pedigree according to their age and writing the result of the recursive decomposition of all true breeding values in matrix-vector notation leads to
 
 \begin{equation}
-a = L \cdot m
+u = L \cdot m
 (\#eq:resultrecursivedecomposition)
 \end{equation}
 
@@ -353,21 +353,21 @@ A^{-1} = (L \cdot D \cdot L^T)^{-1} = (L^T)^{-1} \cdot D^{-1} \cdot L^{-1}
 The inverse $D^{-1}$ is easy to compute, because $D$ is a diagonal matrix. As a consequence of that $D^{-1}$ is also a diagonal matrix where the elements $(D^{-1})_{ii}$ correspond to the inverse of the elements of the original matrix $D$, i.e. $(D^{-1})_{ii} = 1/(D)_{ii}$. The matrix $L^{-1}$ is also a lower triangular matrix and can easily computed based on the two relations for the vector $m$. Based on \@ref(eq:decomposetruebreedingvaluematvec), we know
 
 \begin{equation}
-m = a - Pa = (I-P)a
+m = u - Pu = (I-P)u
 (\#eq:mendeliansamplingiminuspa)
 \end{equation}
 
 and from \@ref(eq:resultrecursivedecomposition), we get
 
 \begin{equation}
-m = L^{-1}a
+m = L^{-1}u
 (\#eq:mendeliansamplinglinversea)
 \end{equation}
 
 Setting both expressions for $m$ in \@ref(eq:mendeliansamplingiminuspa) and \@ref(eq:mendeliansamplinglinversea) equal can be used to obtain $L^{-1}$
 
 \begin{equation}
-m  = (I-P)a = L^{-1}a
+m  = (I-P)u = L^{-1}u
 (\#eq:linverseequation)
 \end{equation}
 

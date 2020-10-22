@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.16)  16 OCT 2020 00:37
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.16)  22 OCT 2020 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -525,6 +525,9 @@ LaTeX Warning: Label `eq:vartruebreedingvalue' multiply defined.
 
 LaTeX Warning: Label `eq:decomposeanimaltruebreedingvalue' multiply defined.
 
+
+LaTeX Warning: Label `eq:var-inb-sigma-Delta-q' multiply defined.
+
 )
 \openout1 = `lbgfs2020-cn.aux'.
 
@@ -1009,34 +1012,42 @@ Overfull \hbox (2.85602pt too wide) detected at line 1986
  []
 
 [67] [68]
-Appendix A.
+Chapter 6.
 [69
 
+]
+File: odg/ideal-pop.png Graphic file (type bmp)
+<odg/ideal-pop.png>
+[70] [71] [72] [73] [74] [75] [76] [77] [78
+
+]
+Appendix A.
+[79
 
 ]
 File: odg/vector-physics-perspective.png Graphic file (type bmp)
 <odg/vector-physics-perspective.png>
-[70]
+[80]
 File: odg/vector-cs-perspecitve.png Graphic file (type bmp)
 <odg/vector-cs-perspecitve.png>
-[71]
+[81]
 File: odg/coordinate-system.png Graphic file (type bmp)
 <odg/coordinate-system.png>
-[72]
+[82]
 File: odg/vector-sum.png Graphic file (type bmp)
 <odg/vector-sum.png>
-[73]
+[83]
 File: odg/vector-scalar-multiplication.png Graphic file (type bmp)
 <odg/vector-scalar-multiplication.png>
-[74] [75] [76] [77] [78] [79] [80]
+[84] [85] [86] [87] [88] [89] [90]
 Appendix B.
-(./lbgfs2020-cn.bbl [81
+(./lbgfs2020-cn.bbl [91
 
-] [82
+] [92
 
-] [83] [84]) [85] (./lbgfs2020-cn.aux)
+] [93] [94]) [95] (./lbgfs2020-cn.aux)
 Package rerunfilecheck Info: File `lbgfs2020-cn.out' has not changed.
-(rerunfilecheck)             Checksum: 293E18EAF2538640DD10085F66D0CB1D;7572.
+(rerunfilecheck)             Checksum: EE5C422CDA25892C5E2F6CAF3FBE8C3F;8167.
 
 LaTeX Warning: There were undefined references.
 
@@ -1045,12 +1056,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18458 strings out of 479466
- 319988 string characters out of 5881604
- 807349 words of memory out of 5000000
- 37459 multiletter control sequences out of 15000+600000
+ 18497 strings out of 479466
+ 320908 string characters out of 5881604
+ 808557 words of memory out of 5000000
+ 37497 multiletter control sequences out of 15000+600000
  542646 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  84i,11n,118p,1817b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on lbgfs2020-cn.pdf (85 pages).
+Output written on lbgfs2020-cn.pdf (95 pages).
