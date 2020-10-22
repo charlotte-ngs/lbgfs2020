@@ -21,20 +21,24 @@ This page contains lists of additional material.
 
 ```{r slides-table, echo=FALSE}
 s_sl_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sl/'
-tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4),
+tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5 ),
                          Date    = c(
                            "2020-09-18",
                            "2020-09-25",
                            "2020-09-25",
                            "2020-10-02",
-                           "2020-10-09"
+                           "2020-10-09",
+                           "2020-10-16",
+                           "2020-10-16"
                          ),
                          Topic   = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", s_sl_url, "lbgfs2020_slides_w01_intro_lbg.pdf)", collapse = ''),
                            paste0("[Review of Quantitative Genetics](", s_sl_url, "lbgfs2020_slides_w02_basics_qg.pdf)", collapse = ''),
                            paste0("[Introduction To RMarkdown](", s_sl_url, "20200925_intro_rmarkdown.pdf)", collapse = ''),
                            paste0("[Genetic Evaluation](", s_sl_url, "lbgfs2020_slides_w03_gen-eval.pdf)", collapse = ''),
-                           paste0("[BLUP](", s_sl_url, "lbgfs2020_slides_w04_blup.pdf)", collapse = '')
+                           paste0("[BLUP](", s_sl_url, "lbgfs2020_slides_w04_blup.pdf)", collapse = ''),
+                           paste0("[Genetic Covariance](", s_sl_url, "lbgfs2020_slides_gencov.pdf)", collapse = ''),
+                           paste0("[Numerator Relationship Matrix](", s_sl_url, "lbgfs2020_slides_numrelmat.pdf", collapse = '')
                          ))
 knitr::kable(tbl_sl)
 ```
