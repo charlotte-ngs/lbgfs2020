@@ -1,7 +1,7 @@
 ---
 title: Livestock Breeding and Genomics - Solution 5
 author: Peter von Rohr
-date: 20120-10-23
+date: 2020-10-23
 #output: pdf_document 
 output:
   bookdown::pdf_document2:
