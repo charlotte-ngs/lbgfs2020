@@ -161,7 +161,7 @@ The rankings of the sires according to the progeny averages and according to the
 bonline <- FALSE
 s_wwg_path <- rprojroot::find_rstudio_root_file()
 ### # read tibble from file
-s_wwg_path <- 'https://charlotte-ngs.github.io/LBGFS2019/ex/w06/weaningweightbeef.csv'
+s_wwg_path <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/weaningweightbeef.csv'
 tbl_beef_data <- readr::read_csv(file = s_wwg_path)
 
 ### # count number of observations
