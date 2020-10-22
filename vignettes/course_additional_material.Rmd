@@ -38,7 +38,7 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5 ),
                            paste0("[Genetic Evaluation](", s_sl_url, "lbgfs2020_slides_w03_gen-eval.pdf)", collapse = ''),
                            paste0("[BLUP](", s_sl_url, "lbgfs2020_slides_w04_blup.pdf)", collapse = ''),
                            paste0("[Genetic Covariance](", s_sl_url, "lbgfs2020_slides_gencov.pdf)", collapse = ''),
-                           paste0("[Numerator Relationship Matrix](", s_sl_url, "lbgfs2020_slides_numrelmat.pdf", collapse = '')
+                           paste0("[Numerator Relationship Matrix](", s_sl_url, "lbgfs2020_slides_numrelmat.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_sl)
 ```
