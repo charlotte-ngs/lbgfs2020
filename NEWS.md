@@ -1,3 +1,7 @@
+# lbgfs2020 0.6.1
+
+* Released chapter 6 of course notes
+
 # lbgfs2020 0.6.0
 
 * Released exercise and solution for week 6
