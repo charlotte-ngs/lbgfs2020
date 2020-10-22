@@ -1,3 +1,7 @@
+# lbgfs2020 0.5.2
+
+* ohp shots for lecture 5
+
 # lbgfs2020 0.5.1
 
 * Course notes for week 5
