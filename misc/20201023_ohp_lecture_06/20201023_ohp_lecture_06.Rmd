@@ -1,0 +1,124 @@
+---
+title: "Overhead Pictures Lecture 6"
+author: "Peter von Rohr"
+date: "10/24/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+
+
+```{r create-include, eval=FALSE}
+s_png_start <- 3028
+nr_slide <- as.integer(system("ls -1tr /Users/pvr/Desktop/lbgfs2020_ohp/*.png | wc -l", intern = TRUE))
+sthisfile <- ifelse(rstudioapi::isAvailable(),
+    rstudioapi::getActiveDocumentContext()$path, rprojroot::thisfile())
+for (idx in 1:nr_slide){
+  cat("\n##\n\n", file = sthisfile, append = TRUE)
+  cat("```{r img-", idx, "}\n", sep = '', file = sthisfile, append = TRUE)
+  cat("rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-", idx, ".odg')\n", sep = '', file = sthisfile, append = TRUE)
+  # cat("knitr::include_graphics(path = 'odg/IMG_", s_png_start+idx, ".png')\n", sep = '', file = sthisfile, append = TRUE)
+  cat("```\n\n", file = sthisfile, append = TRUE)
+}
+``` 
+
+## Recap
+
+```{r odg_pic-1, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-1.odg')
+knitr::include_graphics(path = "odg/odg_pic-1.png")
+```
+
+
+## Example
+
+```{r odg_pic-2, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-2.odg')
+knitr::include_graphics(path = "odg/odg_pic-2.png")
+```
+
+
+## Kinship Coefficient
+
+```{r odg_pic-3, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-3.odg')
+knitr::include_graphics(path = "odg/odg_pic-3.png")
+```
+
+
+## Genetic Relationship
+
+```{r odg_pic-4, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-4.odg')
+knitr::include_graphics(path = "odg/odg_pic-4.png")
+```
+
+
+## General Rule
+
+```{r odg_pic-5, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-5.odg')
+knitr::include_graphics(path = "odg/odg_pic-5.png")
+```
+
+
+## Example
+
+```{r odg_pic-6, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-6.odg')
+knitr::include_graphics(path = "odg/odg_pic-6.png")
+```
+
+
+## Example II
+
+```{r odg_pic-7, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-7.odg')
+knitr::include_graphics(path = "odg/odg_pic-7.png")
+```
+
+
+## Matrix A and BLUP
+
+```{r odg_pic-8, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-8.odg')
+knitr::include_graphics(path = "odg/odg_pic-8.png")
+```
+
+
+## First Idea
+
+```{r odg_pic-9, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-9.odg')
+knitr::include_graphics(path = "odg/odg_pic-9.png")
+```
+
+
+## LDL
+
+```{r odg_pic-10, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-10.odg')
+knitr::include_graphics(path = "odg/odg_pic-10.png")
+```
+
+
+## Simple Decomposition
+
+```{r odg_pic-11, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-11.odg')
+knitr::include_graphics(path = "odg/odg_pic-11.png")
+```
+
+
+## Simple Decomposition II
+
+```{r odg_pic-12, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/odg_pic-12.odg')
+knitr::include_graphics(path = "odg/odg_pic-12.png")
+```
+            
