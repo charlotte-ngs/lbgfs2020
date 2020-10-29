@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.16)  22 OCT 2020 21:13
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.10.16)  29 OCT 2020 17:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1021,33 +1021,48 @@ File: odg/ideal-pop.png Graphic file (type bmp)
 [70] [71] [72] [73] [74] [75] [76] [77] [78
 
 ]
+Chapter 7.
+[79] [80]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[81]
+File: odg/confintfig.png Graphic file (type bmp)
+<odg/confintfig.png>
+[82] [83]
+Overfull \hbox (18.87886pt too wide) detected at line 2584
+[]
+ []
+
+[84] [85] [86
+
+]
 Appendix A.
-[79
+[87
 
 ]
 File: odg/vector-physics-perspective.png Graphic file (type bmp)
 <odg/vector-physics-perspective.png>
-[80]
+[88]
 File: odg/vector-cs-perspecitve.png Graphic file (type bmp)
 <odg/vector-cs-perspecitve.png>
-[81]
+[89]
 File: odg/coordinate-system.png Graphic file (type bmp)
 <odg/coordinate-system.png>
-[82]
+[90]
 File: odg/vector-sum.png Graphic file (type bmp)
 <odg/vector-sum.png>
-[83]
+[91]
 File: odg/vector-scalar-multiplication.png Graphic file (type bmp)
 <odg/vector-scalar-multiplication.png>
-[84] [85] [86] [87] [88] [89] [90]
+[92] [93] [94] [95] [96] [97] [98]
 Appendix B.
-(./lbgfs2020-cn.bbl [91
+(./lbgfs2020-cn.bbl [99
 
-] [92
+] [100
 
-] [93] [94]) [95] (./lbgfs2020-cn.aux)
+] [101] [102]) [103] (./lbgfs2020-cn.aux)
 Package rerunfilecheck Info: File `lbgfs2020-cn.out' has not changed.
-(rerunfilecheck)             Checksum: EE5C422CDA25892C5E2F6CAF3FBE8C3F;8167.
+(rerunfilecheck)             Checksum: 1DFF13969CD456FA132BD12B44D43AF4;9218.
 
 LaTeX Warning: There were undefined references.
 
@@ -1056,12 +1071,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18497 strings out of 479466
- 320908 string characters out of 5881604
- 808557 words of memory out of 5000000
- 37497 multiletter control sequences out of 15000+600000
+ 18519 strings out of 479466
+ 321314 string characters out of 5881604
+ 812519 words of memory out of 5000000
+ 37518 multiletter control sequences out of 15000+600000
  542646 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  84i,11n,118p,1817b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on lbgfs2020-cn.pdf (95 pages).
+Output written on lbgfs2020-cn.pdf (103 pages).

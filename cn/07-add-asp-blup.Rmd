@@ -91,6 +91,7 @@ interval_width <- (upper_limit - lower_limit) * sep
 ### # table with accuracies and interval widths
 tbl_interval_widths <- tibble::tibble(Accurracy = r2_seq, `Interval Width` = round(interval_width, digits = 2))
 knitr::kable(tbl_interval_widths,
+             format    = ifelse(knitr::is_latex_output(), 'latex', 'html'),
              booktabs  = TRUE,
              longtable = TRUE,
              caption   = "Widths of Confidence Intervals for Given Accuracies")
