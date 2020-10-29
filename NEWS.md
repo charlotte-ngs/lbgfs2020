@@ -1,3 +1,7 @@
+# lbgfs2020 0.7.0
+
+* Added chapter 7 of course notes
+
 # lbgfs2020 0.6.2
 
 * Link to video, slides and ohp pictures
