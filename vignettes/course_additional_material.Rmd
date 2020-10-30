@@ -51,14 +51,15 @@ knitr::kable(tbl_sl)
 ## Videos
 
 ```{r vd-table, echo=FALSE}
-tbl_vd <- tibble::tibble(Nr  = c(1, 2, 3, 4, 5, 6),
+tbl_vd <- tibble::tibble(Nr  = c(1, 2, 3, 4, 5, 6, 7),
                          Date = c(
                            "2020-09-18",
                            "2020-09-25",
                            "2020-10-02",
                            "2020-10-09",
                            "2020-10-16",
-                           "2020-10-23"
+                           "2020-10-23",
+                           "2020-10-30"
                          ),
                          Topic = c(
                            "[Introduction to Livestock Breeding and Genomics](https://youtu.be/Mkx2ixBoVF4)",
@@ -66,7 +67,8 @@ tbl_vd <- tibble::tibble(Nr  = c(1, 2, 3, 4, 5, 6),
                            "[Genetic Evaluation](https://youtu.be/J5kTsEz_UCM)",
                            "[BLUP](https://youtu.be/V1A6Yne5maM)",
                            "[Genetic Covariance](https://youtu.be/XAKmasLp8XU)",
-                           "[Numerator Relationship Matrix and its Inverse](https://youtu.be/UK3uuVEmrxs)"
+                           "[Numerator Relationship Matrix and its Inverse](https://youtu.be/UK3uuVEmrxs)",
+                           "[Inverse Numerator Relationship Matrix and Inbreeding](https://youtu.be/Lu1dB-lT6_0)"
                          ))
 knitr::kable(tbl_vd)
 ```
@@ -94,6 +96,19 @@ tbl_ohp <- tibble::tibble(Nr = c(1,2,3,4,5,6),
                            paste0("[Numerator Relationship Matrix](", s_misc_url, "20201023_ohp_lecture_06.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_ohp)
+```
+
+## Notebooks
+
+```{r nb-table, echo=FALSE}
+s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
+tbl_nb <- tibble::tibble(Nr = c(7),
+                         Date = c(
+                           "2020-10-30"
+                         ),
+                         Topic = c(
+                           paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_misc_url, "20201030_nm_inv_inb_nb.pdf)", collapse = '')
+                         ))
 ```
 
 ## Questionnaire

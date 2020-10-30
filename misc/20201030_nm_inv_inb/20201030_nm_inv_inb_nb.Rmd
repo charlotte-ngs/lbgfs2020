@@ -1,0 +1,60 @@
+---
+title: "Example Pedigree"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+Definition of pedigree in package pedigreemm
+
+```{r}
+ped <- pedigreemm::pedigree(sire = c(NA,NA,NA,1,3,4),
+                           dam  = c(NA,NA,NA,2,2,5),
+                           label = as.character(1:6))
+ped
+```
+
+The numerator relationship matrix $A$
+
+```{r}
+(sparse_A = pedigreemm::getA(ped = ped))
+```
+
+The cholesky decomposition of $A$ 
+
+```{r}
+A <- as.matrix(sparse_A)
+(R <- t(chol(A)))
+```
+
+To get to the matrix $L$, we have to use the definition of $R = L * S$ and $S$ is the diagnoal matrix with elements corresponding to the square root of matrix $D$. Matrix $D$ can be obtained as 
+
+```{r}
+(D <- diag(pedigreemm::Dmat(ped = ped), nrow = 6))
+```
+
+Matrix $S$ is obtained from matrix $D$
+
+```{r}
+(S <- sqrt(D))
+```
+
+The matrix $L$ is obtained from the defintion of matrix $R = L * S$, therefore the matrix $L = R * S^{-1}$
+
+```{r}
+(L <- R %*% solve(S))
+```
+
+The matrix $P$ that we used in the simple decomposition, is computed from the relationship $L^{-1} = I-P$ and from that we get $P = I - L^{-1}$
+
+```{r}
+(P <- round(diag(1,nrow = 6) - solve(L), digits = 2))
+```
+
+The inbreeding coefficients $F_i$ for all animals in the pedigree, can also be obtained with pedigreemm
+
+```{r}
+pedigreemm::inbreeding(ped = ped)
+```
+
