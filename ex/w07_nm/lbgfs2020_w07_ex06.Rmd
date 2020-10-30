@@ -7,7 +7,7 @@ output:
   bookdown::pdf_document2:
     toc: false
     number_sections: false
-    keep_tex: true
+    keep_tex: false
 header-includes:
  \usepackage{longtable}
  \usepackage{float}
