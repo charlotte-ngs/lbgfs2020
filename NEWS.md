@@ -1,3 +1,7 @@
+# lbgfs2020 0.7.2
+
+* Slides for week 7
+
 # lbgfs2020 0.7.1
 
 * Release with solutions and exercise for week 7
