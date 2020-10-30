@@ -107,7 +107,7 @@ tbl_nb <- tibble::tibble(Nr = c(7),
                            "2020-10-30"
                          ),
                          Topic = c(
-                           paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_misc_url, "20201030_nm_inv_inb_nb.pdf)", collapse = '')
+                           paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_misc_url, "20201030_nm_inv_inb_nb.nb.html)", collapse = '')
                          ))
 ```
 
