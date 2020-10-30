@@ -1,3 +1,7 @@
+# lbgfs2020 0.7.3
+
+* Released notebook on matrix decomposition
+
 # lbgfs2020 0.7.2
 
 * Slides for week 7
