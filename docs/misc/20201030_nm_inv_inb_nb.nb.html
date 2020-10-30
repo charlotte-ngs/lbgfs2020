@@ -1749,10 +1749,12 @@ summary {
 
 
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
 <p>Definition of pedigree in package pedigreemm</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MlMvMDdDTUJESGozYWRZUWxxd25Oc2lhQ0VCekErZ05HRWY4dFdkTEcwcEN2cW56NDVlTjE2Qmhid0wvNW83M08zKy9IdFpjK1BpMm0yeUFDQVF3SU11RUFFOGZyeWxNOEJFb2JPQUQ4TWcvM0dwREVDQnZrSWJmcURGNTAyTVhUQnFsNWhxdFduMGczU2JmQ28zUjNCaEdCS2NFL3dRRERyOVJTbGxnMjEvQnUwa3FXM0RtbDNSaUtMUjNUdDJQNFNvdmorUHgzSHNvMWNLNUxOWWpCcGFxY2k4MHF1ZXpWRFo3K0t3N3JMaXMwcTZXV3hjampnaE9BcnUvRzFOVGlhamJ1OUhSVVBYQzl3c3pWQmFwV1g3MXZ6a1UvQ2dQaHJoRE9LTmoxZzFvMU1TSmlnTFNyelZodGFqTkJ5cVhSMHJuRWw3VWFLamF1TnA1ZGd0Q204OVpMeXN0SnFpclJ2ZzkwdlczbDByUEVDQUFBPSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVNTMDdETUJCMTdUaFZJeFdRZW81RUtnWEVBUkFIUUNCMWF4SVhvanAyWkR2QWtwTzNqRk1QS2hhdzZtSXliMTdtODJhU2g3djFxbGdYaEJCR01rSUo0d0FKZjNxOEwyOEp5U2dFRTNneEMvNERraFlBZ0dSejhQa25QTkRHeE5BRnFwTENYTWszcVJ5Z2l4Qmh1eVdDU3dRckJGY0lyaEhjSkQxNXJZVERsdCtETnFMMnhnTGEvU0dSUnVPSGRuUi9DbEZzLzUrT243SzE2Q1RLcHBITVhHdGx4S3dSWFZJenMrYTlPcTQ3cmRpaUVWNVVHd3NEZmhFOE5iMXZqWWJSZERHT1RqYnRoTjBPZmNKT2JFS2NEem9zMEpUMTY2QzM1VEtNalQ5TXNIbjArUkdtQnlGWitvV21WcnBCZVljQ3BINXBOVjZQSy9Fc1ZRek80RzdqMmFyZXR0cmp1c0M2eWhzdk1LK29qVUptUEFEWmZRRTNqQ3F1RmdNQUFBPT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sire"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["dam"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"NA","2":"NA","_rn_":"1"},{"1":"NA","2":"NA","_rn_":"2"},{"1":"NA","2":"NA","_rn_":"3"},{"1":"1","2":"2","_rn_":"4"},{"1":"3","2":"2","_rn_":"5"},{"1":"4","2":"5","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
@@ -1764,52 +1766,99 @@ summary {
 <p>The numerator relationship matrix <span class="math inline">\(A\)</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<p>6 x 6 sparse Matrix of class “dsCMatrix” 1 2 3 4 5 6 1 1.00 . . 0.500 . 0.250 2 . 1.0 . 0.500 0.500 0.500 3 . . 1.00 . 0.500 0.250 4 0.50 0.5 . 1.000 0.250 0.625 5 . 0.5 0.50 0.250 1.000 0.625 6 0.25 0.5 0.25 0.625 0.625 1.125</p>
+<!-- rnb-output-begin eyJkYXRhIjoiNiB4IDYgc3BhcnNlIE1hdHJpeCBvZiBjbGFzcyBcImRzQ01hdHJpeFwiXG4gICAgIDEgICAyICAgIDMgICAgIDQgICAgIDUgICAgIDZcbjEgMS4wMCAuICAgLiAgICAwLjUwMCAuICAgICAwLjI1MFxuMiAuICAgIDEuMCAuICAgIDAuNTAwIDAuNTAwIDAuNTAwXG4zIC4gICAgLiAgIDEuMDAgLiAgICAgMC41MDAgMC4yNTBcbjQgMC41MCAwLjUgLiAgICAxLjAwMCAwLjI1MCAwLjYyNVxuNSAuICAgIDAuNSAwLjUwIDAuMjUwIDEuMDAwIDAuNjI1XG42IDAuMjUgMC41IDAuMjUgMC42MjUgMC42MjUgMS4xMjVcbiJ9 -->
+<pre><code>6 x 6 sparse Matrix of class &quot;dsCMatrix&quot;
+     1   2    3     4     5     6
+1 1.00 .   .    0.500 .     0.250
+2 .    1.0 .    0.500 0.500 0.500
+3 .    .   1.00 .     0.500 0.250
+4 0.50 0.5 .    1.000 0.250 0.625
+5 .    0.5 0.50 0.250 1.000 0.625
+6 0.25 0.5 0.25 0.625 0.625 1.125</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The cholesky decomposition of <span class="math inline">\(A\)</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<pre><code> 1   2    3         4         5         6</code></pre>
-<p>1 1.00 0.0 0.00 0.0000000 0.0000000 0.0000000 2 0.00 1.0 0.00 0.0000000 0.0000000 0.0000000 3 0.00 0.0 1.00 0.0000000 0.0000000 0.0000000 4 0.50 0.5 0.00 0.7071068 0.0000000 0.0000000 5 0.00 0.5 0.50 0.0000000 0.7071068 0.0000000 6 0.25 0.5 0.25 0.3535534 0.3535534 0.7071068</p>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAxICAgMiAgICAzICAgICAgICAgNCAgICAgICAgIDUgICAgICAgICA2XG4xIDEuMDAgMC4wIDAuMDAgMC4wMDAwMDAwIDAuMDAwMDAwMCAwLjAwMDAwMDBcbjIgMC4wMCAxLjAgMC4wMCAwLjAwMDAwMDAgMC4wMDAwMDAwIDAuMDAwMDAwMFxuMyAwLjAwIDAuMCAxLjAwIDAuMDAwMDAwMCAwLjAwMDAwMDAgMC4wMDAwMDAwXG40IDAuNTAgMC41IDAuMDAgMC43MDcxMDY4IDAuMDAwMDAwMCAwLjAwMDAwMDBcbjUgMC4wMCAwLjUgMC41MCAwLjAwMDAwMDAgMC43MDcxMDY4IDAuMDAwMDAwMFxuNiAwLjI1IDAuNSAwLjI1IDAuMzUzNTUzNCAwLjM1MzU1MzQgMC43MDcxMDY4XG4ifQ== -->
+<pre><code>     1   2    3         4         5         6
+1 1.00 0.0 0.00 0.0000000 0.0000000 0.0000000
+2 0.00 1.0 0.00 0.0000000 0.0000000 0.0000000
+3 0.00 0.0 1.00 0.0000000 0.0000000 0.0000000
+4 0.50 0.5 0.00 0.7071068 0.0000000 0.0000000
+5 0.00 0.5 0.50 0.0000000 0.7071068 0.0000000
+6 0.25 0.5 0.25 0.3535534 0.3535534 0.7071068</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>To get to the matrix <span class="math inline">\(L\)</span>, we have to use the definition of <span class="math inline">\(R = L * S\)</span> and <span class="math inline">\(S\)</span> is the diagnoal matrix with elements corresponding to the square root of matrix <span class="math inline">\(D\)</span>. Matrix <span class="math inline">\(D\)</span> can be obtained as</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<pre><code> [,1] [,2] [,3] [,4] [,5] [,6]</code></pre>
-<p>[1,] 1 0 0 0.0 0.0 0.0 [2,] 0 1 0 0.0 0.0 0.0 [3,] 0 0 1 0.0 0.0 0.0 [4,] 0 0 0 0.5 0.0 0.0 [5,] 0 0 0 0.0 0.5 0.0 [6,] 0 0 0 0.0 0.0 0.5</p>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV0gWyw2XVxuWzEsXSAgICAxICAgIDAgICAgMCAgMC4wICAwLjAgIDAuMFxuWzIsXSAgICAwICAgIDEgICAgMCAgMC4wICAwLjAgIDAuMFxuWzMsXSAgICAwICAgIDAgICAgMSAgMC4wICAwLjAgIDAuMFxuWzQsXSAgICAwICAgIDAgICAgMCAgMC41ICAwLjAgIDAuMFxuWzUsXSAgICAwICAgIDAgICAgMCAgMC4wICAwLjUgIDAuMFxuWzYsXSAgICAwICAgIDAgICAgMCAgMC4wICAwLjAgIDAuNVxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    0    0  0.0  0.0  0.0
+[2,]    0    1    0  0.0  0.0  0.0
+[3,]    0    0    1  0.0  0.0  0.0
+[4,]    0    0    0  0.5  0.0  0.0
+[5,]    0    0    0  0.0  0.5  0.0
+[6,]    0    0    0  0.0  0.0  0.5</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Matrix <span class="math inline">\(S\)</span> is obtained from matrix <span class="math inline">\(D\)</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<pre><code> [,1] [,2] [,3]      [,4]      [,5]      [,6]</code></pre>
-<p>[1,] 1 0 0 0.0000000 0.0000000 0.0000000 [2,] 0 1 0 0.0000000 0.0000000 0.0000000 [3,] 0 0 1 0.0000000 0.0000000 0.0000000 [4,] 0 0 0 0.7071068 0.0000000 0.0000000 [5,] 0 0 0 0.0000000 0.7071068 0.0000000 [6,] 0 0 0 0.0000000 0.0000000 0.7071068</p>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSAgICAgIFssNF0gICAgICBbLDVdICAgICAgWyw2XVxuWzEsXSAgICAxICAgIDAgICAgMCAwLjAwMDAwMDAgMC4wMDAwMDAwIDAuMDAwMDAwMFxuWzIsXSAgICAwICAgIDEgICAgMCAwLjAwMDAwMDAgMC4wMDAwMDAwIDAuMDAwMDAwMFxuWzMsXSAgICAwICAgIDAgICAgMSAwLjAwMDAwMDAgMC4wMDAwMDAwIDAuMDAwMDAwMFxuWzQsXSAgICAwICAgIDAgICAgMCAwLjcwNzEwNjggMC4wMDAwMDAwIDAuMDAwMDAwMFxuWzUsXSAgICAwICAgIDAgICAgMCAwLjAwMDAwMDAgMC43MDcxMDY4IDAuMDAwMDAwMFxuWzYsXSAgICAwICAgIDAgICAgMCAwLjAwMDAwMDAgMC4wMDAwMDAwIDAuNzA3MTA2OFxuIn0= -->
+<pre><code>     [,1] [,2] [,3]      [,4]      [,5]      [,6]
+[1,]    1    0    0 0.0000000 0.0000000 0.0000000
+[2,]    0    1    0 0.0000000 0.0000000 0.0000000
+[3,]    0    0    1 0.0000000 0.0000000 0.0000000
+[4,]    0    0    0 0.7071068 0.0000000 0.0000000
+[5,]    0    0    0 0.0000000 0.7071068 0.0000000
+[6,]    0    0    0 0.0000000 0.0000000 0.7071068</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The matrix <span class="math inline">\(L\)</span> is obtained from the defintion of matrix <span class="math inline">\(R = L * S\)</span>, therefore the matrix <span class="math inline">\(L = R * S^{-1}\)</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<p>[,1] [,2] [,3] [,4] [,5] [,6] 1 1.00 0.0 0.00 0.0 0.0 0 2 0.00 1.0 0.00 0.0 0.0 0 3 0.00 0.0 1.00 0.0 0.0 0 4 0.50 0.5 0.00 1.0 0.0 0 5 0.00 0.5 0.50 0.0 1.0 0 6 0.25 0.5 0.25 0.5 0.5 1</p>
+<!-- rnb-output-begin eyJkYXRhIjoiICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV0gWyw2XVxuMSAxLjAwICAwLjAgMC4wMCAgMC4wICAwLjAgICAgMFxuMiAwLjAwICAxLjAgMC4wMCAgMC4wICAwLjAgICAgMFxuMyAwLjAwICAwLjAgMS4wMCAgMC4wICAwLjAgICAgMFxuNCAwLjUwICAwLjUgMC4wMCAgMS4wICAwLjAgICAgMFxuNSAwLjAwICAwLjUgMC41MCAgMC4wICAxLjAgICAgMFxuNiAwLjI1ICAwLjUgMC4yNSAgMC41ICAwLjUgICAgMVxuIn0= -->
+<pre><code>  [,1] [,2] [,3] [,4] [,5] [,6]
+1 1.00  0.0 0.00  0.0  0.0    0
+2 0.00  1.0 0.00  0.0  0.0    0
+3 0.00  0.0 1.00  0.0  0.0    0
+4 0.50  0.5 0.00  1.0  0.0    0
+5 0.00  0.5 0.50  0.0  1.0    0
+6 0.25  0.5 0.25  0.5  0.5    1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The matrix <span class="math inline">\(P\)</span> that we used in the simple decomposition, is computed from the relationship <span class="math inline">\(L^{-1} = I-P\)</span> and from that we get <span class="math inline">\(P = I - L^{-1}\)</span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<pre><code>   1   2   3   4   5 6</code></pre>
-<p>[1,] 0.0 0.0 0.0 0.0 0.0 0 [2,] 0.0 0.0 0.0 0.0 0.0 0 [3,] 0.0 0.0 0.0 0.0 0.0 0 [4,] 0.5 0.5 0.0 0.0 0.0 0 [5,] 0.0 0.5 0.5 0.0 0.0 0 [6,] 0.0 0.0 0.0 0.5 0.5 0</p>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIDEgICAyICAgMyAgIDQgICA1IDZcblsxLF0gMC4wIDAuMCAwLjAgMC4wIDAuMCAwXG5bMixdIDAuMCAwLjAgMC4wIDAuMCAwLjAgMFxuWzMsXSAwLjAgMC4wIDAuMCAwLjAgMC4wIDBcbls0LF0gMC41IDAuNSAwLjAgMC4wIDAuMCAwXG5bNSxdIDAuMCAwLjUgMC41IDAuMCAwLjAgMFxuWzYsXSAwLjAgMC4wIDAuMCAwLjUgMC41IDBcbiJ9 -->
+<pre><code>       1   2   3   4   5 6
+[1,] 0.0 0.0 0.0 0.0 0.0 0
+[2,] 0.0 0.0 0.0 0.0 0.0 0
+[3,] 0.0 0.0 0.0 0.0 0.0 0
+[4,] 0.5 0.5 0.0 0.0 0.0 0
+[5,] 0.0 0.5 0.5 0.0 0.0 0
+[6,] 0.0 0.0 0.0 0.5 0.5 0</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The inbreeding coefficients <span class="math inline">\(F_i\)</span> for all animals in the pedigree, can also be obtained with pedigreemm</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<p>[1] 0.000 0.000 0.000 0.000 0.000 0.125</p>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuMDAwIDAuMDAwIDAuMDAwIDAuMDAwIDAuMDAwIDAuMTI1XG4ifQ== -->
+<pre><code>[1] 0.000 0.000 0.000 0.000 0.000 0.125</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXhhbXBsZSBQZWRpZ3JlZSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKRGVmaW5pdGlvbiBvZiBwZWRpZ3JlZSBpbiBwYWNrYWdlIHBlZGlncmVlbW0KCmBgYHtyfQpwZWQgPC0gcGVkaWdyZWVtbTo6cGVkaWdyZWUoc2lyZSA9IGMoTkEsTkEsTkEsMSwzLDQpLAogICAgICAgICAgICAgICAgICAgICAgICAgICBkYW0gID0gYyhOQSxOQSxOQSwyLDIsNSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVsID0gYXMuY2hhcmFjdGVyKDE6NikpCnBlZApgYGAKClRoZSBudW1lcmF0b3IgcmVsYXRpb25zaGlwIG1hdHJpeCAkQSQKCmBgYHtyfQooc3BhcnNlX0EgPSBwZWRpZ3JlZW1tOjpnZXRBKHBlZCA9IHBlZCkpCmBgYAoKVGhlIGNob2xlc2t5IGRlY29tcG9zaXRpb24gb2YgJEEkIAoKYGBge3J9CkEgPC0gYXMubWF0cml4KHNwYXJzZV9BKQooUiA8LSB0KGNob2woQSkpKQpgYGAKClRvIGdldCB0byB0aGUgbWF0cml4ICRMJCwgd2UgaGF2ZSB0byB1c2UgdGhlIGRlZmluaXRpb24gb2YgJFIgPSBMICogUyQgYW5kICRTJCBpcyB0aGUgZGlhZ25vYWwgbWF0cml4IHdpdGggZWxlbWVudHMgY29ycmVzcG9uZGluZyB0byB0aGUgc3F1YXJlIHJvb3Qgb2YgbWF0cml4ICREJC4gTWF0cml4ICREJCBjYW4gYmUgb2J0YWluZWQgYXMgCgpgYGB7cn0KKEQgPC0gZGlhZyhwZWRpZ3JlZW1tOjpEbWF0KHBlZCA9IHBlZCksIG5yb3cgPSA2KSkKYGBgCgpNYXRyaXggJFMkIGlzIG9idGFpbmVkIGZyb20gbWF0cml4ICREJAoKYGBge3J9CihTIDwtIHNxcnQoRCkpCmBgYAoKVGhlIG1hdHJpeCAkTCQgaXMgb2J0YWluZWQgZnJvbSB0aGUgZGVmaW50aW9uIG9mIG1hdHJpeCAkUiA9IEwgKiBTJCwgdGhlcmVmb3JlIHRoZSBtYXRyaXggJEwgPSBSICogU157LTF9JAoKYGBge3J9CihMIDwtIFIgJSolIHNvbHZlKFMpKQpgYGAKClRoZSBtYXRyaXggJFAkIHRoYXQgd2UgdXNlZCBpbiB0aGUgc2ltcGxlIGRlY29tcG9zaXRpb24sIGlzIGNvbXB1dGVkIGZyb20gdGhlIHJlbGF0aW9uc2hpcCAkTF57LTF9ID0gSS1QJCBhbmQgZnJvbSB0aGF0IHdlIGdldCAkUCA9IEkgLSBMXnstMX0kCgpgYGB7cn0KKFAgPC0gcm91bmQoZGlhZygxLG5yb3cgPSA2KSAtIHNvbHZlKEwpLCBkaWdpdHMgPSAyKSkKYGBgCgpUaGUgaW5icmVlZGluZyBjb2VmZmljaWVudHMgJEZfaSQgZm9yIGFsbCBhbmltYWxzIGluIHRoZSBwZWRpZ3JlZSwgY2FuIGFsc28gYmUgb2J0YWluZWQgd2l0aCBwZWRpZ3JlZW1tCgpgYGB7cn0KcGVkaWdyZWVtbTo6aW5icmVlZGluZyhwZWQgPSBwZWQpCmBgYAoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXhhbXBsZSBQZWRpZ3JlZSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChyZXN1bHRzPSdtYXJrdXAnKQpgYGAKCkRlZmluaXRpb24gb2YgcGVkaWdyZWUgaW4gcGFja2FnZSBwZWRpZ3JlZW1tCgpgYGB7cn0KcGVkIDwtIHBlZGlncmVlbW06OnBlZGlncmVlKHNpcmUgPSBjKE5BLE5BLE5BLDEsMyw0KSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgZGFtICA9IGMoTkEsTkEsTkEsMiwyLDUpLAogICAgICAgICAgICAgICAgICAgICAgICAgICBsYWJlbCA9IGFzLmNoYXJhY3RlcigxOjYpKQpwZWQKYGBgCgpUaGUgbnVtZXJhdG9yIHJlbGF0aW9uc2hpcCBtYXRyaXggJEEkCgpgYGB7cn0KKHNwYXJzZV9BID0gcGVkaWdyZWVtbTo6Z2V0QShwZWQgPSBwZWQpKQpgYGAKClRoZSBjaG9sZXNreSBkZWNvbXBvc2l0aW9uIG9mICRBJCAKCmBgYHtyfQpBIDwtIGFzLm1hdHJpeChzcGFyc2VfQSkKKFIgPC0gdChjaG9sKEEpKSkKYGBgCgpUbyBnZXQgdG8gdGhlIG1hdHJpeCAkTCQsIHdlIGhhdmUgdG8gdXNlIHRoZSBkZWZpbml0aW9uIG9mICRSID0gTCAqIFMkIGFuZCAkUyQgaXMgdGhlIGRpYWdub2FsIG1hdHJpeCB3aXRoIGVsZW1lbnRzIGNvcnJlc3BvbmRpbmcgdG8gdGhlIHNxdWFyZSByb290IG9mIG1hdHJpeCAkRCQuIE1hdHJpeCAkRCQgY2FuIGJlIG9idGFpbmVkIGFzIAoKYGBge3J9CihEIDwtIGRpYWcocGVkaWdyZWVtbTo6RG1hdChwZWQgPSBwZWQpLCBucm93ID0gNikpCmBgYAoKTWF0cml4ICRTJCBpcyBvYnRhaW5lZCBmcm9tIG1hdHJpeCAkRCQKCmBgYHtyfQooUyA8LSBzcXJ0KEQpKQpgYGAKClRoZSBtYXRyaXggJEwkIGlzIG9idGFpbmVkIGZyb20gdGhlIGRlZmludGlvbiBvZiBtYXRyaXggJFIgPSBMICogUyQsIHRoZXJlZm9yZSB0aGUgbWF0cml4ICRMID0gUiAqIFNeey0xfSQKCmBgYHtyfQooTCA8LSBSICUqJSBzb2x2ZShTKSkKYGBgCgpUaGUgbWF0cml4ICRQJCB0aGF0IHdlIHVzZWQgaW4gdGhlIHNpbXBsZSBkZWNvbXBvc2l0aW9uLCBpcyBjb21wdXRlZCBmcm9tIHRoZSByZWxhdGlvbnNoaXAgJExeey0xfSA9IEktUCQgYW5kIGZyb20gdGhhdCB3ZSBnZXQgJFAgPSBJIC0gTF57LTF9JAoKYGBge3J9CihQIDwtIHJvdW5kKGRpYWcoMSxucm93ID0gNikgLSBzb2x2ZShMKSwgZGlnaXRzID0gMikpCmBgYAoKVGhlIGluYnJlZWRpbmcgY29lZmZpY2llbnRzICRGX2kkIGZvciBhbGwgYW5pbWFscyBpbiB0aGUgcGVkaWdyZWUsIGNhbiBhbHNvIGJlIG9idGFpbmVkIHdpdGggcGVkaWdyZWVtbQoKYGBge3J9CnBlZGlncmVlbW06OmluYnJlZWRpbmcocGVkID0gcGVkKQpgYGAKCg==</div>
 
 
 

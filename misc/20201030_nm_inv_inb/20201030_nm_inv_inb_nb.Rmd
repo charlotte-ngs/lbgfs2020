@@ -1,10 +1,11 @@
 ---
 title: "Example Pedigree"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results='markup')
+```
 
 Definition of pedigree in package pedigreemm
 
