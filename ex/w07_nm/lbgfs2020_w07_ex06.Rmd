@@ -15,7 +15,7 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, results = 'asis', fig.pos = 'H')
-knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ## Problem 1: Numerator Relationship Matrix
@@ -40,7 +40,7 @@ Use the following dataset to predict breeding values for all animals.
 ```{r ex8p2data, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
 n_sigmae2 <- 24
 n_sigmaa2 <- 8
-s_ex8p2_data <- "https://charlotte-ngs.github.io/LBGFS2019/ex/w07/data_ex06_p02.csv"
+s_ex8p2_data <- "https://charlotte-ngs.github.io/lbgfs2020/misc/data_ex06_p02.csv"
 tbl_ex8p2_data <- readr::read_csv(file = s_ex8p2_data)
 knitr::kable(tbl_ex8p2_data,
              booktabs  = TRUE,
@@ -52,7 +52,7 @@ knitr::kable(tbl_ex8p2_data,
 ### Assumptions
 
 * Random residuals are un-correlated and they all have equal variance $\sigma_e^2$ which is assumed to be `r n_sigmae2`.
-* The additive genetic variance $\sigma_a^2$ is assumed to be `r n_sigmaa2`.
+* The additive genetic variance $\sigma_u^2$ is assumed to be `r n_sigmaa2`.
 * The pedigree is the same as in Problem 1. You can use `solve()` in R or `pedigreemm::getAInv()` to invert $A$.
 
 
@@ -61,6 +61,5 @@ knitr::kable(tbl_ex8p2_data,
 * Specify all components including expected values and variances of the animal model using the information from the dataset.
 * Set up mixed model equations
 * Solve mixed model equations for estimates of fixed effects and for predicted breeding values
-
 
 

@@ -15,7 +15,7 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, results = 'asis', fig.pos = 'H')
-knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ## Problem 1: Numerator Relationship Matrix
@@ -318,7 +318,7 @@ mat_x <- matrix(c(1, 0,
                   0, 1,
                   0, 1,
                   0, 1), nrow = n_nr_obs, byrow = TRUE)
-vec_beta <- rmddochelper::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = ncol(mat_x), psResult = "latex")
+vec_beta <- rmdhelp::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = ncol(mat_x), psResult = "latex")
 cat("$$\n")
 cat(paste(rmdhelp::bmatrix(pmat = mat_x, ps_name = 'X')))
 cat(" \\text{, } \n")
@@ -334,7 +334,7 @@ n_nr_animals <- 10
 
 ```{r, echo=FALSE, results='asis'}
 mat_z <- cbind(matrix(0, nrow = n_nr_obs, ncol = n_nr_founder_ex8p1pedext), diag(1, nrow = n_nr_obs, ncol = n_nr_obs))
-vec_a <- rmddochelper::vecGetVecElem(psBaseElement = "a", pnVecLen = n_nr_animals, psResult = "latex")
+vec_a <- rmdhelp::vecGetVecElem(psBaseElement = "a", pnVecLen = n_nr_animals, psResult = "latex")
 cat("$$\n")
 cat(paste(rmdhelp::bmatrix(pmat = mat_z, ps_name = 'Z')))
 cat(" \\text{, } \n")
@@ -345,7 +345,7 @@ cat("$$\n")
 * The vector of random residuals is just
 
 ```{r, echo=FALSE, results='asis'}
-vec_e <- rmddochelper::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_obs, psResult = "latex")
+vec_e <- rmdhelp::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_obs, psResult = "latex")
 cat(paste(rmdhelp::bcolumn_vector(pvec = vec_e, ps_name = 'e', ps_env = '$$')))
 ```
 
@@ -444,13 +444,13 @@ cat(paste(rmdhelp::bmatrix(pmat = mat_rhs)))
 cat("$$\n")
 ```
 
-\pagebreak
+
 
 The solutions are
 
 ```{r, echo=FALSE, results='asis', eval=FALSE}
-vec_beta_hat <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = ncol(mat_x), psResult = "latex")
-vec_a_hat <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{a}", pnVecLen = n_nr_animals, psResult = "latex")
+vec_beta_hat <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = ncol(mat_x), psResult = "latex")
+vec_a_hat <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{a}", pnVecLen = n_nr_animals, psResult = "latex")
 cat("$$\n")
 cat(paste(rmdhelp::bcolumn_vector(pvec = c(vec_beta_hat, vec_a_hat))), '\n')
 cat(" = \n")
