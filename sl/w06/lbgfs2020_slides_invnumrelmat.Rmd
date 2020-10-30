@@ -339,6 +339,37 @@ cat("$$\n \\normalsize \n")
 
 $$u = L \cdot m$$
 
+
+## Property of $L$
+
+* Meaning of Element $(L)_{ij}$ of Matrix $L$: 
+
+```{r property-matL, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/property-matL.odg')
+knitr::include_graphics(path = "odg/property-matL.png")
+```
+
+
+## Property of $L$ II
+
+* Element $(L)_{ij}$ ($i>j$) is the proportion of $m_j$ in $u_i$
+* Given: $i$ has parents $s$ and $d$
+* $m_j$ can only come from $u_s$ and $u_d$, because $u_i = 1/2 u_s + 1/2 u_d + m_i$
+* The proportion of $m_j$ in $u_i$ is half the proportion of $m_j$ in $u_s$ and half the proportion of $m_j$ in $u_d$
+
+$$\rightarrow L_{ij} = {1\over 2}L_{sj} + {1\over 2}L_{dj}$$
+
+
+## Example
+
+* $L_{41}$, $L_{62}$
+
+```{r ex-matL, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/ex-matL.odg')
+knitr::include_graphics(path = "odg/ex-matL.png")
+```
+
+
 ## Variance From Recursive Decomposition
 
 \begin{align}
@@ -539,4 +570,4 @@ cat("$$ \\normalsize \n")
     + add $1$ to diagonal-element $(i,i)$
 
 * Valid without inbreeding 
-
+  
