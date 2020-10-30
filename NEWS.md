@@ -1,3 +1,7 @@
+# lbgfs2020 0.7.1
+
+* Release with solutions and exercise for week 7
+
 # lbgfs2020 0.7.0
 
 * Added chapter 7 of course notes
