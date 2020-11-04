@@ -1,3 +1,7 @@
+# lbgfs2020 0.8.0
+
+* Released solutions and exercises for week 8
+
 # lbgfs2020 0.7.3
 
 * Released notebook on matrix decomposition
