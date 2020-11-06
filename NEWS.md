@@ -1,3 +1,7 @@
+# lbgfs2020 0.8.4
+
+* Link to video and notebook and setting up MME
+
 # lbgfs2020 0.8.3
 
 * Notebook on strings and factors
