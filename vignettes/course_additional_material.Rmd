@@ -21,7 +21,7 @@ This page contains lists of additional material.
 
 ```{r slides-table, echo=FALSE}
 s_sl_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sl/'
-tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7),
+tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8),
                          Date    = c(
                            "2020-09-18",
                            "2020-09-25",
@@ -32,6 +32,7 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7),
                            "2020-10-16",
                            "2020-10-23",
                            "2020-10-30",
+                           "2020-11-06",
                            "2020-11-06"
                          ),
                          Topic   = c(
@@ -44,6 +45,7 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7),
                            paste0("[Numerator Relationship Matrix](", s_sl_url, "lbgfs2020_slides_numrelmat.pdf)", collapse = ''),
                            paste0("[Invers NRM](", s_sl_url, "lbgfs2020_slides_invnumrelmat.pdf)", collapse = ''),
                            paste0("[Computation of Inbreeding](", s_sl_url, "lbgfs2020_slides_inbreeding.pdf)", collapse = ''),
+                           paste0("[Variance and Inbreeding](", s_sl_url, "lbgfs2020_slides_var_inb.pdf)", collapse = ''),
                            paste0("[Additional Aspects of BLUP](", s_sl_url, "lbgfs2019_slides_additional_aspects.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_sl)
