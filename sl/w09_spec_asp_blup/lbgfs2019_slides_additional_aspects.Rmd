@@ -207,34 +207,39 @@ matXtZSmd <- crossprod(matXSmd,matZSmd)
 matZtZSmd <- crossprod(matZSmd)
 ```
 ```{r MmeSmdCoeffMatShow, echo=FALSE}
-cat("$$\n")
+cat("\n$$\n")
 cat(paste(rmdhelp::bmatrix(pmat = matXSmd, ps_name = 'X'), collapse = '\n'))
 cat("\\text{, }")
 cat(paste(rmdhelp::bmatrix(pmat = matZSmd, ps_name = 'Z'), collapse = '\n'))
-cat("$$")
-# cat("$$X^TX = \\left[\n")
-# cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matXtXSmd, pnDigits = 0, pnAlign = rep("c", 2)), collapse = "\n"))
-# cat("\\right] \\text{, }")
-# cat("X^TZ = \\left[\n")
-# cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matXtZSmd, pnDigits = 0, pnAlign = rep("c", nNrObsSmd+1)), collapse = "\n"))
-# cat("\\right]\n$$")
-# cat("$$Z^TZ = \\left[\n")
-# cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matZtZSmd, pnDigits = 0, pnAlign = rep("c", nNrObsSmd+1)), collapse = "\n"))
-# cat("\\right]\n$$")
+cat("$$\n")
+cat("\n$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = matXtXSmd, ps_name = 'X^TX'), collapse = '\n'))
+cat("\\text{, }")
+cat(paste(rmdhelp::bmatrix(pmat=matXtZSmd, ps_name = 'X^TZ'), collapse = '\n'))
+cat("$$\n")
+cat("\n$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = matZtZSmd, ps_name = 'Z^TZ'), collapse = '\n'))
+cat("\n$$\n")
 ```
 
 
 ## Right-hand Side
 
-$$X^Ty = \left[\sum_{j=1}^n y_i\right]$$
-
-```{r VecZtYSmd, echo=FALSE}
-vecZtYSmd <- rmddochelper::vecGetVecElem(psBaseElement = "y", pnVecLen = nNrObsSmd)
-cat("$$Z^Ty = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = as.matrix(vecZtYSmd, nrow = nNrObsSmd), pnDigits = 0, pnAlign = rep("c", 2)), collapse = "\n"))
-cat("\\right]\n$$")
+```{r}
+vecY <- dfWwg$WWG
 ```
 
+
+$$X^Ty = \left[\sum_{j=1}^n y_i\right] = `r sum(vecY)`$$
+
+```{r VecZtYSmd, echo=FALSE}
+vecZtYSmd <- rmdhelp::vecGetVecElem(psBaseElement = "y", pnVecLen = nNrObsSmd)
+cat("\n$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = as.matrix(vecZtYSmd, nrow = nNrObsSmd), ps_name = 'Z^Ty'), collapse = '\n'))
+cat("= \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vecY), collapse = '\n'))
+cat('$$\n')
+```
 
 
 
@@ -243,9 +248,7 @@ cat("\\right]\n$$")
 ```{r ExPedSmd, results='asis', echo=FALSE}
 pedSmd <- pedigreemm::pedigree(sire = c(NA,NA,NA,1,4), dam = c(NA,NA,NA,2,3), label = as.character(1:nNrObsSmd))
 matAinvSmd <- as.matrix(pedigreemm::getAInv(ped = pedSmd))
-cat("$$A^{-1} = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matAinvSmd, pnDigits = 2, pnAlign = rep("c", nNrObsSmd+1)), collapse = "\n"))
-cat("\\right]\n$$")
+cat(paste(rmdhelp::bmatrix(pmat = matAinvSmd, ps_name = 'A^{-1}', ps_env = '$$')))
 ```
 
 
@@ -279,18 +282,14 @@ Z^Ty
 ```{r MmeSmdNumeric, echo=FALSE}
 vecY <- dfWwg$WWG
 matCoeffSmd <- cbind(rbind(matXtXSmd,t(matXtZSmd)),rbind(matXtZSmd,matZtZSmd + matAinvSmd * lambda))
-cat("$$\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matCoeffSmd, pnDigits = 2, pnAlign = rep("c", nNrObsSmd+2)), collapse = "\n"))
-cat("\\right]\n")
-solVecSmd <- c("\\mu", rmddochelper::vecGetVecElem(psBaseElement = "\\hat{a}", pnVecLen = nNrObsSmd))
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = as.matrix(solVecSmd, nrow = nNrObsSmd+1), pnAlign = rep("c", 2)), collapse = "\n"))
-cat("\\right]\n")
+solVecSmd <- c("\\mu", rmdhelp::vecGetVecElem(psBaseElement = "\\hat{u}", pnVecLen = nNrObsSmd))
 vecRhsSmd <- rbind(crossprod(matXSmd,vecY), crossprod(matZSmd,vecY))
-cat(" = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = as.matrix(vecRhsSmd, nrow = nNrObsSmd+1), pnDigits = 1, pnAlign = rep("c", 2)), collapse = "\n"))
-cat("\\right]\n")
-cat("$$")
+cat("\n$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = matCoeffSmd), collapse = '\n'))
+cat(paste(rmdhelp::bmatrix(pmat = as.matrix(solVecSmd, nrow = nNrObsSmd+1)), collapse = '\n'))
+cat(" = \n")
+cat(paste(rmdhelp::bmatrix(pmat = as.matrix(vecRhsSmd, nrow = nNrObsSmd+1)), collapse = '\n'))
+cat("$$\n")
 ```
 
 
