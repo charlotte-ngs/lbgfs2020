@@ -1,3 +1,7 @@
+# lbgfs2020 0.8.1
+
+* Chapter 8 of course notes
+
 # lbgfs2020 0.8.0
 
 * Released solutions and exercises for week 8
