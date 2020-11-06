@@ -106,12 +106,14 @@ knitr::kable(tbl_ohp)
 
 ```{r nb-table, echo=FALSE}
 s_misc_url <- 'https://charlotte-ngs.github.io/lbgfs2020/misc/'
-tbl_nb <- tibble::tibble(Nr = c(7),
+tbl_nb <- tibble::tibble(Nr = c(7, 8),
                          Date = c(
-                           "2020-10-30"
+                           "2020-10-30",
+                           "2020-11-06"
                          ),
                          Topic = c(
-                           paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_misc_url, "20201030_nm_inv_inb_nb.nb.html)", collapse = '')
+                           paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_misc_url, "20201030_nm_inv_inb_nb.nb.html)", collapse = ''),
+                           paste0("[Notebook on Strings and Factors](", s_misc_url, "20201106_strings_factors.nb.html)", collapse = '')
                          ))
 knitr::kable(tbl_nb)
 ```
