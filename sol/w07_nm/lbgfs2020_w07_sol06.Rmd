@@ -7,7 +7,7 @@ output:
   bookdown::pdf_document2:
     toc: false
     number_sections: false
-    keep_tex: false
+    keep_tex: true
 header-includes:
  \usepackage{longtable}
  \usepackage{float}
@@ -15,7 +15,7 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, results = 'asis', fig.pos = 'H')
-knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ## Problem 1: Numerator Relationship Matrix
@@ -72,12 +72,10 @@ We start with an empty numerator relationship matrix $A$. The matrix $A$ has dim
 
 ```{r ex8p1mataempty, echo=FALSE, results='asis'}
 matA_empty_ex8p1 <- matrix(NA, nrow = n_nr_ani_ex8p1pedext, ncol = n_nr_ani_ex8p1pedext)
+matA_empty_string_ex8p1 <- matrix('', nrow = n_nr_ani_ex8p1pedext, ncol = n_nr_ani_ex8p1pedext)
+
 ### # display
-cat("$$\n")
-cat("A = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matA_empty_ex8p1), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = matA_empty_string_ex8p1, ps_name = 'A', ps_env = '$$')))
 ```
 
 
@@ -97,12 +95,9 @@ Now we have the first element of our numerator relationship matrix.
 
 ```{r ex8p1matafirstelement, echo=FALSE, results='asis'}
 matA_empty_ex8p1[n_ex8p1_first_animal,n_ex8p1_first_animal] <- 1
+matA_empty_string_ex8p1[n_ex8p1_first_animal,n_ex8p1_first_animal] <- 1
 ### # display
-cat("$$\n")
-cat("A = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matA_empty_ex8p1), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste0(rmdhelp::bmatrix(pmat = matA_empty_string_ex8p1, ps_name = 'A', ps_env = '$$')))
 ```
 
 
@@ -207,12 +202,9 @@ matA_empty_ex8p1[n_ex8p1_first_animal,n_cur_ani] <- 0.5 * (matA_empty_ex8p1[n_ex
 As a result, we have the first row of $A$
 
 ```{r ex8p1matafirstrowresult, echo=FALSE, results='asis'}
+matA_empty_string_ex8p1[n_ex8p1_first_animal,] <- matA_empty_ex8p1[n_ex8p1_first_animal,]
 ### # display
-cat("$$\n")
-cat("A = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matA_empty_ex8p1), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste0(rmdhelp::bmatrix(pmat = matA_empty_string_ex8p1, ps_name = 'A', ps_env = '$$')))
 ```
 
 
@@ -221,12 +213,9 @@ Copy the first row to the first column
 
 ```{r ex8p1matafirstcolresult, echo=FALSE, results='asis'}
 matA_empty_ex8p1[2:n_nr_ani_ex8p1pedext,1] <- matA_empty_ex8p1[1, 2:n_nr_ani_ex8p1pedext]
+matA_empty_string_ex8p1[2:n_nr_ani_ex8p1pedext,1] <- matA_empty_ex8p1[2:n_nr_ani_ex8p1pedext,1]
 ### # display
-cat("$$\n")
-cat("A = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matA_empty_ex8p1), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste0(rmdhelp::bmatrix(pmat = matA_empty_string_ex8p1, ps_name = 'A', ps_env = '$$')))
 ```
 
 
@@ -256,7 +245,7 @@ Use the following dataset to predict breeding values for all animals.
 ```{r ex8p2data, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
 n_sigmae2 <- 24
 n_sigmaa2 <- 8
-s_ex8p2_data <- "https://charlotte-ngs.github.io/LBGFS2019/ex/w07/data_ex06_p02.csv"
+s_ex8p2_data <- "https://charlotte-ngs.github.io/lbgfs2020/misc/data_ex06_p02.csv"
 tbl_ex8p2_data <- readr::read_csv(file = s_ex8p2_data)
 knitr::kable(tbl_ex8p2_data,
              booktabs  = TRUE,
@@ -268,7 +257,7 @@ knitr::kable(tbl_ex8p2_data,
 ### Assumptions
 
 * Random residuals are un-correlated and they all have equal variance $\sigma_e^2$ which is assumed to be `r n_sigmae2`.
-* The additive genetic variance $\sigma_a^2$ is assumed to be `r n_sigmaa2`.
+* The additive genetic variance $\sigma_u^2$ is assumed to be `r n_sigmaa2`.
 * The pedigree is the same as in Problem 1. You can use `solve()` in R or `pedigreemm::getAInv()` to invert $A$.
 
 
@@ -282,14 +271,14 @@ knitr::kable(tbl_ex8p2_data,
 ### Solution
 The animal model in general has the following form
 
-$$y = X \beta + Za + e$$
+$$y = X \beta + Zu + e$$
 
 \begin{tabular}{lll}
 where  &    &    \\
        &  $y$  &  vector of length $n$ of observations  \\
        &  $\beta$  &  vector of length $p$ of unknown fixed effects \\
        &  $X$      &  $n\times p$ design matrix linking fixed effects to observations \\
-       &  $a$      &  vector of length $q$ of unkown random breeding values \\
+       &  $u$      &  vector of length $q$ of unkown random breeding values \\
        &  $Z$      &  $n\times q$ design matrix linking breeding values to observations \\
        &  $e$      &  vector of length $n$ of unknown random residuals \\
 \end{tabular}
@@ -297,15 +286,15 @@ where  &    &    \\
 The expected values of the fixed effects $\beta$ are the fixed effects themselves, hence $E(\beta) = \beta$. The expected values of the random components are defined as
 
 \begin{align}
-E(a)  &=  0  \notag \\
+E(u)  &=  0  \notag \\
 E(e)  &=  0  \notag \\
 E(y)  &=  X\beta \notag 
 \end{align}
 
-The variances of fixed effects are always $0$. Based on the assumption of uncorrelated residuals, we know that $var(e) = I\sigma_e^2$. Because, we have an animal model, we also know that $var(a) = A \sigma_a^2$ where $A$ corresponds to the numerator relationship matrix. In summary, the variances of the random effects are
+The variances of fixed effects are always $0$. Based on the assumption of uncorrelated residuals, we know that $var(e) = I\sigma_e^2$. Because, we have an animal model, we also know that $var(u) = A \sigma_u^2$ where $A$ corresponds to the numerator relationship matrix. In summary, the variances of the random effects are
 
 \begin{align}
-var(a)  &=  G  =  A \sigma_a^2  \notag \\
+var(u)  &=  G  =  A \sigma_u^2  \notag \\
 var(e)  &=  R  =  I \sigma_e^2  \notag \\
 var(y)  &=  ZGZ^T + R \notag 
 \end{align}
@@ -316,11 +305,7 @@ Inserting the information from the dataset into the model gives the following re
 
 ```{r ex8p2vecy, echo=FALSE, results='asis'}
 vec_y <- as.vector(tbl_ex8p2_data$Observation)
-cat("$$\n")
-cat("y = \\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_y), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y', ps_env = '$$')))
 ```
 
 * Herds as fixed effects. We have two herds, hence vector $\beta$ has length $p = 2$. Component $\beta_1$ will denote the effect of the first herd and component $\beta_2$ the effect of the second herd.
@@ -333,15 +318,11 @@ mat_x <- matrix(c(1, 0,
                   0, 1,
                   0, 1,
                   0, 1), nrow = n_nr_obs, byrow = TRUE)
-vec_beta <- rmddochelper::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = ncol(mat_x), psResult = "latex")
+vec_beta <- rmdhelp::vecGetVecElem(psBaseElement = "\\beta", pnVecLen = ncol(mat_x), psResult = "latex")
 cat("$$\n")
-cat("X = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_x, pnDigits = 0), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_x, ps_name = 'X')))
 cat(" \\text{, } \n")
-cat("\\beta = \\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_beta), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_beta, ps_name = '\\beta')))
 cat("$$\n")
 ```
 
@@ -353,27 +334,19 @@ n_nr_animals <- 10
 
 ```{r, echo=FALSE, results='asis'}
 mat_z <- cbind(matrix(0, nrow = n_nr_obs, ncol = n_nr_founder_ex8p1pedext), diag(1, nrow = n_nr_obs, ncol = n_nr_obs))
-vec_a <- rmddochelper::vecGetVecElem(psBaseElement = "a", pnVecLen = n_nr_animals, psResult = "latex")
+vec_a <- rmdhelp::vecGetVecElem(psBaseElement = "a", pnVecLen = n_nr_animals, psResult = "latex")
 cat("$$\n")
-cat("Z = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_z, pnDigits = 0), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_z, ps_name = 'Z')))
 cat(" \\text{, } \n")
-cat("a = \\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_a), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_a, ps_name = 'u')))
 cat("$$\n")
 ```
 
 * The vector of random residuals is just
 
 ```{r, echo=FALSE, results='asis'}
-vec_e <- rmddochelper::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_obs, psResult = "latex")
-cat("$$\n")
-cat("e = \\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_e), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+vec_e <- rmdhelp::vecGetVecElem(psBaseElement = "e", pnVecLen = n_nr_obs, psResult = "latex")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_e, ps_name = 'e', ps_env = '$$')))
 ```
 
 The solutions for $\hat{\beta}$ and $\hat{a}$ are obtained by solving the mixed model equations. The mixed model equations for the animal model and under the assumptions specified above are defined as
@@ -430,36 +403,20 @@ mat_sol <- solve(mat_coef, mat_rhs)
 ### # show the components
 ### # X^TX
 cat("$$\n")
-cat("X^TX = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_xtx, pnDigits = 0), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_xtx, ps_name = 'X^TX')))
 cat(" \\text{, } \n")
 ### # X^TZ
-cat("X^TZ = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix =  mat_xtz, pnDigits = 0), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_xtz, ps_name = 'X^TZ')))
 cat("$$\n\n")
-cat("$$\n")
 ### # Z^TZ
-cat("Z^TZ = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_ztz, pnDigits = 0), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("$$\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_ztz, ps_name = 'Z^TZ', ps_env = '$$')))
 ### # A^{-1}
-cat("A^{-1}= \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_ainv, pnDigits = 1), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_ainv, ps_name = 'A^{-1}', ps_env = '$$')))
 ### # right hand side
 cat("$$\n")
-cat("X^Ty = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_xty, pnDigits = 2), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_xty, ps_name = 'X^Ty')))
 cat(" \\text{, } \n")
-cat("Z^Ty = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_zty, pnDigits = 2), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_zty, ps_name = 'Z^Ty')))
 cat("$$\n")
 ```
 
@@ -467,48 +424,37 @@ Putting everything together into the mixed model equations leads to the followin
 
 ```{r, echo=FALSE, results='asis'}
 cat("$$\n")
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coef, pnDigits = 1), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknowns), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat(" = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_rhs, pnDigits = 2), collapse = "\n"),"\n")
-cat("\\right]\n")
+# cat(paste(rmdhelp::bmatrix(pmat = mat_coef)), "\n")
+cat("\\cdot")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknowns)), '\n')
+cat(" = \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_rhs)))
 cat("$$\n")
 ```
 
 The solutions are computed as
 
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, results='asis', eval=FALSE}
 cat("$$\n")
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknowns), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat(" = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coef, pnDigits = 1), collapse = "\n"),"\n")
-cat("\\right]^{-1}\n")
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_rhs, pnDigits = 2), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknowns)))
+cat(" = \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_coef)))
+cat("^{-1}\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_rhs)))
 cat("$$\n")
 ```
 
-\pagebreak
+
 
 The solutions are
 
-```{r, echo=FALSE, results='asis'}
-vec_beta_hat <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = ncol(mat_x), psResult = "latex")
-vec_a_hat <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{a}", pnVecLen = n_nr_animals, psResult = "latex")
+```{r, echo=FALSE, results='asis', eval=FALSE}
+vec_beta_hat <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{\\beta}", pnVecLen = ncol(mat_x), psResult = "latex")
+vec_a_hat <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{a}", pnVecLen = n_nr_animals, psResult = "latex")
 cat("$$\n")
-cat("\\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = c(vec_beta_hat, vec_a_hat)), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat(" = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_sol, pnDigits = 4), collapse = "\n"),"\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = c(vec_beta_hat, vec_a_hat))), '\n')
+cat(" = \n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_sol)))
 cat("$$\n")
 ```
 
