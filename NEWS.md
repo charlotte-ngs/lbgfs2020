@@ -1,3 +1,7 @@
+# lbgfs2020 0.8.2
+
+* Slides for week 8
+
 # lbgfs2020 0.8.1
 
 * Chapter 8 of course notes
