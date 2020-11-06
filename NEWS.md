@@ -1,3 +1,7 @@
+# lbgfs2020 0.8.3
+
+* Notebook on strings and factors
+
 # lbgfs2020 0.8.2
 
 * Slides for week 8
