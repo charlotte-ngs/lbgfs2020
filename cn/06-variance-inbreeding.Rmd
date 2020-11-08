@@ -120,7 +120,7 @@ An equivalent way of writing \@ref(eq:var-inb-sigma-Delta-q) is in terms of the 
 
 
 ### Genotype Frequencies {#var-inb-genotype-freq}
-The genotype frequencies in the population as a whole (across all generations) can be deduced from the knowledge of the variance of gene frequencies. If an allele has frequency $q$ in a given line, homozygotes of that allele have frequency $q^2$ in that line. The frequency of the homozygotes in the complete population over all lines will be the mean value of q^2 across all lines. The mean frequency of homozygotes is written as $\bar{q^2}$. The value of $\bar{q^2}$ is obtained by the knowledge of the variance of gene frequencies. In general the variance of a series of observations is obtained by 
+The genotype frequencies in the population as a whole (across all generations) can be deduced from the knowledge of the variance of gene frequencies. If an allele has frequency $q$ in a given line, homozygotes of that allele have frequency $q^2$ in that line. The frequency of the homozygotes in the complete population over all lines will be the mean value of $q^2$ across all lines. The mean frequency of homozygotes is written as $\bar{q^2}$. The value of $\bar{q^2}$ is obtained by the knowledge of the variance of gene frequencies. In general the variance of a series of observations is obtained by 
 
 From the general formula of obtaining the variance of a set of observations corresponding to 
 
@@ -144,7 +144,8 @@ tbl_genofreq <- tibble::tibble(Genotype = c("$A_1A_1$", "$A_1A_2$", "$A_2A_2$"),
 knitr::kable(tbl_genofreq,
              booktabs = TRUE, 
              caption = "Genotype Frequencies in Population as a Whole",
-             escape = FALSE)  
+             escape = FALSE,
+             format = ifelse(knitr::is_latex_output(), 'latex', 'html'))  
 ```
 
 The genotype frequencies shown in Table \@ref(tab:var-inb-genofreq-tab) are no longer in Hardy-Weinberg equilibrium. This change in genotype frequencies is the result of a mechanism which is called the **dispersive process**. The dispersive process is active as soon as the idealized base population is subdivided into single lines. The increase of the frequency of the homozygous genotypes is the source of a phenomenon called **inbreeding depression**. This depression refers to the reduced fitness of individuals in populations with increasing levels of inbreeding. 
@@ -165,7 +166,8 @@ tbl_genofreq <- tibble::tibble(Genotype = c("$A_1A_1$", "$A_1A_2$", "$A_2A_2$"),
 knitr::kable(tbl_genofreq,
              booktabs = TRUE, 
              caption = "Genotype Frequencies for a bi-allelic locus, expressed in terms of inbreeding coefficient $F$",
-             escape = FALSE)  
+             escape = FALSE,
+             format = ifelse(knitr::is_latex_output(), 'latex', 'html'))  
 ```
 
 
@@ -182,7 +184,8 @@ tbl_genovalue <- tibble::tibble(Genotype = c("$A_1A_1$", "$A_1A_2$", "$A_2A_2$")
 knitr::kable(tbl_genovalue,
              booktabs = TRUE, 
              caption = "Derivation of Inbreeding Depression",
-             escape = FALSE) 
+             escape = FALSE,
+             format = ifelse(knitr::is_latex_output(), 'latex', 'html')) 
 ```
 
 Summing over the last column in Table \@ref(tab:var-inb-genotypic-value) results in the population mean for the given trait. 
@@ -244,7 +247,7 @@ var(M) = \sigma_M^2 =  4a^2 \sigma_q^2 = 4a^2p_0q_0F
 (\#eq:var-inb-gen-var-between-lines)
 \end{equation}
 
-Comparing the results of \@ref(eq:var-inb-gen-var-between-lines) and \@ref(eq:var-inb-mean-gen-var-lines-result) shows that $\sigma_M^2 = 2FV_G$. Putting the two components together leads to the total genetic variance as shown in Table \@ref(tag:tab-genvar-anova).
+Comparing the results of \@ref(eq:var-inb-gen-var-between-lines) and \@ref(eq:var-inb-mean-gen-var-lines-result) shows that $\sigma_M^2 = 2FV_G$. Putting the two components together leads to the total genetic variance as shown in Table \@ref(tab:tab-genvar-anova).
 
 ```{r tab-genvar-anova, echo=FALSE}
 tbl_gen_anova <- tibble::tibble(Source = c("Between lines", "Within lines","Total"),
@@ -252,8 +255,9 @@ tbl_gen_anova <- tibble::tibble(Source = c("Between lines", "Within lines","Tota
 
 knitr::kable(tbl_gen_anova,
              booktabs = TRUE, 
-             caption = "Partitioning of the variance in a population with inbreeding coefficient F",
-             escape = FALSE) 
+             caption = "Partitioning of the gentic additive variance in a population with lines and a given inbreeding coefficient F",
+             escape = FALSE,
+             format = ifelse(knitr::is_latex_output(), 'latex', 'html')) 
 ```
 
 From the last row of Table \@ref(tab:tab-genvar-anova), we can see that the total additive genetic variance in a population with inbreeding corresponds to $(1+F)V_G$ which is exactly what we wanted to show at the beginning of this chapter in equation \@ref(eq:defvarui).
