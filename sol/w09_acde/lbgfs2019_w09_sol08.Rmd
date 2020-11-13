@@ -69,7 +69,7 @@ n_sigmae2 <- 24
 n_sigmas2 <- n_sigmaa2 / 4
 
 ### # specify name of file with data, generated in 20181204_generate_data_ex11_p02
-s_data_file <- "https://charlotte-ngs.github.io/LBGFS2019/ex/w11/data_ex11_p02.csv"
+s_data_file <- "https://charlotte-ngs.github.io/lbgfs2020/misc/data_ex11_p02.csv"
 tbl_data_ex11prob02 <- readr::read_csv(file = s_data_file)
 
 ### # constants
@@ -179,22 +179,14 @@ Hence
 mat_a_sire <- matrix(c(1, 0.5,
                        0.5, 1), nrow = n_nr_sire, byrow = TRUE)
 
-cat("$$\n")
-cat("A_s = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_a_sire, pnDigits = 1), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_a_sire, ps_name = 'A_s', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 The inverse $A_s^{-1}$ is 
 
 ```{r}
 mat_a_sire_inv <- solve(mat_a_sire)
-cat("$$\n")
-cat("A_s^{-1} = \\left[")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_a_sire_inv, pnDigits = 3), collapse = "\n"),"\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_a_sire_inv, ps_name = 'A_s^{-1}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 
@@ -220,16 +212,11 @@ vec_rhs <- c(crossprod(mat_x, vec_y), crossprod(mat_z_sire, vec_y))
 ### # solution
 vec_sol_sire <- solve(mat_coef_sire, vec_rhs)
 
-cat("$$\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coef_sire), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknow_sire), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("=")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_rhs), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_coef_sire), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknow_sire), collapse = '\n'), '\n')
+cat("=\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rhs), collapse = '\n'), '\n')
 cat("$$")
 ```
 
@@ -249,13 +236,9 @@ The numeric values of the solutions are fiven by
 
 ```{r}
 cat("$$\n")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknow_sire), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("=")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_sol_sire, pnDigits = 4), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknow_sire), collapse = '\n'), '\n')
+cat("=\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = round(vec_sol_sire, digits = 4)), collapse = '\n'), '\n')
 cat("$$\n")
 ```
 
@@ -269,17 +252,14 @@ Putting the information from the data into the model leads to
 
 ```{r}
 mat_z <- diag(nNrObsSmd)
-vec_a <- rmddochelper::vecGetVecElem(psBaseElement = "u", pnVecLen = nNrObsSmd, psResult = "latex")
-vec_hat_a <- rmddochelper::vecGetVecElem(psBaseElement = "\\hat{u}", pnVecLen = nNrObsSmd, psResult = "latex")
+vec_a <- rmdhelp::vecGetVecElem(psBaseElement = "u", pnVecLen = nNrObsSmd, psResult = "latex")
+vec_hat_a <- rmdhelp::vecGetVecElem(psBaseElement = "\\hat{u}", pnVecLen = nNrObsSmd, psResult = "latex")
 
 
 cat("$$\n")
-cat("Z = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_z, pnDigits = 0), collapse = "\n"), "\n")
-cat("\\right] \\text{, }")
-cat("u = \\left[\n")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_a), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_z, ps_name = 'Z'), collapse = '\n'), '\n')
+cat("\\text{, }")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_a, ps_name = 'u'), collapse = '\n'), '\n')
 cat("$$\n")
 ```
 
@@ -323,11 +303,7 @@ mat_a_inv <- as.matrix(pedigreemm::getAInv(ped = ped_ex11prob02))
 The matrix $G^{-1}$ is computed as $G^{-1} = \lambda * A^{-1}$ where $\lambda = \sigma_e^2 / \sigma_u^2 = `r n_sigmae2`/`r n_sigmaa2` = `r lambda`$ and $A$ corresponds to the numerator relationship matrix. Its inverse $A^{-1}$ is 
 
 ```{r}
-cat("$$\n")
-cat("A^{-1} = \\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_a_inv, pnDigits = 2), collapse = "\n"), "\n")
-cat("\\right]")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_a_inv, ps_name = 'A^{-1}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 The mixed model equation are then
@@ -352,16 +328,11 @@ vec_rhs <- c(crossprod(mat_x, vec_y), crossprod(mat_z, vec_y))
 ### # solution
 vec_sol <- solve(mat_coef, vec_rhs)
 
-cat("$$\\left[\n")
-cat(paste(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = mat_coef), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknow), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("=")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_rhs), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = mat_coef), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknow), collapse = '\n'), '\n')
+cat("= \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rhs), collapse = '\n'), '\n')
 cat("$$")
 ```
 
@@ -378,13 +349,9 @@ The numerical solution is
 
 ```{r}
 cat("$$\n")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_unknow), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("=")
-cat("\\left[")
-cat(paste(rmddochelper::sConvertVectorToLaTexArray(pvec_avector = vec_sol, pnDigits = 4), collapse = "\n"), "\n")
-cat("\\right]\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_unknow), collapse = '\n'), '\n')
+cat("=\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = round(vec_sol, digits = 4)), collapse = '\n'), '\n')
 cat("$$\n")
 ```
 

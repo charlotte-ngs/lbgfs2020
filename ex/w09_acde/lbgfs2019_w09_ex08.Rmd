@@ -1,5 +1,5 @@
 ---
-title: Livestock Breeding and Genomics - Solution 8
+title: Livestock Breeding and Genomics - Exercise 8
 author: "Peter von Rohr"
 date: "2020-11-13"
 output:
@@ -41,22 +41,6 @@ knitr::kable(tbl_sel_int,
 ```
 
 
-### Solution
-We use the above given forumla to compute $\Delta_G$ and fill out the table
-
-```{r solselresponsetable, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-library(dplyr)
-tbl_sel_int_sol <- tbl_sel_int %>%
-  select(Accuracy, `Generation Interval`) %>%
-  mutate(`Selection Response` = round((n_sel_int * Accuracy * n_sigma_a) / `Generation Interval`, digits = 2))
-
-knitr::kable(tbl_sel_int_sol,
-             booktabs = TRUE, 
-             longtable = TRUE)
-```
-
-These results show that an increase in accuracy is not worth while to accept a longer generation interval, when looking at the selection response.
-
 
 ## Problem 2: Decomposition of Predicted Breeding Values
 ```{r ex11prob02dataset, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -69,7 +53,7 @@ n_sigmae2 <- 24
 n_sigmas2 <- n_sigmaa2 / 4
 
 ### # specify name of file with data, generated in 20181204_generate_data_ex11_p02
-s_data_file <- "https://charlotte-ngs.github.io/LBGFS2019/ex/w11/data_ex11_p02.csv"
+s_data_file <- "https://charlotte-ngs.github.io/lbgfs2020/misc/data_ex11_p02.csv"
 tbl_data_ex11prob02 <- readr::read_csv(file = s_data_file)
 
 ### # constants
@@ -102,42 +86,4 @@ The residual variance-covariance matrix $R$ is assumed to have a simple structur
 
 $$R = I * \sigma_e^2$$
 
-
-### Solution
-The breeding values for animal $`r n_ani_interest`$ is once estimated with a sire model and once with an animal model. 
-
-
-#### Sire Model
-The sire model for the given data set looks as follows
-
-$$y = X\mu + Zs + e$$
-
-Putting the information from the dataset into the model leads to
-
-```{r}
-vec_y <- tbl_data_ex11prob02$Observation
-mat_x <- matrix(data = 1, nrow = nNrObsSmd)
-mat_z_sire <- matrix(c(0, 0,
-                       0, 0,
-                       0, 0,
-                       1, 0,
-                       0, 1), nrow = nNrObsSmd, byrow = TRUE)
-n_nr_sire <- ncol(mat_z_sire)
-# vec_s <- rmddochelper::vecGetVecElem(psBaseElement = "s", pnVecLen = n_nr_sire, psResult = "latex")
-vec_s <- c("s_1", "s_4")
-vec_e <- rmdhelp::vecGetVecElem(psBaseElement = "e", pnVecLen = nNrObsSmd, psResult = "latex")
-cat("$$\n")
-cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y'), collapse = '\n'), '\n')
-cat("\\text{, }")
-cat(paste(rmdhelp::bmatrix(pmat = mat_x, ps_name = 'X'), collapse = '\n'), '\n')
-cat("\\text{, }")
-cat(paste(rmdhelp::bmatrix(pmat = mat_z_sire, ps_name = 'Z_s'), collapse = '\n'), '\n')
-cat("\\text{, }")
-cat(paste(rmdhelp::bcolumn_vector(pvec = vec_s, ps_name = 's'), collapse = '\n'), '\n')
-cat("\\text{, }")
-cat(paste(rmdhelp::bcolumn_vector(pvec = vec_e, ps_name = 'e'), collapse = '\n'), '\n')
-cat("$$\n")
-```
-
-and $\mu$ is just a scalar parameter. 
 
