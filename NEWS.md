@@ -1,3 +1,7 @@
+# lbgfs2020 0.9.1
+
+* Chapter 9 of course notes
+
 # lbgfs2020 0.9.0
 
 * Solutions and exercises for week 9
