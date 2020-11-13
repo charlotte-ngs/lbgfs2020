@@ -1,3 +1,7 @@
+# lbgfs2020 0.9.0
+
+* Solutions and exercises for week 9
+
 # lbgfs2020 0.8.4
 
 * Link to video and notebook and setting up MME
