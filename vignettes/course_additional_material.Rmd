@@ -21,7 +21,7 @@ This page contains lists of additional material.
 
 ```{r slides-table, echo=FALSE}
 s_sl_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sl/'
-tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8),
+tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9),
                          Date    = c(
                            "2020-09-18",
                            "2020-09-25",
@@ -33,7 +33,9 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8),
                            "2020-10-23",
                            "2020-10-30",
                            "2020-11-06",
-                           "2020-11-06"
+                           "2020-11-06",
+                           "2020-11-13",
+                           "2020-11-13"
                          ),
                          Topic   = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", s_sl_url, "lbgfs2020_slides_w01_intro_lbg.pdf)", collapse = ''),
@@ -46,7 +48,9 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8),
                            paste0("[Invers NRM](", s_sl_url, "lbgfs2020_slides_invnumrelmat.pdf)", collapse = ''),
                            paste0("[Computation of Inbreeding](", s_sl_url, "lbgfs2020_slides_inbreeding.pdf)", collapse = ''),
                            paste0("[Variance and Inbreeding](", s_sl_url, "lbgfs2020_slides_var_inb.pdf)", collapse = ''),
-                           paste0("[Additional Aspects of BLUP](", s_sl_url, "lbgfs2019_slides_additional_aspects.pdf)", collapse = '')
+                           paste0("[Additional Aspects of BLUP](", s_sl_url, "lbgfs2019_slides_additional_aspects.pdf)", collapse = ''),
+                           paste0("[Mulitple Traits](", s_sl_url, "lbgfs2020_slides_multiple_traits.pdf)", collapse = ''),
+                           paste0("[Selection Index](", s_sl_url, "lbgfs2020_slides_selection-index.pdf", collapse = '')
                          ))
 knitr::kable(tbl_sl)
 ```

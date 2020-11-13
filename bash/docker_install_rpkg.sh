@@ -51,3 +51,20 @@ docker exec -it clemence.nanchen_rstudio R -e "install.packages('pedigreemm');re
 docker exec -it clemence.nanchen_rstudio R -e "require(rmdhelp)"
 
 
+# kableExtra
+
+docker exec -it deuberj_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it fomasid_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it pahofman_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it jungenr_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it penlin_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it xenamarie.mapel_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it kmessmer_rstudio R -e "install.packages('kableExtra')"
+sleep 2
+docker exec -it clemence.nanchen_rstudio R -e "install.packages('kableExtra')"
