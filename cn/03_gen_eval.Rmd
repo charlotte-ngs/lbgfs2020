@@ -318,5 +318,5 @@ r_{u, \bar{y}} &= \frac{cov(u, \bar{y})}{\sqrt{var(u) var(\bar{y})}} \notag \\
 (\#eq:accuracyprogeny)
 \end{align}
 
-The term for $r_{u, \bar{y}}$ in \@ref(eq:accuracyprogeny) approaches $1$ as the number of progeny increases. The reliability ($r_{u, \bar{y}}$) of the predicted breeding value is $n/(n+k)$ and corresponds to $1/2 * b$ computed in \@ref(eq:regcoeffprogeny). 
+The term for $r_{u, \bar{y}}$ in \@ref(eq:accuracyprogeny) approaches $1$ as the number of progeny increases, assuming $k$ is constant. The reliability ($r_{u, \bar{y}}^2$) of the predicted breeding value is $n/(n+k)$ and corresponds to $1/2 * b$ computed in \@ref(eq:regcoeffprogeny). 
 

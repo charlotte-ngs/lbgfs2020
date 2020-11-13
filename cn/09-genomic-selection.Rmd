@@ -35,7 +35,7 @@ In \@ref(eq:linkagediseqrescaled) $r^2$ describes the proportion of the variance
 
 Nowadays the term `genomic selection` is often used ambiguously. What most people mean when they are talking about GS should better be called __genomic prediction__ of breeding values. This prediction can be done in different ways which are listed below
 
-* Two-step procedure: Effects of SNPs are predicted using single locus models in a reference population which corresponds of mainly male breeding animals with transformed predicted traditional BLUP-breeding values with an accuracy above a certain threshold. Alternatively, it is also possible to use statistics of daughter yields as observations for the prediction of marker effects. Predictions of genomic breeding values for all animals in the population with genomic information are computed by summing up all previously estimated SNP-effects. This procedure is currently applied in the Swiss dairy cattle populations.
+* Two-step procedure: Effects of SNPs are predicted using single locus models in a reference population which corresponds of mainly male breeding animals with transformed predicted traditional BLUP-breeding values with an reliability above a certain threshold. Alternatively, it is also possible to use statistics of daughter yields as observations for the prediction of marker effects. Predictions of genomic breeding values for all animals in the population with genomic information are computed by summing up all previously estimated SNP-effects. This procedure is currently applied in the Swiss dairy cattle populations.
 * Single-step procedures try to predict genomic breeding values and traditional breeding values in a single evaluation.
 
 
@@ -57,7 +57,7 @@ where  &  $m$  &  number of SNP markers \\
        &  $e$      &  vector of random residuals
 \end{tabular}       
 
-The observations $y$ used in \@ref(eq:linearmodelgpbv) are in most evaluations not phenotypes but traditionally predicted breeding values with an accuracy above a certain threshold. As a consequence of that the variance-covariance matrix ($R$) of the residuals $e$ is not just an identity matrix ($I$) times a residual variance component ($\sigma_e^2$) but $R$ is a diagonal matrix with elements $(R)_{ii} = {1\over B_{m}} - 1$ where $B_m$ is the accuracy of the traditionally predicted breeding value from an animal from the reference population, corrected for the parental contributions. In effect, $B_m$ corresponds to the accuracy of the mendelian sampling term.
+The observations $y$ used in \@ref(eq:linearmodelgpbv) are in most evaluations not phenotypes but traditionally predicted breeding values with an reliability above a certain threshold. As a consequence of that the variance-covariance matrix ($R$) of the residuals $e$ is not just an identity matrix ($I$) times a residual variance component ($\sigma_e^2$) but $R$ is a diagonal matrix with elements $(R)_{ii} = {1\over B_{m}} - 1$ where $B_m$ is the reliability of the traditionally predicted breeding value from an animal from the reference population, corrected for the parental contributions. In effect, $B_m$ corresponds to the reliability of the mendelian sampling term.
 
 The mixed-model equations resulting from models given in \@ref(eq:linearmodelgpbv) have the following structure
 
@@ -171,5 +171,39 @@ The model equations \@ref(eq:gblupmodel) look very straight-forward, but the pra
 Because all non-genotyped offsprings of parents are ignored by GBLUP, this loss of information is even more dramatic. For the two step-procedure as long as the reference population has a reasonable size and is not too heterogeneous, this is not a problem, we can still come up with reasonable estimates of SNP-effects. Due to the in-balanced availability of genotypic information, a procedure to combine DGV with traditional predicted breeding values was adopted. This procedure starts with predicting DGV and combining them with traditionally predicted breeding values from parents which are termed as parent averages (PA). This procedure of combining predicted breeding values from different sources is called __blending__. The problem with blending one has to be aware of is that there is a covariance between DGV and PA which must be accounted for.
 
 A further problem is that there are different techniques to generate genotyping results. The different results also have different densities which means that they give different numbers of SNP-loci per genome. The different techniques also vary in price which is the reason that genotyping results from different technologies must be combined. Combining genotyping results with different densities of SNP-markers per genome is done with a process that is called __imputing__. This basically comes done to inferring missing SNP-genotypes on marker panels with less density based on results from denser marker panels.
+
+
+## How Does GBLUP Work {#asm-gblup-howdoesgblupwork}
+The genomic relationship matrix $G$ allows to predict genomic breeding values for animals with SNP-Genotypes without any observation in the dataset. This fact is the basis of the large benefit of genomic selection. As soon as a young animal is born, its SNP genotypes can be determined and a genomic breeding value can be predicted. This genomic breeding value is much more accurate then the traditional breeding value based only on ancestral information. 
+
+The BVM model given in \@ref(eq:asmgblupbvm) is a mixed linear effects model. The solution for the unknown parameters can be obtained by solving the mixed model equations shown in \@ref(eq:asm-gblup-gblupmme). In this form the Inverse $G^{-1}$ of $G$ and the vector $\hat{g}$ of predicted genotypic breeding values are split into one part corresponding to the animals with observations and a second part for the animals without phenotypic information.
+
+```{r GblupMme, echo=FALSE, results='asis'}
+matCoeff <- matrix(c("X^TX","X^TZ","0",
+                     "Z^TX","Z^TZ + G^{(11)}","G^{(12)}",
+                     "0","G^{(21)}","G^{(22)}"), ncol = 3, byrow = TRUE)
+vecSol <- c("\\hat{b}","\\hat{g}_1","\\hat{g}_2")
+vecRhs <- c("X^Ty","Z^Ty","0")
+
+### # show mme
+cat("\\begin{equation}\n")
+cat(paste(rmdhelp::bmatrix(pmat = matCoeff), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vecSol), collapse = '\n'), '\n')
+cat(" = \n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vecRhs), collapse = '\n'), '\n')
+cat("(\\#eq:asm-gblup-gblupmme)")
+cat("\\end{equation}\n")
+```
+
+The matrix $G^{(11)}$ denotes the part of $G^{-1}$ corresponding to the animals with phenotypic observations. Similarly, $G^{(22)}$ stands for the part of the animals without genotypic observations. The matrices $G^{(12)}$ and $G^{(21)}$ are the parts of $G^{-1}$ which link the two groups of animals. The same partitioning holds for the vector of predicted breeding values. The vector $\hat{g}_1$ contains the predicted breeding values for the animals with observations and the vector $\hat{g}_2$ contains the predicted breeding values of all animals without phenotypic observations. 
+
+Based on the last line of \@ref(eq:asm-gblup-gblupmme) the predicted breeding values $\hat{g}_2$ of all animals without phenotypic observations can be computed from the predicted breeding values $\hat{g}_1$ from the animals with observations.
+
+\begin{equation}
+\hat{g}_2 = -\left( G^{22}\right)^{-1}G^{21}\hat{g}_1
+(\#eq:GenomicBvAnimalNoPhen)
+\end{equation}
+
+Equation \@ref(eq:GenomicBvAnimalNoPhen) is referred to as genomic regression of predicted breeding values of animals without observation on the predicted genomic breeding values of animals with observations.
 
 

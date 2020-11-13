@@ -94,6 +94,8 @@ A simple linear model contains fixed effects such as _herd_ or _sex_ of an anima
 ### Fixed Versus Random Effects {#fixedversusrandomeffects}
 Unfortunately, there is no unique and generally accepted definition of which effects should be fixed and which should be random. There are generally accepted guidelines of how to classify effects as fixed or as random. Table \@ref(tab:fixedversusrandom) lists a few criteria that might be helpful.
 
+\small
+
 ```{r fixedversusrandom, echo=FALSE, results='asis'}
 tbl_fixed_versus_random <- tibble::data_frame(`fixed effect` = c("classes can be defined exactly",
                                                                  "the value of a class does not have an apriori expected value",
@@ -115,6 +117,8 @@ knitr::kable(tbl_fixed_versus_random,
   kableExtra::column_spec(1, width = "22em") %>%
   kableExtra::column_spec(2, width = "22em")
 ```
+
+\normalsize
 
 Certain factors such as herd, sex, breed or feeding regimes can be classified unambiguously as fixed effects. On the other hand breeding values are always random effects. Because, we know that breeding values have an expected value of $0$ and have a certain variance, they must be modeled as random effects where these properties can be integrated into the model. Furthermore, each animal has a different realization of a breeding value. Exceptions are mono-clonal twins and clones.
 
