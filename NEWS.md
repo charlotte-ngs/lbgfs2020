@@ -1,3 +1,7 @@
+# lbgfs2020 0.9.2
+
+* Slides for week 9
+
 # lbgfs2020 0.9.1
 
 * Chapter 9 of course notes
