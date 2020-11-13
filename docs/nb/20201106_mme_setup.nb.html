@@ -1758,19 +1758,23 @@ summary {
 =
 \begin{bmatrix} X^Ty \\Z^Ty\end{bmatrix}
 \]</span></p>
-<p>Specification of the expected values and the variance-covariance matrices of all random effects.</p>
+<p>Specification of the expected values and the variance-covariance matrices of all random effects. Random effects are <span class="math inline">\(e\)</span>, <span class="math inline">\(u\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p><span class="math display">\[ 
+E\begin{bmatrix}e \\ u \\y \end{bmatrix} = \begin{bmatrix} \\ \\ \end{bmatrix} \text{, } var\begin{bmatrix}e \\ u \\y \end{bmatrix} = 
+\]</span></p>
 </div>
 <div id="data-set" class="section level1">
 <h1>Data Set</h1>
 <p>The data set is given by</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGJsX3NpX2RhdCA8LSB0aWJibGU6OnRpYmJsZShBbmltYWwgPSBjKDE6NSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNpcmUgICA9IGMoTkEsIE5BLCBOQSwgMSwgNCksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIERhbSAgICA9IGMoTkEsIE5BLCBOQSwgMiwgMyksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNleCAgICA9IGMoXCJNXCIsIFwiRlwiLCBcIkZcIiwgXCJNXCIsIFwiRlwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgV1dHICAgID0gYyg0LjUsIDIuOSwgMy45LCAzLjUsIDUuMCkpXG50Ymxfc2lfZGF0XG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGJsX3NpX2RhdCA8LSB0aWJibGU6OnRpYmJsZShBbmltYWwgPSBjKDE6NSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNpcmUgICA9IGMoTkEsIE5BLCBOQSwgMSwgNCksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIERhbSAgICA9IGMoTkEsIE5BLCBOQSwgMiwgMyksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNleCAgICA9IGMoXCJNXCIsIFwiRlwiLCBcIkZcIiwgXCJNXCIsIFwiRlwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgV1dHICAgID0gYyg0LjUsIDIuOSwgMy45LCAzLjUsIDUuMCkpXG5cbnRibF9zaV9kYXRcbmBgYCJ9 -->
 <pre class="r"><code>tbl_si_dat &lt;- tibble::tibble(Animal = c(1:5),
                              Sire   = c(NA, NA, NA, 1, 4),
                              Dam    = c(NA, NA, NA, 2, 3),
                              Sex    = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;),
                              WWG    = c(4.5, 2.9, 3.9, 3.5, 5.0))
+
 tbl_si_dat</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6NX0sInJkZiI6IlVrUllNd3BZQ2dBQUFBTUFCQUFDQUFNRkFBQUFBQVZWVkVZdE9BQUFCQUlBQUFBQkFBUUFDUUFBQUFGNEFBQURFd0FBQUFVQUFBQU5BQUFBQlFBQUFBRUFBQUFDQUFBQUF3QUFBQVFBQUFBRkFBQUFEZ0FBQUFWLzhBQUFBQUFIb24vd0FBQUFBQWVpZi9BQUFBQUFCNkkvOEFBQUFBQUFBRUFRQUFBQUFBQUFBQUFBRGdBQUFBVi84QUFBQUFBSG9uL3dBQUFBQUFlaWYvQUFBQUFBQjZKQUFBQUFBQUFBQUVBSUFBQUFBQUFBQUFBQUVBQUFBQVVBQkFBSkFBQUFBVTBBQkFBSkFBQUFBVVlBQkFBSkFBQUFBVVlBQkFBSkFBQUFBVTBBQkFBSkFBQUFBVVlBQUFBT0FBQUFCVUFTQUFBQUFBQUFRQWN6TXpNek16TkFEek16TXpNek0wQU1BQUFBQUFBQVFCUUFBQUFBQUFBQUFBUUNBQUFBQVFBRUFBa0FBQUFGYm1GdFpYTUFBQUFRQUFBQUJRQUVBQWtBQUFBR1FXNXBiV0ZzQUFRQUNRQUFBQVJUYVhKbEFBUUFDUUFBQUFORVlXMEFCQUFKQUFBQUExTmxlQUFFQUFrQUFBQURWMWRIQUFBRUFnQUFBQUVBQkFBSkFBQUFDWEp2ZHk1dVlXMWxjd0FBQUEwQUFBQUNnQUFBQVAvLy8vc0FBQVFDQUFBQUFRQUVBQWtBQUFBRlkyeGhjM01BQUFBUUFBQUFBUUFFQUFrQUFBQUtaR0YwWVM1bWNtRnRaUUFBQVA0QUFBUUNBQUFBQVFBRUFBa0FBQUFIYjNCMGFXOXVjd0FBQWhNQUFBQUZBQUFBRUFBQUFBRUFCQUFKQUFBQUFYSUFBQUFRQUFBQUFRQUVBQWtBQUFBUGRXNXVZVzFsWkMxamFIVnVheTB4QUFBQUNnQUFBQUVBQUFBQUFBQUFEUUFBQUFFQUFBQUZBQUFBRFFBQUFBRUFBQUFGQUFBRUFnQUFBdjhBQUFBUUFBQUFCUUFFQUFrQUFBQUdaVzVuYVc1bEFBUUFDUUFBQUFWc1lXSmxiQUFFQUFrQUFBQU9jbTkzYm1GdFpYTXVjSEpwYm5RQUJBQUpBQUFBQ25KdmQzTXVkRzkwWVd3QUJBQUpBQUFBQ21OdmJITXVkRzkwWVd3QUFBRCtBQUFBL2c9PSJ9 -->
@@ -1785,10 +1789,261 @@ tbl_si_dat</code></pre>
 </div>
 <div id="model-components" class="section level1">
 <h1>Model Components</h1>
+<p>Model comonents are</p>
+<ul>
+<li>Three vector of unknowns <span class="math inline">\(\beta\)</span>, <span class="math inline">\(u\)</span> and <span class="math inline">\(e\)</span></li>
+<li>Vector of observations <span class="math inline">\(y\)</span></li>
+<li>Design matrices <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span></li>
+<li>Inverse numerator relationship matrix <span class="math inline">\(A^{-1}\)</span></li>
+</ul>
+<div id="unknowns" class="section level2">
+<h2>Unknowns</h2>
+<ul>
+<li>vector <span class="math inline">\(\beta\)</span> of fixed effects. In our data set the variable ‘Sex’ is treated as fixed effect. In general, in a data set the columns ‘Animal’, ‘Sire’ and ‘Dam’ belong to the pedigree, the column ‘WWG’ is our observation or response variable and everything in the dataset that does not belong to the pedigree and is not an observation or response variable, is treated as a fixed effect. As a consequence in our dataset, ‘Sex’ is a fixed effect. The lenght of the vector <span class="math inline">\(\beta\)</span> depends on the number of levels that are available in the column ‘Sex’ in the complete dataset.</li>
+</ul>
+<p>The number of levels in a given fixed effect can be determined using R</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGJsX3NpX2RhdCRTZXggPC0gYXMuZmFjdG9yKHRibF9zaV9kYXQkU2V4KVxudGJsX3NpX2RhdFxuYGBgIn0= -->
+<pre class="r"><code>tbl_si_dat$Sex &lt;- as.factor(tbl_si_dat$Sex)
+tbl_si_dat</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6NX0sInJkZiI6IlVrUllNd3BZQ2dBQUFBTUFCQUFDQUFNRkFBQUFBQVZWVkVZdE9BQUFCQUlBQUFBQkFBUUFDUUFBQUFGNEFBQURFd0FBQUFVQUFBQU5BQUFBQlFBQUFBRUFBQUFDQUFBQUF3QUFBQVFBQUFBRkFBQUFEZ0FBQUFWLzhBQUFBQUFIb24vd0FBQUFBQWVpZi9BQUFBQUFCNkkvOEFBQUFBQUFBRUFRQUFBQUFBQUFBQUFBRGdBQUFBVi84QUFBQUFBSG9uL3dBQUFBQUFlaWYvQUFBQUFBQjZKQUFBQUFBQUFBQUVBSUFBQUFBQUFBQUFBRERRQUFBQVVBQUFBQ0FBQUFBUUFBQUFFQUFBQUNBQUFBQVFBQUJBSUFBQUFCQUFRQUNRQUFBQVpzWlhabGJITUFBQUFRQUFBQUFnQUVBQWtBQUFBQlJnQUVBQWtBQUFBQlRRQUFCQUlBQUFBQkFBUUFDUUFBQUFWamJHRnpjd0FBQUJBQUFBQUJBQVFBQ1FBQUFBWm1ZV04wYjNJQUFBRCtBQUFBRGdBQUFBVkFFZ0FBQUFBQUFFQUhNek16TXpNelFBOHpNek16TXpOQURBQUFBQUFBQUVBVUFBQUFBQUFBQUFBRUFnQUFBQUVBQkFBSkFBQUFCVzVoYldWekFBQUFFQUFBQUFVQUJBQUpBQUFBQmtGdWFXMWhiQUFFQUFrQUFBQUVVMmx5WlFBRUFBa0FBQUFEUkdGdEFBUUFDUUFBQUFOVFpYZ0FCQUFKQUFBQUExZFhSd0FBQkFJQUFBQUJBQVFBQ1FBQUFBbHliM2N1Ym1GdFpYTUFBQUFOQUFBQUFvQUFBQUQvLy8vN0FBQUVBZ0FBQS84QUFBQVFBQUFBQVFBRUFBa0FBQUFLWkdGMFlTNW1jbUZ0WlFBQUFQNEFBQVFDQUFBQUFRQUVBQWtBQUFBSGIzQjBhVzl1Y3dBQUFoTUFBQUFGQUFBQUVBQUFBQUVBQkFBSkFBQUFBWElBQUFBUUFBQUFBUUFFQUFrQUFBQVBkVzV1WVcxbFpDMWphSFZ1YXkweUFBQUFDZ0FBQUFFQUFBQUFBQUFBRFFBQUFBRUFBQUFGQUFBQURRQUFBQUVBQUFBRkFBQUVBZ0FBQlA4QUFBQVFBQUFBQlFBRUFBa0FBQUFHWlc1bmFXNWxBQVFBQ1FBQUFBVnNZV0psYkFBRUFBa0FBQUFPY205M2JtRnRaWE11Y0hKcGJuUUFCQUFKQUFBQUNuSnZkM011ZEc5MFlXd0FCQUFKQUFBQUNtTnZiSE11ZEc5MFlXd0FBQUQrQUFBQS9nPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Animal"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sire"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Dam"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sex"],"name":[4],"type":["fctr"],"align":["left"]},{"label":["WWG"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"NA","3":"NA","4":"M","5":"4.5"},{"1":"2","2":"NA","3":"NA","4":"F","5":"2.9"},{"1":"3","2":"NA","3":"NA","4":"F","5":"3.9"},{"1":"4","2":"1","3":"2","4":"M","5":"3.5"},{"1":"5","2":"4","3":"3","4":"F","5":"5.0"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKG5fbGV2ZWxfc2V4IDwtIG5sZXZlbHModGJsX3NpX2RhdCRTZXgpKVxuYGBgIn0= -->
+<pre class="r"><code>(n_level_sex &lt;- nlevels(tbl_si_dat$Sex))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
+<pre><code>[1] 2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>With that the length of the vector <span class="math inline">\(\beta\)</span> is 2</p>
+<p><span class="math display">\[\beta = \begin{bmatrix} \beta_M \\ \beta_F \end{bmatrix}\]</span></p>
+<ul>
+<li>vector <span class="math inline">\(u\)</span> of breeding values. Since we are fitting an animal model, <span class="math inline">\(u\)</span> has as many compents as there are animals in the pedigree. In our dataset the vector <span class="math inline">\(u\)</span> has 5 components.</li>
+</ul>
+<p><span class="math display">\[u = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ u_4 \\ u_5 \end{bmatrix}\]</span></p>
+<ul>
+<li>vector <span class="math inline">\(e\)</span> of random error terms. The length of the vector <span class="math inline">\(e\)</span> is the same as the number of observations.</li>
+</ul>
+<p><span class="math display">\[e = \begin{bmatrix} e_1 \\ e_2 \\ e_3 \\ e_4 \\ e_5 \end{bmatrix}\]</span></p>
+</div>
+<div id="observations" class="section level2">
+<h2>Observations</h2>
+<p>Observations corresponds to the vector <span class="math inline">\(y\)</span>. The vector <span class="math inline">\(y\)</span> is known and therefore, we can insert numbers from the dataset into the vector <span class="math inline">\(y\)</span>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmVjX3kgPC0gdGJsX3NpX2RhdCRXV0dcbmNhdChwYXN0ZShybWRoZWxwOjpiY29sdW1uX3ZlY3RvcihwdmVjID0gdmVjX3ksIHBzX25hbWUgPSAneScsIHBzX2VudiA9ICckJCcpLCBjb2xsYXBzZSA9ICdcXG4nKSwgJ1xcbicpXG5gYGAifQ== -->
+<pre class="r"><code>vec_y &lt;- tbl_si_dat$WWG
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = &#39;y&#39;, ps_env = &#39;$$&#39;), collapse = &#39;\n&#39;), &#39;\n&#39;)</code></pre>
+<!-- rnb-source-end -->
+<p><span class="math display">\[y = \begin{bmatrix} 4.5 \\2.9 \\3.9 \\3.5 \\5\end{bmatrix}\]</span></p>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="design-matrices" class="section level2">
+<h2>Design Matrices</h2>
+<p>Design matrix <span class="math inline">\(X\)</span> links levels of fixed effects to observations. The matrix <span class="math inline">\(X\)</span> has dimensions <span class="math inline">\(n\times p\)</span> where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(p\)</span> is the number of levels in our fixed effects. In our example <span class="math inline">\(n=5\)</span> and <span class="math inline">\(p=2\)</span></p>
+<p><span class="math display">\[
+X = \begin{bmatrix} 
+1  &amp;  0 \\
+0  &amp;  1 \\
+0  &amp;  1 \\
+1  &amp;  0 \\
+0  &amp;  1
+\end{bmatrix}
+\]</span></p>
+<p>The design matrix <span class="math inline">\(Z\)</span> links random breeding values (<span class="math inline">\(u\)</span>) to observations. The matrix <span class="math inline">\(Z\)</span> has dimensions <span class="math inline">\(n\times q\)</span> where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(q\)</span> is the number of animals in the pedgree.</p>
+<p><span class="math display">\[
+Z = \begin{bmatrix} 
+1 &amp; 0 &amp; 0  &amp; 0  &amp; 0 \\
+0 &amp; 1 &amp; 0  &amp; 0  &amp; 0 \\
+0 &amp; 0 &amp; 1  &amp; 0  &amp; 0 \\
+0 &amp; 0 &amp; 0  &amp; 1  &amp; 0 \\
+0 &amp; 0 &amp; 0  &amp; 0  &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+</div>
+</div>
+<div id="model" class="section level1">
+<h1>Model</h1>
+<p>Model in Matrix-Vector Notation</p>
+<p><span class="math display">\[y = X \beta + Zu + e \]</span> The equation for the first observation</p>
+<p><span class="math display">\[y_1 = \beta_M + u_1 + e_1\]</span></p>
+<div id="inverse-numerator-relationship-matrix" class="section level2">
+<h2>Inverse Numerator Relationship Matrix</h2>
+<p>We use <code>pedigreemm</code> to construct <span class="math inline">\(A^{-1}\)</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKHBlZCA8LSBwZWRpZ3JlZW1tOjpwZWRpZ3JlZShzaXJlID0gdGJsX3NpX2RhdCRTaXJlLCBkYW0gPSB0Ymxfc2lfZGF0JERhbSwgbGFiZWwgPSBhcy5jaGFyYWN0ZXIodGJsX3NpX2RhdCRBbmltYWwpKSlcbmBgYCJ9 -->
+<pre class="r"><code>(ped &lt;- pedigreemm::pedigree(sire = tbl_si_dat$Sire, dam = tbl_si_dat$Dam, label = as.character(tbl_si_dat$Animal)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Mn0sInJkZiI6IlVrUllNd3BZQ2dBQUFBTUFCQUFDQUFNRkFBQUFBQVZWVkVZdE9BQUFCQUlBQUFBQkFBUUFDUUFBQUFGNEFBQURFd0FBQUFJQUFBTU5BQUFBQllBQUFBQ0FBQUFBZ0FBQUFBQUFBQUVBQUFBRUFBQUVBZ0FBQUFFQUJBQUpBQUFBQm14bGRtVnNjd0FBQUJBQUFBQUZBQVFBQ1FBQUFBRXhBQVFBQ1FBQUFBRXlBQVFBQ1FBQUFBRXpBQVFBQ1FBQUFBRTBBQVFBQ1FBQUFBRTFBQUFFQWdBQUFBRUFCQUFKQUFBQUJXTnNZWE56QUFBQUVBQUFBQUVBQkFBSkFBQUFCbVpoWTNSdmNnQUFBUDRBQUFNTkFBQUFCWUFBQUFDQUFBQUFnQUFBQUFBQUFBSUFBQUFEQUFBRUFnQUFBdjhBQUFBUUFBQUFCUUFFQUFrQUFBQUJNUUFFQUFrQUFBQUJNZ0FFQUFrQUFBQUJNd0FFQUFrQUFBQUJOQUFFQUFrQUFBQUJOUUFBQkFJQUFBUC9BQUFBRUFBQUFBRUFCQUFKQUFBQUJtWmhZM1J2Y2dBQUFQNEFBQVFDQUFBQUFRQUVBQWtBQUFBRmJtRnRaWE1BQUFBUUFBQUFBZ0FFQUFrQUFBQUVjMmx5WlFBRUFBa0FBQUFEWkdGdEFBQUVBZ0FBQUFFQUJBQUpBQUFBQ1hKdmR5NXVZVzFsY3dBQUFCQUFBQUFGQUFRQUNRQUFBQUV4QUFRQUNRQUFBQUV5QUFRQUNRQUFBQUV6QUFRQUNRQUFBQUUwQUFRQUNRQUFBQUUxQUFBRUFnQUFBLzhBQUFBUUFBQUFBUUFFQUFrQUFBQUtaR0YwWVM1bWNtRnRaUUFBQVA0QUFBUUNBQUFBQVFBRUFBa0FBQUFIYjNCMGFXOXVjd0FBQWhNQUFBQUZBQUFBRUFBQUFBRUFCQUFKQUFBQUFYSUFBQUFRQUFBQUFRQUVBQWtBQUFBUGRXNXVZVzFsWkMxamFIVnVheTAxQUFBQUNnQUFBQUVBQUFBQkFBQUFEUUFBQUFFQUFBQUZBQUFBRFFBQUFBRUFBQUFDQUFBRUFnQUFCUDhBQUFBUUFBQUFCUUFFQUFrQUFBQUdaVzVuYVc1bEFBUUFDUUFBQUFWc1lXSmxiQUFFQUFrQUFBQU9jbTkzYm1GdFpYTXVjSEpwYm5RQUJBQUpBQUFBQ25KdmQzTXVkRzkwWVd3QUJBQUpBQUFBQ21OdmJITXVkRzkwWVd3QUFBRCtBQUFBL2c9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sire"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["dam"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"NA","2":"NA","_rn_":"1"},{"1":"NA","2":"NA","_rn_":"2"},{"1":"NA","2":"NA","_rn_":"3"},{"1":"1","2":"2","_rn_":"4"},{"1":"4","2":"3","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The function <code>getAInv()</code> returns the inverse numerator relationship matrix</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKG1hdF9BSW52IDwtIGFzLm1hdHJpeChwZWRpZ3JlZW1tOjpnZXRBSW52KHBlZCA9IHBlZCkpKVxuYGBgIn0= -->
+<pre class="r"><code>(mat_AInv &lt;- as.matrix(pedigreemm::getAInv(ped = ped)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAxICAgIDIgICAgMyAgICA0ICA1XG4xICAxLjUgIDAuNSAgMC4wIC0xLjAgIDBcbjIgIDAuNSAgMS41ICAwLjAgLTEuMCAgMFxuMyAgMC4wICAwLjAgIDEuNSAgMC41IC0xXG40IC0xLjAgLTEuMCAgMC41ICAyLjUgLTFcbjUgIDAuMCAgMC4wIC0xLjAgLTEuMCAgMlxuIn0= -->
+<pre><code>     1    2    3    4  5
+1  1.5  0.5  0.0 -1.0  0
+2  0.5  1.5  0.0 -1.0  0
+3  0.0  0.0  1.5  0.5 -1
+4 -1.0 -1.0  0.5  2.5 -1
+5  0.0  0.0 -1.0 -1.0  2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="mixed-model-equations" class="section level1">
+<h1>Mixed Model Equations</h1>
+<p>The mixed model equations have the following structure</p>
+<p><span class="math display">\[ M \cdot s = r\]</span></p>
+<p>where <span class="math inline">\(M\)</span> is the coefficient matrix, <span class="math inline">\(s\)</span> is the vector of unknowns and <span class="math inline">\(r\)</span> is the right-hand side vector. Our goal is to get solutions for the estimates and predictions of the vector of unknowns <span class="math inline">\(s\)</span>. The general for of the solution will be</p>
+<p><span class="math display">\[s = M^{-1}\cdot r\]</span></p>
+<p><span class="math display">\[M = \begin{bmatrix}X^TX &amp; X^TZ \\ Z^TX &amp; Z^TZ + \lambda* A^{-1}\end{bmatrix}\]</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKG1hdF9YIDwtIG1hdHJpeChjKDEsIDAsIFxuMCwgMSwgXG4wLCAxLFxuMSwgMCxcbjAsIDEpLCBucm93ID0gbGVuZ3RoKHZlY195KSwgYnlyb3cgPSBUUlVFKSlcbmBgYCJ9 -->
+<pre class="r"><code>(mat_X &lt;- matrix(c(1, 0, 
+0, 1, 
+0, 1,
+1, 0,
+0, 1), nrow = length(vec_y), byrow = TRUE))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl1cblsxLF0gICAgMSAgICAwXG5bMixdICAgIDAgICAgMVxuWzMsXSAgICAwICAgIDFcbls0LF0gICAgMSAgICAwXG5bNSxdICAgIDAgICAgMVxuIn0= -->
+<pre><code>     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+[3,]    0    1
+[4,]    1    0
+[5,]    0    1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKG1hdF9aIDwtIGRpYWcoMSwgbnJvdyA9IGxlbmd0aCh2ZWNfeSkpKVxuYGBgIn0= -->
+<pre class="r"><code>(mat_Z &lt;- diag(1, nrow = length(vec_y)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV1cblsxLF0gICAgMSAgICAwICAgIDAgICAgMCAgICAwXG5bMixdICAgIDAgICAgMSAgICAwICAgIDAgICAgMFxuWzMsXSAgICAwICAgIDAgICAgMSAgICAwICAgIDBcbls0LF0gICAgMCAgICAwICAgIDAgICAgMSAgICAwXG5bNSxdICAgIDAgICAgMCAgICAwICAgIDAgICAgMVxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    0    0    0    0
+[2,]    0    1    0    0    0
+[3,]    0    0    1    0    0
+[4,]    0    0    0    1    0
+[5,]    0    0    0    0    1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The variable <span class="math inline">\(\lambda\)</span> corresponds to the ration of the residual variance divided by the genetic additive variance. Here we assume that <span class="math inline">\(\lambda = 2\)</span></p>
+<p><span class="math display">\[\lambda = \frac{\sigma_e^2}{\sigma_u^2}\]</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFtYmRhIDwtIDJcbmBgYCJ9 -->
+<pre class="r"><code>lambda &lt;- 2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Putting everything together into the coefficent matrix <span class="math inline">\(M\)</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0X1hUWCA8LSBjcm9zc3Byb2QobWF0X1gpXG5tYXRfWFRaIDwtIGNyb3NzcHJvZChtYXRfWCwgbWF0X1opXG5tYXRfWlRYIDwtIGNyb3NzcHJvZChtYXRfWiwgbWF0X1gpXG5tYXRfWlRaX2xBaW52IDwtIGNyb3NzcHJvZChtYXRfWikgKyBsYW1iZGEgKiBtYXRfQUludlxuKG1hdF9NIDwtIHJiaW5kKGNiaW5kKG1hdF9YVFgsIG1hdF9YVFopLCBjYmluZChtYXRfWlRYLCBtYXRfWlRaX2xBaW52KSkpKVxuYGBgIn0= -->
+<pre class="r"><code>mat_XTX &lt;- crossprod(mat_X)
+mat_XTZ &lt;- crossprod(mat_X, mat_Z)
+mat_ZTX &lt;- crossprod(mat_Z, mat_X)
+mat_ZTZ_lAinv &lt;- crossprod(mat_Z) + lambda * mat_AInv
+(mat_M &lt;- rbind(cbind(mat_XTX, mat_XTZ), cbind(mat_ZTX, mat_ZTZ_lAinv))))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgJyknIGluIFwiKG1hdF9NIDwtIHJiaW5kKGNiaW5kKG1hdF9YVFgsIG1hdF9YVFopLCBjYmluZChtYXRfWlRYLCBtYXRfWlRaX2xBaW52KSkpKVwiXG4ifQ== -->
+<pre><code>Error: unexpected &#39;)&#39; in &quot;(mat_M &lt;- rbind(cbind(mat_XTX, mat_XTZ), cbind(mat_ZTX, mat_ZTZ_lAinv))))&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="right-hand-side" class="section level2">
+<h2>Right-Hand Side</h2>
+<p>The vector <span class="math inline">\(r\)</span> is constructed from <span class="math inline">\(X^Ty\)</span> and <span class="math inline">\(Z^Ty\)</span></p>
+<p><span class="math display">\[
+r = \begin{bmatrix} X^Ty \\ Z^Ty \end{bmatrix}
+\]</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmVjX1hUeSA8LSBjcm9zc3Byb2QobWF0X1gsIHZlY195KVxudmVjX1pUeSA8LSBjcm9zc3Byb2QobWF0X1osIHZlY195KVxuKHZlY19yIDwtIHJiaW5kKHZlY19YVHksIHZlY19aVHkpKVxuYGBgIn0= -->
+<pre class="r"><code>vec_XTy &lt;- crossprod(mat_X, vec_y)
+vec_ZTy &lt;- crossprod(mat_Z, vec_y)
+(vec_r &lt;- rbind(vec_XTy, vec_ZTy))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdXG5bMSxdICA4LjBcblsyLF0gMTEuOFxuWzMsXSAgNC41XG5bNCxdICAyLjlcbls1LF0gIDMuOVxuWzYsXSAgMy41XG5bNyxdICA1LjBcbiJ9 -->
+<pre><code>     [,1]
+[1,]  8.0
+[2,] 11.8
+[3,]  4.5
+[4,]  2.9
+[5,]  3.9
+[6,]  3.5
+[7,]  5.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="soltion-vector" class="section level2">
+<h2>Soltion Vector</h2>
+<p>The solution vector <span class="math inline">\(s\)</span> is computed as <span class="math inline">\(s = M^{-1} \cdot r\)</span></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKHZlY19zIDwtIHNvbHZlKG1hdF9NLCB2ZWNfcikpXG5cbmBgYCJ9 -->
+<pre class="r"><code>(vec_s &lt;- solve(mat_M, vec_r))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgWywxXVxuICAgMy45Mjg5ODg3NlxuICAgMy45MTY2MjkyMVxuMSAgMC4xOTc3NTI4MVxuMiAtMC4zMzE0NjA2N1xuMyAgMC4xMzM3MDc4N1xuNCAtMC4wNTU3MzAzNFxuNSAgMC4yNDc4NjUxN1xuIn0= -->
+<pre><code>         [,1]
+   3.92898876
+   3.91662921
+1  0.19775281
+2 -0.33146067
+3  0.13370787
+4 -0.05573034
+5  0.24786517</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The solutions can be interpreted as</p>
+<p><span class="math display">\[ \hat{\beta} = \begin{bmatrix} \hat{\beta}_M \\ \hat{\beta}_F \end{bmatrix}= \begin{bmatrix} 3.9289888 \\  3.9166292\end{bmatrix} \]</span></p>
+<p>The predicted breeding values are</p>
+<p><span class="math display">\[\hat{u} = \begin{bmatrix} \hat{u}_1 \\ \hat{u}_2 \\ \hat{u}_3 \\ \hat{u}_4 \\ \hat{u}_5 \end{bmatrix} = 
+\begin{bmatrix} 
+0.1977528 \\
+-0.3314607 \\
+0.1337079 \\
+-0.0557303 \\
+0.2478652 \\
+\end{bmatrix}
+\]</span></p>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2V0dXAgTWl4ZWQgTW9kZWwgRXF1YXRpb25zIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIEZvcm11bGEKVGhlIG1peGVkIG1vZGVsIGVxdWF0aW9ucyBoYXZlIGZvbGxvd2luZyBmb3JtLCBhc3N1bWluZyB0aGF0IHRoZSB2YXJpYW5jZS1jb3ZhcmlhbmNlLW1hdHJpeCAoJHZhcihlKSQpIG9mIHRoZSBlcnJvciB2ZWN0b3IgJGUkIGhhcyB0aGUgc2ltcGxlIGZvcm0KCiQkdmFyKGUpID0gSSAqIFxzaWdtYV9lXjIkJAp3aGVyZSAkSSQgaXMgdGhlIGlkZW50aXR5IG1hdHJpeC4gVGhlIG1peGVkIG1vZGVsIGVxdWF0aW9ucyBhcmUgZ2l2ZW4gYnkKCiQkClxiZWdpbntibWF0cml4fVheVFggJiBYXlRaIFxcIFpeVFggJiBaXlRaICsgXGxhbWJkYSogQV57LTF9XGVuZHtibWF0cml4fSAqIFxiZWdpbntibWF0cml4fSBcaGF0e1xiZXRhfSBcXCBcaGF0e3V9XGVuZHtibWF0cml4fQo9ClxiZWdpbntibWF0cml4fSBYXlR5IFxcWl5UeVxlbmR7Ym1hdHJpeH0KJCQKClNwZWNpZmljYXRpb24gb2YgdGhlIGV4cGVjdGVkIHZhbHVlcyBhbmQgdGhlIHZhcmlhbmNlLWNvdmFyaWFuY2UgbWF0cmljZXMgb2YgYWxsIHJhbmRvbSBlZmZlY3RzLgoKIyBEYXRhIFNldApUaGUgZGF0YSBzZXQgaXMgZ2l2ZW4gYnkKCmBgYHtyfQp0Ymxfc2lfZGF0IDwtIHRpYmJsZTo6dGliYmxlKEFuaW1hbCA9IGMoMTo1KSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTaXJlICAgPSBjKE5BLCBOQSwgTkEsIDEsIDQpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIERhbSAgICA9IGMoTkEsIE5BLCBOQSwgMiwgMyksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2V4ICAgID0gYygiTSIsICJGIiwgIkYiLCAiTSIsICJGIiksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgV1dHICAgID0gYyg0LjUsIDIuOSwgMy45LCAzLjUsIDUuMCkpCgp0Ymxfc2lfZGF0CmBgYAoKCiMgTW9kZWwgQ29tcG9uZW50cwo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2V0dXAgTWl4ZWQgTW9kZWwgRXF1YXRpb25zIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIEZvcm11bGEKVGhlIG1peGVkIG1vZGVsIGVxdWF0aW9ucyBoYXZlIGZvbGxvd2luZyBmb3JtLCBhc3N1bWluZyB0aGF0IHRoZSB2YXJpYW5jZS1jb3ZhcmlhbmNlLW1hdHJpeCAoJHZhcihlKSQpIG9mIHRoZSBlcnJvciB2ZWN0b3IgJGUkIGhhcyB0aGUgc2ltcGxlIGZvcm0KCiQkdmFyKGUpID0gSSAqIFxzaWdtYV9lXjIkJAp3aGVyZSAkSSQgaXMgdGhlIGlkZW50aXR5IG1hdHJpeC4gVGhlIG1peGVkIG1vZGVsIGVxdWF0aW9ucyBhcmUgZ2l2ZW4gYnkKCiQkClxiZWdpbntibWF0cml4fVheVFggJiBYXlRaIFxcIFpeVFggJiBaXlRaICsgXGxhbWJkYSogQV57LTF9XGVuZHtibWF0cml4fSAqIFxiZWdpbntibWF0cml4fSBcaGF0e1xiZXRhfSBcXCBcaGF0e3V9XGVuZHtibWF0cml4fQo9ClxiZWdpbntibWF0cml4fSBYXlR5IFxcWl5UeVxlbmR7Ym1hdHJpeH0KJCQKClNwZWNpZmljYXRpb24gb2YgdGhlIGV4cGVjdGVkIHZhbHVlcyBhbmQgdGhlIHZhcmlhbmNlLWNvdmFyaWFuY2UgbWF0cmljZXMgb2YgYWxsIHJhbmRvbSBlZmZlY3RzLiBSYW5kb20gZWZmZWN0cyBhcmUgJGUkLCAkdSQgYW5kICR5JC4gCgokJCAKRVxiZWdpbntibWF0cml4fWUgXFwgdSBcXHkgXGVuZHtibWF0cml4fSA9IFxiZWdpbntibWF0cml4fSBcXCBcXCBcZW5ke2JtYXRyaXh9IFx0ZXh0eywgfSB2YXJcYmVnaW57Ym1hdHJpeH1lIFxcIHUgXFx5IFxlbmR7Ym1hdHJpeH0gPSAKJCQKCiMgRGF0YSBTZXQKVGhlIGRhdGEgc2V0IGlzIGdpdmVuIGJ5CgpgYGB7cn0KdGJsX3NpX2RhdCA8LSB0aWJibGU6OnRpYmJsZShBbmltYWwgPSBjKDE6NSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2lyZSAgID0gYyhOQSwgTkEsIE5BLCAxLCA0KSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEYW0gICAgPSBjKE5BLCBOQSwgTkEsIDIsIDMpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNleCAgICA9IGMoIk0iLCAiRiIsICJGIiwgIk0iLCAiRiIpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIFdXRyAgICA9IGMoNC41LCAyLjksIDMuOSwgMy41LCA1LjApKQoKdGJsX3NpX2RhdApgYGAKCgojIE1vZGVsIENvbXBvbmVudHMKTW9kZWwgY29tb25lbnRzIGFyZQoKKiBUaHJlZSB2ZWN0b3Igb2YgdW5rbm93bnMgJFxiZXRhJCwgJHUkIGFuZCAkZSQKKiBWZWN0b3Igb2Ygb2JzZXJ2YXRpb25zICR5JAoqIERlc2lnbiBtYXRyaWNlcyAkWCQgYW5kICRaJAoqIEludmVyc2UgbnVtZXJhdG9yIHJlbGF0aW9uc2hpcCBtYXRyaXggJEFeey0xfSQKCiMjIFVua25vd25zCgoqIHZlY3RvciAkXGJldGEkIG9mIGZpeGVkIGVmZmVjdHMuIEluIG91ciBkYXRhIHNldCB0aGUgdmFyaWFibGUgJ1NleCcgaXMgdHJlYXRlZCBhcyBmaXhlZCBlZmZlY3QuIEluIGdlbmVyYWwsIGluIGEgZGF0YSBzZXQgdGhlIGNvbHVtbnMgJ0FuaW1hbCcsICdTaXJlJyBhbmQgJ0RhbScgYmVsb25nIHRvIHRoZSBwZWRpZ3JlZSwgdGhlIGNvbHVtbiAnV1dHJyBpcyBvdXIgb2JzZXJ2YXRpb24gb3IgcmVzcG9uc2UgdmFyaWFibGUgYW5kIGV2ZXJ5dGhpbmcgaW4gdGhlIGRhdGFzZXQgdGhhdCBkb2VzIG5vdCBiZWxvbmcgdG8gdGhlIHBlZGlncmVlIGFuZCBpcyBub3QgYW4gb2JzZXJ2YXRpb24gb3IgcmVzcG9uc2UgdmFyaWFibGUsIGlzIHRyZWF0ZWQgYXMgYSBmaXhlZCBlZmZlY3QuIEFzIGEgY29uc2VxdWVuY2UgaW4gb3VyIGRhdGFzZXQsICdTZXgnIGlzIGEgZml4ZWQgZWZmZWN0LiBUaGUgbGVuZ2h0IG9mIHRoZSB2ZWN0b3IgJFxiZXRhJCBkZXBlbmRzIG9uIHRoZSBudW1iZXIgb2YgbGV2ZWxzIHRoYXQgYXJlIGF2YWlsYWJsZSBpbiB0aGUgY29sdW1uICdTZXgnIGluIHRoZSBjb21wbGV0ZSBkYXRhc2V0LiAKClRoZSBudW1iZXIgb2YgbGV2ZWxzIGluIGEgZ2l2ZW4gZml4ZWQgZWZmZWN0IGNhbiBiZSBkZXRlcm1pbmVkIHVzaW5nIFIKCmBgYHtyfQp0Ymxfc2lfZGF0JFNleCA8LSBhcy5mYWN0b3IodGJsX3NpX2RhdCRTZXgpCnRibF9zaV9kYXQKYGBgCgpgYGB7cn0KKG5fbGV2ZWxfc2V4IDwtIG5sZXZlbHModGJsX3NpX2RhdCRTZXgpKQpgYGAKCldpdGggdGhhdCB0aGUgbGVuZ3RoIG9mIHRoZSB2ZWN0b3IgJFxiZXRhJCBpcyBgciBuX2xldmVsX3NleGAKCiQkXGJldGEgPSBcYmVnaW57Ym1hdHJpeH0gXGJldGFfTSBcXCBcYmV0YV9GIFxlbmR7Ym1hdHJpeH0kJAoKKiB2ZWN0b3IgJHUkIG9mIGJyZWVkaW5nIHZhbHVlcy4gU2luY2Ugd2UgYXJlIGZpdHRpbmcgYW4gYW5pbWFsIG1vZGVsLCAkdSQgaGFzIGFzIG1hbnkgY29tcGVudHMgYXMgdGhlcmUgYXJlIGFuaW1hbHMgaW4gdGhlIHBlZGlncmVlLiBJbiBvdXIgZGF0YXNldCB0aGUgdmVjdG9yICR1JCBoYXMgNSBjb21wb25lbnRzLgoKJCR1ID0gXGJlZ2lue2JtYXRyaXh9IHVfMSBcXCB1XzIgXFwgdV8zIFxcIHVfNCBcXCB1XzUgXGVuZHtibWF0cml4fSQkCgoqIHZlY3RvciAkZSQgb2YgcmFuZG9tIGVycm9yIHRlcm1zLiBUaGUgbGVuZ3RoIG9mIHRoZSB2ZWN0b3IgJGUkIGlzIHRoZSBzYW1lIGFzIHRoZSBudW1iZXIgb2Ygb2JzZXJ2YXRpb25zLiAKCiQkZSA9IFxiZWdpbntibWF0cml4fSBlXzEgXFwgZV8yIFxcIGVfMyBcXCBlXzQgXFwgZV81IFxlbmR7Ym1hdHJpeH0kJAoKIyMgT2JzZXJ2YXRpb25zCk9ic2VydmF0aW9ucyBjb3JyZXNwb25kcyB0byB0aGUgdmVjdG9yICR5JC4gVGhlIHZlY3RvciAkeSQgaXMga25vd24gYW5kIHRoZXJlZm9yZSwgd2UgY2FuIGluc2VydCBudW1iZXJzIGZyb20gdGhlIGRhdGFzZXQgaW50byB0aGUgdmVjdG9yICR5JC4gCgpgYGB7ciwgcmVzdWx0cz0nYXNpcyd9CnZlY195IDwtIHRibF9zaV9kYXQkV1dHCmNhdChwYXN0ZShybWRoZWxwOjpiY29sdW1uX3ZlY3RvcihwdmVjID0gdmVjX3ksIHBzX25hbWUgPSAneScsIHBzX2VudiA9ICckJCcpLCBjb2xsYXBzZSA9ICdcbicpLCAnXG4nKQpgYGAKCgojIyBEZXNpZ24gTWF0cmljZXMKRGVzaWduIG1hdHJpeCAkWCQgbGlua3MgbGV2ZWxzIG9mIGZpeGVkIGVmZmVjdHMgdG8gb2JzZXJ2YXRpb25zLiBUaGUgbWF0cml4ICRYJCBoYXMgZGltZW5zaW9ucyAkblx0aW1lcyBwJCB3aGVyZSAkbiQgaXMgdGhlIG51bWJlciBvZiBvYnNlcnZhdGlvbnMgYW5kICRwJCBpcyB0aGUgbnVtYmVyIG9mIGxldmVscyBpbiBvdXIgZml4ZWQgZWZmZWN0cy4gSW4gb3VyIGV4YW1wbGUgJG49NSQgYW5kICRwPTIkCgokJApYID0gXGJlZ2lue2JtYXRyaXh9IAoxICAmICAwIFxcCjAgICYgIDEgXFwKMCAgJiAgMSBcXAoxICAmICAwIFxcCjAgICYgIDEKXGVuZHtibWF0cml4fQokJAoKClRoZSBkZXNpZ24gbWF0cml4ICRaJCBsaW5rcyByYW5kb20gYnJlZWRpbmcgdmFsdWVzICgkdSQpIHRvIG9ic2VydmF0aW9ucy4gVGhlIG1hdHJpeCAkWiQgaGFzIGRpbWVuc2lvbnMgJG5cdGltZXMgcSQgd2hlcmUgJG4kIGlzIHRoZSBudW1iZXIgb2Ygb2JzZXJ2YXRpb25zIGFuZCAkcSQgaXMgdGhlIG51bWJlciBvZiBhbmltYWxzIGluIHRoZSBwZWRncmVlLiAKCiQkClogPSBcYmVnaW57Ym1hdHJpeH0gCjEgJiAwICYgMCAgJiAwICAmIDAgXFwKMCAmIDEgJiAwICAmIDAgICYgMCBcXAowICYgMCAmIDEgICYgMCAgJiAwIFxcCjAgJiAwICYgMCAgJiAxICAmIDAgXFwKMCAmIDAgJiAwICAmIDAgICYgMSBcXApcZW5ke2JtYXRyaXh9CiQkCgoKIyBNb2RlbApNb2RlbCBpbiBNYXRyaXgtVmVjdG9yIE5vdGF0aW9uCgokJHkgPSBYIFxiZXRhICsgWnUgKyBlICQkClRoZSBlcXVhdGlvbiBmb3IgdGhlIGZpcnN0IG9ic2VydmF0aW9uCgokJHlfMSA9IFxiZXRhX00gKyB1XzEgKyBlXzEkJAoKIyMgSW52ZXJzZSBOdW1lcmF0b3IgUmVsYXRpb25zaGlwIE1hdHJpeApXZSB1c2UgYHBlZGlncmVlbW1gIHRvIGNvbnN0cnVjdCAkQV57LTF9JAoKYGBge3J9CihwZWQgPC0gcGVkaWdyZWVtbTo6cGVkaWdyZWUoc2lyZSA9IHRibF9zaV9kYXQkU2lyZSwgZGFtID0gdGJsX3NpX2RhdCREYW0sIGxhYmVsID0gYXMuY2hhcmFjdGVyKHRibF9zaV9kYXQkQW5pbWFsKSkpCmBgYAoKIFRoZSBmdW5jdGlvbiBgZ2V0QUludigpYCByZXR1cm5zIHRoZSBpbnZlcnNlIG51bWVyYXRvciByZWxhdGlvbnNoaXAgbWF0cml4CiAKYGBge3J9CihtYXRfQUludiA8LSBhcy5tYXRyaXgocGVkaWdyZWVtbTo6Z2V0QUludihwZWQgPSBwZWQpKSkKYGBgCiAKIyBNaXhlZCBNb2RlbCBFcXVhdGlvbnMKVGhlIG1peGVkIG1vZGVsIGVxdWF0aW9ucyBoYXZlIHRoZSBmb2xsb3dpbmcgc3RydWN0dXJlCgokJCBNIFxjZG90IHMgPSByJCQKCndoZXJlICRNJCBpcyB0aGUgY29lZmZpY2llbnQgbWF0cml4LCAkcyQgaXMgdGhlIHZlY3RvciBvZiB1bmtub3ducyBhbmQgJHIkIGlzIHRoZSByaWdodC1oYW5kIHNpZGUgdmVjdG9yLiBPdXIgZ29hbCBpcyB0byBnZXQgc29sdXRpb25zIGZvciB0aGUgZXN0aW1hdGVzIGFuZCBwcmVkaWN0aW9ucyBvZiB0aGUgdmVjdG9yIG9mIHVua25vd25zICRzJC4gVGhlIGdlbmVyYWwgZm9yIG9mIHRoZSBzb2x1dGlvbiB3aWxsIGJlCgokJHMgPSBNXnstMX1cY2RvdCByJCQKCiQkTSA9IFxiZWdpbntibWF0cml4fVheVFggJiBYXlRaIFxcIFpeVFggJiBaXlRaICsgXGxhbWJkYSogQV57LTF9XGVuZHtibWF0cml4fSQkCgpgYGB7cn0KKG1hdF9YIDwtIG1hdHJpeChjKDEsIDAsIAowLCAxLCAKMCwgMSwKMSwgMCwKMCwgMSksIG5yb3cgPSBsZW5ndGgodmVjX3kpLCBieXJvdyA9IFRSVUUpKQpgYGAKCmBgYHtyfQoobWF0X1ogPC0gZGlhZygxLCBucm93ID0gbGVuZ3RoKHZlY195KSkpCmBgYAoKVGhlIHZhcmlhYmxlICRcbGFtYmRhJCBjb3JyZXNwb25kcyB0byB0aGUgcmF0aW9uIG9mIHRoZSByZXNpZHVhbCB2YXJpYW5jZSBkaXZpZGVkIGJ5IHRoZSBnZW5ldGljIGFkZGl0aXZlIHZhcmlhbmNlLiBIZXJlIHdlIGFzc3VtZSB0aGF0ICRcbGFtYmRhID0gMiQKCiQkXGxhbWJkYSA9IFxmcmFje1xzaWdtYV9lXjJ9e1xzaWdtYV91XjJ9JCQKCmBgYHtyfQpsYW1iZGEgPC0gMgpgYGAKClB1dHRpbmcgZXZlcnl0aGluZyB0b2dldGhlciBpbnRvIHRoZSBjb2VmZmljZW50IG1hdHJpeCAkTSQKCmBgYHtyfQptYXRfWFRYIDwtIGNyb3NzcHJvZChtYXRfWCkKbWF0X1hUWiA8LSBjcm9zc3Byb2QobWF0X1gsIG1hdF9aKQptYXRfWlRYIDwtIGNyb3NzcHJvZChtYXRfWiwgbWF0X1gpCm1hdF9aVFpfbEFpbnYgPC0gY3Jvc3Nwcm9kKG1hdF9aKSArIGxhbWJkYSAqIG1hdF9BSW52CihtYXRfTSA8LSByYmluZChjYmluZChtYXRfWFRYLCBtYXRfWFRaKSwgY2JpbmQobWF0X1pUWCwgbWF0X1pUWl9sQWludikpKSkKYGBgCgoKIyMgUmlnaHQtSGFuZCBTaWRlClRoZSB2ZWN0b3IgJHIkIGlzIGNvbnN0cnVjdGVkIGZyb20gJFheVHkkIGFuZCAkWl5UeSQKCiQkCnIgPSBcYmVnaW57Ym1hdHJpeH0gWF5UeSBcXCBaXlR5IFxlbmR7Ym1hdHJpeH0KJCQKYGBge3J9CnZlY19YVHkgPC0gY3Jvc3Nwcm9kKG1hdF9YLCB2ZWNfeSkKdmVjX1pUeSA8LSBjcm9zc3Byb2QobWF0X1osIHZlY195KQoodmVjX3IgPC0gcmJpbmQodmVjX1hUeSwgdmVjX1pUeSkpCmBgYAoKCiMjIFNvbHRpb24gVmVjdG9yClRoZSBzb2x1dGlvbiB2ZWN0b3IgJHMkIGlzIGNvbXB1dGVkIGFzICRzID0gTV57LTF9IFxjZG90IHIkCgpgYGB7cn0KKHZlY19zIDwtIHNvbHZlKG1hdF9NLCB2ZWNfcikpCmBgYAoKVGhlIHNvbHV0aW9ucyBjYW4gYmUgaW50ZXJwcmV0ZWQgYXMgCgokJCBcaGF0e1xiZXRhfSA9IFxiZWdpbntibWF0cml4fSBcaGF0e1xiZXRhfV9NIFxcIFxoYXR7XGJldGF9X0YgXGVuZHtibWF0cml4fT0gXGJlZ2lue2JtYXRyaXh9IGByIHZlY19zWzFdYCBcXCAgYHIgIHZlY19zWzJdYFxlbmR7Ym1hdHJpeH0gJCQKClRoZSBwcmVkaWN0ZWQgYnJlZWRpbmcgdmFsdWVzIGFyZQoKJCRcaGF0e3V9ID0gXGJlZ2lue2JtYXRyaXh9IFxoYXR7dX1fMSBcXCBcaGF0e3V9XzIgXFwgXGhhdHt1fV8zIFxcIFxoYXR7dX1fNCBcXCBcaGF0e3V9XzUgXGVuZHtibWF0cml4fSA9IApcYmVnaW57Ym1hdHJpeH0gCmByIHZlY19zWzNdYCBcXApgciB2ZWNfc1s0XWAgXFwKYHIgdmVjX3NbNV1gIFxcCmByIHZlY19zWzZdYCBcXApgciB2ZWNfc1s3XWAgXFwKXGVuZHtibWF0cml4fQokJAo=</div>
 
 
 
