@@ -1,0 +1,206 @@
+---
+title: "Setup Mixed Model Equations"
+output: html_notebook
+---
+
+# Formula
+The mixed model equations have following form, assuming that the variance-covariance-matrix ($var(e)$) of the error vector $e$ has the simple form
+
+$$var(e) = I * \sigma_e^2$$
+where $I$ is the identity matrix. The mixed model equations are given by
+
+$$
+\begin{bmatrix}X^TX & X^TZ \\ Z^TX & Z^TZ + \lambda* A^{-1}\end{bmatrix} * \begin{bmatrix} \hat{\beta} \\ \hat{u}\end{bmatrix}
+=
+\begin{bmatrix} X^Ty \\Z^Ty\end{bmatrix}
+$$
+
+Specification of the expected values and the variance-covariance matrices of all random effects. Random effects are $e$, $u$ and $y$. 
+
+$$ 
+E\begin{bmatrix}e \\ u \\y \end{bmatrix} = \begin{bmatrix} \\ \\ \end{bmatrix} \text{, } var\begin{bmatrix}e \\ u \\y \end{bmatrix} = 
+$$
+
+# Data Set
+The data set is given by
+
+```{r}
+tbl_si_dat <- tibble::tibble(Animal = c(1:5),
+                             Sire   = c(NA, NA, NA, 1, 4),
+                             Dam    = c(NA, NA, NA, 2, 3),
+                             Sex    = c("M", "F", "F", "M", "F"),
+                             WWG    = c(4.5, 2.9, 3.9, 3.5, 5.0))
+
+tbl_si_dat
+```
+
+
+# Model Components
+Model comonents are
+
+* Three vector of unknowns $\beta$, $u$ and $e$
+* Vector of observations $y$
+* Design matrices $X$ and $Z$
+* Inverse numerator relationship matrix $A^{-1}$
+
+## Unknowns
+
+* vector $\beta$ of fixed effects. In our data set the variable 'Sex' is treated as fixed effect. In general, in a data set the columns 'Animal', 'Sire' and 'Dam' belong to the pedigree, the column 'WWG' is our observation or response variable and everything in the dataset that does not belong to the pedigree and is not an observation or response variable, is treated as a fixed effect. As a consequence in our dataset, 'Sex' is a fixed effect. The lenght of the vector $\beta$ depends on the number of levels that are available in the column 'Sex' in the complete dataset. 
+
+The number of levels in a given fixed effect can be determined using R
+
+```{r}
+tbl_si_dat$Sex <- as.factor(tbl_si_dat$Sex)
+tbl_si_dat
+```
+
+```{r}
+(n_level_sex <- nlevels(tbl_si_dat$Sex))
+```
+
+With that the length of the vector $\beta$ is `r n_level_sex`
+
+$$\beta = \begin{bmatrix} \beta_M \\ \beta_F \end{bmatrix}$$
+
+* vector $u$ of breeding values. Since we are fitting an animal model, $u$ has as many compents as there are animals in the pedigree. In our dataset the vector $u$ has 5 components.
+
+$$u = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ u_4 \\ u_5 \end{bmatrix}$$
+
+* vector $e$ of random error terms. The length of the vector $e$ is the same as the number of observations. 
+
+$$e = \begin{bmatrix} e_1 \\ e_2 \\ e_3 \\ e_4 \\ e_5 \end{bmatrix}$$
+
+## Observations
+Observations corresponds to the vector $y$. The vector $y$ is known and therefore, we can insert numbers from the dataset into the vector $y$. 
+
+```{r, results='asis'}
+vec_y <- tbl_si_dat$WWG
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y', ps_env = '$$'), collapse = '\n'), '\n')
+```
+
+
+## Design Matrices
+Design matrix $X$ links levels of fixed effects to observations. The matrix $X$ has dimensions $n\times p$ where $n$ is the number of observations and $p$ is the number of levels in our fixed effects. In our example $n=5$ and $p=2$
+
+$$
+X = \begin{bmatrix} 
+1  &  0 \\
+0  &  1 \\
+0  &  1 \\
+1  &  0 \\
+0  &  1
+\end{bmatrix}
+$$
+
+
+The design matrix $Z$ links random breeding values ($u$) to observations. The matrix $Z$ has dimensions $n\times q$ where $n$ is the number of observations and $q$ is the number of animals in the pedgree. 
+
+$$
+Z = \begin{bmatrix} 
+1 & 0 & 0  & 0  & 0 \\
+0 & 1 & 0  & 0  & 0 \\
+0 & 0 & 1  & 0  & 0 \\
+0 & 0 & 0  & 1  & 0 \\
+0 & 0 & 0  & 0  & 1 \\
+\end{bmatrix}
+$$
+
+
+# Model
+Model in Matrix-Vector Notation
+
+$$y = X \beta + Zu + e $$
+The equation for the first observation
+
+$$y_1 = \beta_M + u_1 + e_1$$
+
+## Inverse Numerator Relationship Matrix
+We use `pedigreemm` to construct $A^{-1}$
+
+```{r}
+(ped <- pedigreemm::pedigree(sire = tbl_si_dat$Sire, dam = tbl_si_dat$Dam, label = as.character(tbl_si_dat$Animal)))
+```
+
+ The function `getAInv()` returns the inverse numerator relationship matrix
+ 
+```{r}
+(mat_AInv <- as.matrix(pedigreemm::getAInv(ped = ped)))
+```
+ 
+# Mixed Model Equations
+The mixed model equations have the following structure
+
+$$ M \cdot s = r$$
+
+where $M$ is the coefficient matrix, $s$ is the vector of unknowns and $r$ is the right-hand side vector. Our goal is to get solutions for the estimates and predictions of the vector of unknowns $s$. The general for of the solution will be
+
+$$s = M^{-1}\cdot r$$
+
+$$M = \begin{bmatrix}X^TX & X^TZ \\ Z^TX & Z^TZ + \lambda* A^{-1}\end{bmatrix}$$
+
+```{r}
+(mat_X <- matrix(c(1, 0, 
+0, 1, 
+0, 1,
+1, 0,
+0, 1), nrow = length(vec_y), byrow = TRUE))
+```
+
+```{r}
+(mat_Z <- diag(1, nrow = length(vec_y)))
+```
+
+The variable $\lambda$ corresponds to the ration of the residual variance divided by the genetic additive variance. Here we assume that $\lambda = 2$
+
+$$\lambda = \frac{\sigma_e^2}{\sigma_u^2}$$
+
+```{r}
+lambda <- 2
+```
+
+Putting everything together into the coefficent matrix $M$
+
+```{r}
+mat_XTX <- crossprod(mat_X)
+mat_XTZ <- crossprod(mat_X, mat_Z)
+mat_ZTX <- crossprod(mat_Z, mat_X)
+mat_ZTZ_lAinv <- crossprod(mat_Z) + lambda * mat_AInv
+(mat_M <- rbind(cbind(mat_XTX, mat_XTZ), cbind(mat_ZTX, mat_ZTZ_lAinv)))
+```
+
+
+## Right-Hand Side
+The vector $r$ is constructed from $X^Ty$ and $Z^Ty$
+
+$$
+r = \begin{bmatrix} X^Ty \\ Z^Ty \end{bmatrix}
+$$
+```{r}
+vec_XTy <- crossprod(mat_X, vec_y)
+vec_ZTy <- crossprod(mat_Z, vec_y)
+(vec_r <- rbind(vec_XTy, vec_ZTy))
+```
+
+
+## Soltion Vector
+The solution vector $s$ is computed as $s = M^{-1} \cdot r$
+
+```{r}
+(vec_s <- solve(mat_M, vec_r))
+```
+
+The solutions can be interpreted as 
+
+$$ \hat{\beta} = \begin{bmatrix} \hat{\beta}_M \\ \hat{\beta}_F \end{bmatrix}= \begin{bmatrix} `r vec_s[1]` \\  `r  vec_s[2]`\end{bmatrix} $$
+
+The predicted breeding values are
+
+$$\hat{u} = \begin{bmatrix} \hat{u}_1 \\ \hat{u}_2 \\ \hat{u}_3 \\ \hat{u}_4 \\ \hat{u}_5 \end{bmatrix} = 
+\begin{bmatrix} 
+`r vec_s[3]` \\
+`r vec_s[4]` \\
+`r vec_s[5]` \\
+`r vec_s[6]` \\
+`r vec_s[7]` \\
+\end{bmatrix}
+$$
