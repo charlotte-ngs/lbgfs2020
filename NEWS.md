@@ -1,3 +1,7 @@
+# lbgfs2020 0.9.3
+
+* Link to video of week 9
+
 # lbgfs2020 0.9.2
 
 * Slides for week 9
