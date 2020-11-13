@@ -50,7 +50,7 @@ tbl_sl <- tibble::tibble(Nr    = c(1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9),
                            paste0("[Variance and Inbreeding](", s_sl_url, "lbgfs2020_slides_var_inb.pdf)", collapse = ''),
                            paste0("[Additional Aspects of BLUP](", s_sl_url, "lbgfs2019_slides_additional_aspects.pdf)", collapse = ''),
                            paste0("[Mulitple Traits](", s_sl_url, "lbgfs2020_slides_multiple_traits.pdf)", collapse = ''),
-                           paste0("[Selection Index](", s_sl_url, "lbgfs2020_slides_selection-index.pdf", collapse = '')
+                           paste0("[Selection Index](", s_sl_url, "lbgfs2020_slides_selection-index.pdf)", collapse = '')
                          ))
 knitr::kable(tbl_sl)
 ```
