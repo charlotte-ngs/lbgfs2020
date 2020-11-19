@@ -17,7 +17,7 @@ As already mentioned in section \@ref(geno-pheno), the central dogma of molecula
 ## Single Locus - Quantitative Trait {#single-locus-quant-trait}
 In Livestock there are not many examples where a quantitative trait is influenced by just one locus. But this case helps in understanding the foundation of more complex genetic architectures. We start by looking at the following idealized population (Figure \@ref(fig:idealpopsingletrait)). 
 
-```{r idealpopsingletrait, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", fig.cap="Idealized Population With A Single Locus"}
+```{r idealpopsingletrait, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", fig.cap="Idealized Population With A Single Locus", out.width='8cm'}
 #rmddochelper::use_odg_graphic(ps_path = "odg/idealpopsingletrait.odg")
 knitr::include_graphics(path = "odg/idealpopsingletrait.png")
 ```
@@ -61,10 +61,11 @@ df_genfreq <- data.frame(Alleles = c("$G_1$", "$G_2$"),
                          G2 = c("$f(G_1G_2) = p*q$", "$f(G_2G_2) = q^2$")) 
 names(df_genfreq) <- c("Alleles", "$G_1$", "$G_2$")
 knitr::kable(df_genfreq,
-  booktabs = TRUE,
-  caption = "Genotype Frequencies under Hardy-Weinberg equilibrium",
-  align = "c",
-  escape = FALSE
+             format   = ifelse(knitr::is_latex_output(), 'latex', 'html'),
+             booktabs = TRUE,
+             caption  = "Genotype Frequencies under Hardy-Weinberg equilibrium",
+             align    = "c",
+             escape   = FALSE
 )
 ```
 
@@ -99,6 +100,7 @@ knitr::kable(
   data.frame(Variable = c("$V_{11}$", "$V_{12}$", "$V_{22}$"),
              Genotype = c("$G_1G_1$", "$G_1G_2$", "$G_2G_2$"),
              Values   = c("a", "d", "-a")),
+  format   = ifelse(knitr::is_latex_output(), 'latex', 'html'),
   booktabs = TRUE,
   caption = "Values for all Genotypes",
   align = "c",
