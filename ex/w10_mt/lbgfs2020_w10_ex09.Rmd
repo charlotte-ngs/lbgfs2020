@@ -18,7 +18,7 @@ knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ```{r TaskCounts, echo=FALSE}
-cnt <- rmddochelper::R6ClassCount$new()
+cnt <- rmdhelp::R6ClassCount$new()
 cnt$set_prefix(ps_prefix = "## Problem")
 ```
 
