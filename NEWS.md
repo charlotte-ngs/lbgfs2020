@@ -1,3 +1,7 @@
+# lbgfs2020 0.10.0
+
+* Added course notes and exercises for week 10
+
 # lbgfs2020 0.9.3
 
 * Link to video of week 9
