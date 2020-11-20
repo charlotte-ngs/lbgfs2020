@@ -1,0 +1,86 @@
+---
+title: "Kronecker Product"
+output: html_notebook
+---
+
+# Disclaimer
+When working with multi-trait BLUP models Kronecker products are important.
+
+
+# Data Set
+
+```{r}
+tbl_si_dat <- tibble::tibble(Animal = c(1:5),
+                             Sire   = c(NA, NA, NA, 1, 4),
+                             Dam    = c(NA, NA, NA, 2, 3),
+                             Sex    = c("M", "F", "F", "M", "F"),
+                             WWG    = c(4.5, 2.9, 3.9, 3.5, 5.0),
+                             PWG    = c(7, 4.2, 5.9, 6.1, 6.9))
+
+tbl_si_dat
+```
+
+
+# Observations
+The vector of observations is now the columns 'WWG' and 'PWG' appended to each other
+
+```{r}
+(vec_y <- c(tbl_si_dat$WWG, tbl_si_dat$PWG))
+```
+
+In vector notation
+
+```{r echo=FALSE, results='asis'}
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y', ps_env = '$$')))
+```
+
+
+# Covariances
+Between traits
+
+```{r}
+(mat_G0 <- matrix(c(20, 18,
+                    18, 40), nrow = 2, byrow = TRUE))
+```
+
+```{r}
+(mat_R0 <- matrix(c(40, 11,
+                    11, 30), nrow = 2, byrow = TRUE))
+```
+
+
+# Error Term
+Assume that errors between animals are not correlated. Hence
+
+$$var(e) = R = R_0 \otimes I_n$$
+where $n$ is the number of observations
+
+```{r}
+nobs <- nrow(tbl_si_dat)
+mat_In <- diag(1, nrow = nobs)
+(mat_R <- mat_R0 %x% mat_In)
+```
+
+
+# Pedigree
+The variance ($G = var(u)$) of all breeding values ($u$) is 
+
+$$G = var(u) = G_0 \otimes A$$
+
+
+```{r}
+(ped <- pedigreemm::pedigree(sire = tbl_si_dat$Sire, dam = tbl_si_dat$Dam, label = as.character(tbl_si_dat$Animal)))
+```
+
+The numerator relationship matrix $A$
+
+```{r}
+(mat_A <- as.matrix(pedigreemm::getA(ped = ped)))
+```
+
+Then the matrix $G$ is 
+
+```{r}
+(mat_G <- mat_G0 %x% mat_A)
+```
+
