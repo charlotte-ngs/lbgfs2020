@@ -68,3 +68,15 @@ sleep 2
 docker exec -it kmessmer_rstudio R -e "install.packages('kableExtra')"
 sleep 2
 docker exec -it clemence.nanchen_rstudio R -e "install.packages('kableExtra')"
+
+# update rmdhelp
+docker exec -it pvr_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+
+docker exec -it deuberj_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it fomasid_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it pahofman_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it jungenr_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it penlin_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it xenamarie.mapel_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it kmessmer_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+docker exec -it clemence.nanchen_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
