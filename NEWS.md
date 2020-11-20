@@ -1,3 +1,7 @@
+# lbgfs2020 0.10.1
+
+* Added notebook on Kronecker Product and link to video
+
 # lbgfs2020 0.10.0
 
 * Added course notes and exercises for week 10
