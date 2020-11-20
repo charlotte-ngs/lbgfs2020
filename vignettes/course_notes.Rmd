@@ -20,7 +20,7 @@ This page contains the list of links pointing to the different chapters in the c
 
 ```{r chpt-table, echo=FALSE}
 s_cn_url <- 'https://charlotte-ngs.github.io/lbgfs2020/cn/'
-tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                            Date    = c(
                              "2020-09-18",
                              "2020-09-18",
@@ -31,7 +31,8 @@ tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
                              "2020-10-23",
                              "2020-10-30",
                              "2020-11-06",
-                             "2020-11-13"
+                             "2020-11-13",
+                             "2020-11-20"
                            ),
                            Topic   = c(
                              paste0("[Preface](", s_cn_url, "00_preface.pdf)", collapse = ""),
@@ -43,7 +44,8 @@ tbl_chpt <- tibble::tibble(Nr      = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
                              paste0("[Variance and Inbreeding](", s_cn_url, "06_variance_inbreeding.pdf)", collapse = ''),
                              paste0("[Additional Aspects of BLUP](", s_cn_url, "07_add_asp_blup.pdf)", collapse = ''),
                              paste0("[Multiple Traits](", s_cn_url, "08_multiple_trait.pdf)", collapse = ''),
-                             paste0("[Genomic Selection](", s_cn_url, "09_gen_sel.pdf)", collapse = '')
+                             paste0("[Genomic Selection](", s_cn_url, "09_gen_sel.pdf)", collapse = ''),
+                             paste0("[Variance Components](", s_cn_url, "10_var_comp.pdf)", collapse = '')
                              ))
 knitr::kable(tbl_chpt)
 ```
