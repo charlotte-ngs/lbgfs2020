@@ -18,7 +18,7 @@ knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ```{r TaskCounts, echo=FALSE}
-cnt <- rmddochelper::R6ClassCount$new()
+cnt <- rmdhelp::R6ClassCount$new()
 cnt$set_prefix(ps_prefix = "## Problem")
 ```
 
@@ -152,8 +152,10 @@ $$Z = \left[
 ```{r}
 mat_zzero <- matrix(0, nrow = nrow(mat_z1), ncol(mat_z2))
 mat_z <- rbind(cbind(mat_z1, mat_zzero), cbind(mat_zzero, mat_z2))
-# cat('\n')
-# cat(paste(rmdhelp::bmatrix(pmat = mat_z, ps_name = 'Z', ps_env = '$$'), collapse = '\n'), '\n')
+### # TODO: The following must be integrated into rmdhelp 
+### #       ==> see https://tex.stackexchange.com/questions/95162/how-to-create-a-matrix-with-20-columns-in-latex/95163
+cat('\\setcounter{MaxMatrixCols}{30}\n')
+cat(paste(rmdhelp::bmatrix(pmat = mat_z, ps_name = 'Z', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 Together with the numerator relationship matrix $A$ we can get $G = G_0 \otimes A$ and from this $G^{-1} = G_0^{-1} \otimes A^{-1}$
@@ -163,17 +165,17 @@ ped_sol12p01 <- pedigreemm::pedigree(sire = c(rep(NA, n_nr_founder), tbl_data_so
                                      dam  = c(rep(NA, n_nr_founder), tbl_data_sol12p01$Dam),
                                      label = as.character(1:n_nr_animal))
 mat_ainv <- as.matrix(pedigreemm::getAInv(ped = ped_sol12p01))
-# cat(paste(rmdhelp::bmatrix(pmat = mat_ainv, ps_name = 'A^{-1}', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bmatrix(pmat = round(mat_ainv, digits = 4), ps_name = 'A^{-1}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 ```{r}
 mat_ginv <- solve(mat_g0) %x% mat_ainv
-# cat("\\tiny \n")
-# cat(paste(rmdhelp::bmatrix(pmat = mat_ginv, ps_name = 'G^{-1}', ps_env = '$$'),  collapse = '\n'), '\n')
-# cat("\\normalsize \n")
+cat("\\tiny \n")
+cat(paste(rmdhelp::bmatrix(pmat = round(mat_ginv, digits = 3), ps_name = 'G^{-1}', ps_env = '$$'),  collapse = '\n'), '\n')
+cat("\\normalsize \n")
 ```
 
-Using the matrics $X$, $Z$, $R^{-1}$ and $G^{-1}$, we can compute $Z^TR^{-1}X$ and $Z^TR^{-1}Z + G^{-1}$. These matrices define the right-hand side of the mixed model equations. But they are too be to be shown here.
+Using the matrics $X$, $Z$, $R^{-1}$ and $G^{-1}$, we can compute $Z^TR^{-1}X$ and $Z^TR^{-1}Z + G^{-1}$. These matrices define the coefficient matrix of the mixed model equations. But they are too be to be shown here.
 
 The vector $y$ of observations contains all observations of both traits
 
@@ -230,11 +232,11 @@ vec_a2_hat <- c("\\widehat{u_{1,PWG}}",
 vec_a_hat <- c(vec_a1_hat, vec_a2_hat)
 
 vec_hat_unknown <- c(vec_beta_hat, vec_a_hat)
-# cat("$$\n")
-# cat(paste(rmdhelp::bcolumn_vector(pvec = vec_hat_unknown), collapse = '\n'), '\n')
-# cat(" = ")
-# cat(paste(rmdhelp::bmatrix(pmat = round(vec_sol, digits = 4)), collapse = '\n'), '\n')
-# cat("$$\n")
+cat("$$\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_hat_unknown), collapse = '\n'), '\n')
+cat(" = ")
+cat(paste(rmdhelp::bmatrix(pmat = round(vec_sol, digits = 4)), collapse = '\n'), '\n')
+cat("$$\n")
 ```
 
 
