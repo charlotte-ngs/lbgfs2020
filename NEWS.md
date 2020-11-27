@@ -1,3 +1,7 @@
+# lbgfs2020 0.11.0
+
+* Exercise and solution for w11
+
 # lbgfs2020 0.10.1
 
 * Added notebook on Kronecker Product and link to video
