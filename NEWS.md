@@ -1,3 +1,7 @@
+# lbgfs2020 0.11.1
+
+* Added link to video of lecture 11
+
 # lbgfs2020 0.11.0
 
 * Exercise and solution for w11
