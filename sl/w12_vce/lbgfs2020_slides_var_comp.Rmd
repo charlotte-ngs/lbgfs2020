@@ -175,7 +175,57 @@ $$\hat{\sigma_s^2} = \frac{S - (q-1)\hat{\sigma_e^2}}{tr(Z_s^TMZ_s)} = \frac{`r 
 
 ## Anova in R
 
-```{r}
+* Assume dataset is stored in dataframe called `tbl_num_ex_chp12`
 
+```{r aov-result, echo=TRUE, results='markup'}
+tbl_num_ex_chp12$Sire <- as.factor(tbl_num_ex_chp12$Sire)
+aov_result <- aov(WWG ~ Sire, data = tbl_num_ex_chp12)
+summary(aov_result)
 ```
 
+
+## Likelihood
+
+* Definition of likelihood
+
+$$L(\mu, \Sigma) = f(y | \mu, \Sigma)$$
+
+with 
+
+$$
+f_Y(y| \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^n det(\Sigma)}} exp \left\{-{1\over 2}(y - \mu)^T \Sigma^{-1}(y - \mu) \right\}
+$$
+
+
+## Maximum Likelihood
+
+* Maximize $L(\mu, \Sigma)$ with respect to $\Sigma$
+
+$$\hat{\Sigma} = argmax_{\Sigma} L(\mu, \Sigma)$$
+
+
+## Bayesian Approach
+
+* Estimates of unknown quantity $\Sigma$ based on posterior distribution of unknowns given knowns
+* Using Bayes Theorem:
+
+\begin{align}
+f(\Sigma | y) & =       \frac{f(\Sigma, y)}{f(y)} \notag \\
+             & =       \frac{f(y | \Sigma)f(\Sigma)}{f(y)} \notag \\
+             & \propto  f(y | \Sigma)f(\Sigma) \notag
+\end{align}
+
+where $f(\Sigma)$: prior distribution  and  $f(y|\Sigma)$: likelihood
+
+
+## Bayesian Estimates
+
+* Fixed Linear Model with $\Sigma = \left[\begin{array}{c} \sigma_s^2  \\  \sigma_e^2 \end{array} \right]$
+* Full conditional distributions
+    + sire variance: $f(\sigma_s^2 | \sigma_e^2, y)$ has a given standard distribution
+    + residual variance: $f(\sigma_e^2 | \sigma_s^2, y)$ has a given standard distribution
+* Draw random numbers from full conditional distributions in turn
+* Result will be samples from posterior distribution
+* Estimates are computed as empirical means and standard deviation based on the samples, e.g for $\sigma_s^2$
+
+$$\widehat{\sigma_s^2}_{Bayes} =   {1 \over N}\sum_{t=1}^N (\sigma_s^2)^{(t)}$$
