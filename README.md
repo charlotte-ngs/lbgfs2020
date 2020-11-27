@@ -10,8 +10,9 @@ Welcome to the website of
 
 ## Topics for Master Theses
 
-Topics for Master Theses at Qualitas AG together with ETH will be shown
-soon.
+Topics for Master Theses at Qualitas AG together with ETH are available
+from
+[here](https://charlotte-ngs.github.io/lbgfs2020/misc/MasterThesisTopics_HS2020.html).
 
 ## Description
 
