@@ -303,7 +303,7 @@ mat_sol1 <- solve(mat_coeff1, mat_rhs1)
 ```
 
 ```{r show-pbv-wwg, echo=FALSE, results='asis'}
-# cat(paste(rmdhelp::bmatrix(pmat = mat_sol1, ps_name = 's_{WWG}', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bmatrix(pmat = round(mat_sol1, digits = 4), ps_name = 's_{WWG}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 ```{r compute-rel-wwg, echo=FALSE}
@@ -314,7 +314,7 @@ vec_rel1 <- 1 - vec_c22_diag1 / mat_g0[1,1]
 ```
 
 ```{r show-rel-wwg, echo=FALSE, results='asis'}
-# cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rel1, ps_name = 'B_{WWG}', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = round(vec_rel1, digits = 4), ps_name = 'B_{WWG}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 
@@ -332,7 +332,7 @@ mat_sol2 <- solve(mat_coeff2, mat_rhs2)
 ```
 
 ```{r show-pbv-pwg, echo=FALSE, results='asis'}
-# cat(paste(rmdhelp::bmatrix(pmat = mat_sol2, ps_name = 's_{PWG}', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bmatrix(pmat = round(mat_sol2, digits = 4), ps_name = 's_{PWG}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 ```{r compute-rel-pwg, echo=FALSE}
@@ -343,7 +343,7 @@ vec_rel2 <- 1 - vec_c22_diag2 / mat_g0[2,2]
 ```
 
 ```{r show-rel-pwg, echo=FALSE, results='asis'}
-# cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rel2, ps_name = 'B_{PWG}', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = round(vec_rel2, digits = 4), ps_name = 'B_{PWG}', ps_env = '$$'), collapse = '\n'), '\n')
 ```
 
 
@@ -358,5 +358,5 @@ vec_rel <- 1 - vec_c22_diag / c(rep(mat_g0[1,1], n_nr_animal), rep(mat_g0[2,2], 
 ```
 
 ```{r, echo=FALSE, results='asis'}
-# cat(paste(rmdhelp::bcolumn_vector(pvec = vec_rel, ps_name = 'B', ps_env = '$$'), collapse = '\n'), '\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = round(vec_rel, digits = 4), ps_name = 'B', ps_env = '$$'), collapse = '\n'), '\n')
 ```

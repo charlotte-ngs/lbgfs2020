@@ -80,3 +80,16 @@ docker exec -it penlin_rstudio R -e "remotes::install_github(repo = 'charlotte-n
 docker exec -it xenamarie.mapel_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
 docker exec -it kmessmer_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
 docker exec -it clemence.nanchen_rstudio R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')"
+
+# rvcetools
+docker exec -it pvr_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+
+docker exec -it deuberj_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it fomasid_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it pahofman_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it jungenr_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it penlin_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it xenamarie.mapel_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it kmessmer_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+docker exec -it clemence.nanchen_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+
