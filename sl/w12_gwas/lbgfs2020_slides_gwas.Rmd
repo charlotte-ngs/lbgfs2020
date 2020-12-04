@@ -1,0 +1,48 @@
+---
+title: "Genome-Wide Association Studies (GWAS)"
+author: "Peter von Rohr"
+date: "04 December 2020"
+output:
+  beamer_presentation:
+header-includes:
+ \usepackage{longtable}
+ \usepackage{float}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = "asis")
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+## Motivation
+
+* Want to find location of important "genes"
+* Draft of complete sequence of Human genome in 2000
+* Function of different regions of genomes not known for large parts
+
+$\rightarrow$ Associate locations in the genome with function
+
+
+## Association
+
+```{r conserved-marker-segment, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/conserved-marker-segment.odg')
+knitr::include_graphics(path = "odg/conserved-marker-segment.png")
+```
+
+
+## Single Marker Regression Tests
+
+\begin{equation}
+y = Wb + Xg + e
+\end{equation}
+
+
+## Genome-Wide Association Experiments Using Haplotypes
+
+* Haplotypes as groups of SNP 
+
+
+## Fitting All Markers Simultaneously
+
+$$y = 1^T \mu + Xg + e$$
