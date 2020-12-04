@@ -1,0 +1,72 @@
+# Genome-Wide Association Studies (GWAS) {#gwas}
+```{r mrmt-gwas-reset, echo=FALSE}
+s_this_rmd_file <- rmdhelp::get_this_rmd_file()
+mrmt$set_this_rmd_file(ps_this_rmd_file = s_this_rmd_file)
+```
+
+This chapter is based on chapter 6 of `r mrmt$add('Gondro2013')`. As such it provides a summary of some of the statistical methods used for genome-wide association studies (GWAS). 
+
+
+## Single Marker Regression Tests
+GWAS use linkage disequilibrium which correspond to associations of markers to causative mutations of quantiative trait loci. These associations are only expected to hold at the population level. They arise from small chromosomal segments that are inherited from a common ancestor. These chromosome segments which trace back to a common ancestor without any intervening recombination will carry identical marker alleles or marker haplotypes. If there is a QTL somewhere inside of such marker segments, they will also carry the same QTL allele. There are a number of statistical methods that use these associations to find locations of interesting QTL. A simple method is the single marker regression test. 
+
+```{r conserved-marker-segment, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/conserved-marker-segment.odg')
+knitr::include_graphics(path = "odg/conserved-marker-segment.png")
+```
+ 
+In a random mating population without population substructures, the association between a marker and a QTL that is relevant for the expression of a phenotypic value of an economically important trait can be tested with a single marker regression as
+
+\begin{equation}
+y = Wb + Xg + e
+\end{equation}
+
+where $y$ is a vector of phenotypes, $b$ is a vector of fixed effects, $g$ is the marker effect and $e$ is a vector of random error terms. These error terms are all identically and independently distributed with $e_{ij} \sim \mathcal{N}(0, \sigma_e^2)$ where $\sigma_e^2$ corresponds to the error variance. The design matrix $W$ links observations to fixed effects and the matrix $X$ allocates records to the marker effect.
+
+In this model the marker effect is treated as fixed and the model is additive which means that two copies of the same allele have twice the effect of a single marker allele and zero alleles have no effect at all. The underlying assumption is that a given marker will only affect the phenotypic observation of a trait if it is linked to an unobservable QTL. 
+
+The null hypothesis ($H_0$) is that the marker does not have an effect on the trait while the alternative hypothesis ($H_A$) is that the marker does have an effect on the trait. The null hypothesis is rejected if the test statistic $F$ satisfies the condition $F > F_{\alpha, \nu1,\nu2}$ where $F_{\alpha, \nu1,\nu2}$ is the value of the $F$-distribution at significance level $\alpha$ and $\nu1$ and $\nu2$ degrees of freedom.
+
+### Example
+Consider the following example dataset.
+
+```{r tab-ex, echo=FALSE}
+tbl_small_ex <- tibble::tibble(Animal = c(1:10),
+                               Phenotype = c(2.03, 
+                                             3.54,
+                                             3.83,
+                                             4.87,
+                                             3.41,
+                                             2.34,
+                                             2.65,
+                                             3.76,
+                                             3.69,
+                                             3.69,),
+                               `SNP Allele 1` = c(1,
+                                                 1,
+                                                 1,
+                                                 2,
+                                                 1,
+                                                 1,
+                                                 1,
+                                                 1,
+                                                 1,
+                                                 1,),
+                               `SNP Allele 2` = c(1,
+                                                  2,
+                                                  2,
+                                                  2,
+                                                  2,
+                                                  1,
+                                                  1,
+                                                  2,
+                                                  2,
+                                                  2,))
+
+knitr::kable(tbl_small_ex,
+             format   = ifelse(knitr::is_latex_output(), 'latex', 'html'),
+             booktabs  = TRUE,
+             longtable = TRUE,
+             caption   = 'Phenotypic and genotypic data for ten animals and one marker locus')
+```
+
