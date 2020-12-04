@@ -1,3 +1,7 @@
+# lbgfs2020 0.12.0
+
+* Added chpt 11
+
 # lbgfs2020 0.11.1
 
 * Added link to video of lecture 11
