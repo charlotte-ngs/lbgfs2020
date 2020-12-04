@@ -1,0 +1,137 @@
+---
+title: "Analysis of Variance"
+output: html_notebook
+---
+
+# Data
+The table from the slides 
+
+```{r}
+tbl_vc <- tibble::tibble(Animal = c(4:7),
+                         Sire  = c(2, 1, 3, 2),
+                         WWG   = c(2.9, 4.0, 3.5, 3.5))
+tbl_vc
+```
+
+# Model
+Model for a single observation of animal $i$ with sire $j$
+
+$$y_i = \mu + s_{ij} + e_i$$
+
+in matrix-vector notation
+
+$$y = X\beta + Zs + e$$
+
+# Components
+The vector $\beta$ of fixed effects contains just one component which is the general mean $\mu$. As a consequence, the matrix $X$ has 4 rows and 1 column.
+
+```{r}
+mat_X <- matrix(1, nrow=nrow(tbl_vc))
+mat_X
+```
+
+The matrix $Z$ relates observations to sire effects. In total there are three sires and therefore matrix $Z$ has three columns.
+
+```{r}
+mat_Z <- matrix(c(0, 1, 0,
+                  1, 0, 0,
+                  0, 0, 1,
+                  0, 1, 0), nrow = nrow(tbl_vc), byrow = TRUE)
+mat_Z
+```
+
+The vector of observations $y$ is taken from the datatable
+
+```{r}
+vec_y <- tbl_vc$WWG
+vec_y
+```
+
+
+# Estimates 
+Estimatesof variance components depend on $F$, $S$ and $R$. From the slides we know that 
+
+$$F = y^TX(X^TX)^{−1}X^Ty$$
+
+Computation of $F$
+
+```{r}
+(ytX <- crossprod(vec_y, mat_X))
+(xtx <- crossprod(mat_X))
+(xtxinv <- solve(xtx))
+(xty <- crossprod(mat_X, vec_y))
+(comp_F <- ytX %*% xtxinv %*% xty)
+```
+
+Computation of $S$
+
+$$S = y^TZ(Z^TZ)^{−1}Z^Ty−y^TX(X^TX)^{−1}X^Ty =  y^TZ(Z^TZ)^{−1}Z^Ty - F$$
+
+```{r}
+(ytz <- crossprod(vec_y, mat_Z))
+(ztz <- crossprod(mat_Z))
+(ztzinv <- solve(ztz))
+(zty <- t(ytz))
+(comp_S <- ytz %*% ztzinv %*% zty - comp_F)
+```
+
+Computation of $R$
+
+$$y^Ty − y^TZ(Z^TZ)^{−1}Z^Ty - y^TX(X^TX)^{−1}X^Ty= y^Ty - S - F$$
+
+```{r}
+(yty <- crossprod(vec_y))
+(comp_R <- yty - comp_S - comp_F)
+```
+
+# Results
+Estimates are obtained by replacing expected values of componets with observed values and replacing variance components by their estimates (method of moments)
+
+$$\widehat{\sigma_e^2} = \frac{R}{n-q}$$
+with $n$ is the number of observations and $q$ is the number of sires.
+
+```{r}
+(est_err_var <- comp_R / (4-3))
+```
+
+The estimate for $\sigma_s^2$ is obtained from
+
+$$M = I − X(X^TX)^{−1}X^T$$
+
+```{r}
+(xxtxinvxt <- mat_X %*% xtxinv %*% t(mat_X))
+(mat_M <- diag(1,nrow = nrow(tbl_vc)) - xxtxinvxt)
+(ztmz <- t(mat_Z) %*% mat_M %*% mat_Z)
+trztmz <- sum(diag(ztmz))
+(est_sire_var <- (comp_S - (3-1)*est_err_var) / trztmz)
+```
+
+
+# In R
+R provides the function `aov()` which can be used to get to these results. For this the sire effect is converted into a fixed effect by changing its data type into a factor. 
+
+```{r}
+tbl_vc$Sire <- as.factor(tbl_vc$Sire)
+aov_sire <- aov(WWG ~ 1 + Sire, data = tbl_vc)
+summary(aov_sire)
+```
+
+
+# Likelihood 
+Likelihood-based approach can be done with the pedigreemm package. For our example dataset
+
+```{r}
+n_nr_sire <- nlevels(as.factor(tbl_vc$Sire))
+ped_sire <- pedigreemm::pedigree(sire = c(NA, NA, NA), dam = c(NA, NA, NA), label = as.character(1:n_nr_sire))
+ped_sire
+```
+
+The pedigreemm package contains a function `pedigreemm` which computed predicted breeding values and variance components. 
+
+```{r}
+lme_sire <- pedigreemm::pedigreemm(formula = WWG ~ 1 + (1|Sire),
+                                   pedigree = list(Sire = ped_sire), 
+                                   data = tbl_vc)
+summary(lme_sire)
+```
+
