@@ -18,7 +18,7 @@ The following table contains a list with solutions to the exercises.
 
 ```{r solution-table, echo=FALSE}
 s_sol_url <- 'https://charlotte-ngs.github.io/lbgfs2020/sol/'
-tbl_sol <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10),
+tbl_sol <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
                           Date  = c(
                             "2020-09-25",
                             "2020-10-02",
