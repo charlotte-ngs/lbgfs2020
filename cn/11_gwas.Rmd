@@ -41,7 +41,7 @@ tbl_small_ex <- tibble::tibble(Animal = c(1:10),
                                              2.65,
                                              3.76,
                                              3.69,
-                                             3.69,),
+                                             3.69),
                                `SNP Allele 1` = c(1,
                                                  1,
                                                  1,
@@ -51,7 +51,7 @@ tbl_small_ex <- tibble::tibble(Animal = c(1:10),
                                                  1,
                                                  1,
                                                  1,
-                                                 1,),
+                                                 1),
                                `SNP Allele 2` = c(1,
                                                   2,
                                                   2,
@@ -61,7 +61,7 @@ tbl_small_ex <- tibble::tibble(Animal = c(1:10),
                                                   1,
                                                   2,
                                                   2,
-                                                  2,))
+                                                  2))
 
 knitr::kable(tbl_small_ex,
              format   = ifelse(knitr::is_latex_output(), 'latex', 'html'),
@@ -69,4 +69,55 @@ knitr::kable(tbl_small_ex,
              longtable = TRUE,
              caption   = 'Phenotypic and genotypic data for ten animals and one marker locus')
 ```
+
+We need a design matrix $X$ to allocate both the mean and SNP alleles to phenotypes. In this case we will use an $X$ matrix with number of rows equal to the number of observations and one column for the SNP effect. We will set the effect of the "1" allele to $0$ which means that allele "2" is the allele with the positive effect on the phenotype. So the SNP effect column is the number of copies of the "2" allele. We assume a common mean $\mu$ as the only fixed effect. Hence the matrices $X$ and $W$ have the following structure.
+
+```{r mat-w, echo=FALSE, results='asis'}
+mat_w <- matrix(1, nrow = nrow(tbl_small_ex), ncol = 1)
+cat(paste(rmdhelp::bmatrix(pmat = mat_w, ps_name = 'W', ps_env = '$$'), collapse = '\n'), '\n')
+```
+
+```{r mat-x, echo=FALSE, results='asis'}
+mat_x <- as.matrix(tbl_small_ex$`SNP Allele 1` + tbl_small_ex$`SNP Allele 2` - 2, nrow = nrow(tbl_small_ex), ncol = 1)
+cat(paste(rmdhelp::bmatrix(pmat = mat_x, ps_name = 'X', ps_env = '$$'), collapse = '\n'), '\n')
+```
+
+The general mean and the SNP effect can be estimated as 
+
+```{r sol, echo=FALSE, results='asis'}
+coef_mat <- matrix(c('W^TW', 'W^TX',
+                     'X^TW', 'X^TX'), nrow = 2, byrow = TRUE)
+rhs_mat <- matrix(c('W^Ty', 'X^Ty'), nrow = 2)
+sol_mat <- matrix(c('\\hat{\\mu}', '\\hat{g}'), nrow = 2)
+sol_est <- matrix(c(2.35, 1.28), nrow = 2)
+cat('$$\n')
+cat(paste(rmdhelp::bmatrix(pmat = sol_mat), collapse = '\n'), '\n')
+cat(' = \n')
+cat(paste0(rmdhelp::bmatrix(pmat = coef_mat), '^{-1}', collapse = '\n'), '\n')
+cat(paste(rmdhelp::bmatrix(pmat = rhs_mat), collapse = '\n'), '\n')
+cat(' = \n')
+cat(paste(rmdhelp::bmatrix(pmat = sol_est), collapse = '\n'), '\n')
+cat('$$\n')
+```
+
+The $F$-value can be computed as 
+
+$$F = \frac{(n-1)(\hat{g}X^Ty - 1/ny^Ty)}{y^Ty - \hat{g}X^Ty - \hat{u}1_n^Ty} = 4.56$$
+
+The tabulated value for $F_{0.05, 1, 9} = 5.12$ for a significance level $\alpha = 0.05$ and $\nu1 = 1$ and $\nu2=9$ degrees of freedom. Hence for this small dataset the null hypothesis of the SNP having no effect on the trait cannot be rejected.
+
+
+## Genome-Wide Association Experiments Using Haplotypes
+Instead of using single markers, haplotypes of markers could be used in genome-wide associations. In this context, the term "haplotype" stands for a group of consecutive markers on the same chromosome. The effect of haplotypes in windows across the genome would be tested for their association with phenotype. The justification for using haplotypes is that marker haplotypes may be in greater linkage disequilibrium with the QTL alleles than single markers. If this is true, then the $r^2$^[Note $r^2$ is defined as $r^2 = (f(A1B1)f(A2B2) - f(A1B2)f(A2B1)^2 / (f(A1)f(A2)f(B1)f(B2))$ and measures how closely the two loci $A$ and $B$ are linked.] between the QTL and the haplotypes is increased, thereby increas- ing the power of the experiment. 
+
+
+## Fitting All Markers Simultaneously
+There are two disadvantages of the approaches described above that fit single SNPs, haplotypes, or single genome regions in the analysis. One of these is the multiple testing problem, that is many thousands of tests are run, so the significance level must be very stringent to take this into account. Further, the setting of a significance threshold combined with the testing of so many marker effects means that the markers most likely to exceed the threshold are those with favorable error terms, so that the significant markers have overestimated effects. The second disadvantage, particularly of the single SNP approach, is that a region containing the true mutation can be hard to define, as a large number of SNP can be in LD with the QTL, such that significant SNP span a wide region. This is particularly problematic in livestock (and likely some plant species), as low, but non zero, LD extends for Mb. While a partial solution to this second problem is to jointly fit SNP in multiple or conditional regression, an even better solution to both these issues is to fit all SNP simultaneously. This involves fitting the same models that have been proposed for genomic prediction.
+
+This can be achieved by fitting the SNPs as random effects (e.g., derived from a distribution), with different prior assumptions on the distribution of possible SNP effects (e.g., a Bayesian approach). The model is:
+
+$$y = 1^T \mu + Xg + e$$
+
+where $g$ is now a vector of random SNP-effects. Because the above equation consists of a linear mixed-effect model, the solutions can be obtained by the well-known mixed-model equations.
+
 
