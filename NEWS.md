@@ -1,3 +1,7 @@
+# lbgfs2020 0.12.2
+
+* Version after lecture with link to video and updated notebook
+
 # lbgfs2020 0.12.1
 
 * Added sol and ex
