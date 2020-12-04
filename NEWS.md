@@ -1,3 +1,7 @@
+# lbgfs2020 0.12.1
+
+* Added sol and ex
+
 # lbgfs2020 0.12.0
 
 * Added chpt 11
