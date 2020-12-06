@@ -30,18 +30,12 @@ The null hypothesis ($H_0$) is that the marker does not have an effect on the tr
 ### Example
 Consider the following example dataset.
 
-```{r tab-ex, echo=FALSE}
-tbl_small_ex <- tibble::tibble(Animal = c(1:10),
-                               Phenotype = c(2.03, 
-                                             3.54,
-                                             3.83,
-                                             4.87,
-                                             3.41,
-                                             2.34,
-                                             2.65,
-                                             3.76,
-                                             3.69,
-                                             3.69),
+```{r data-sim, echo=FALSE}
+mu_true <- 2
+snp_effect_true <- 1
+error_sd_true <- 1
+n_nr_ob <- 10
+tbl_snp <- tibble::tibble(Animal = c(1:n_nr_ob),
                                `SNP Allele 1` = c(1,
                                                  1,
                                                  1,
@@ -62,6 +56,17 @@ tbl_small_ex <- tibble::tibble(Animal = c(1:10),
                                                   2,
                                                   2,
                                                   2))
+mat_w <- matrix(1, nrow = n_nr_ob, ncol = 1)
+mat_x <- as.matrix(tbl_snp$`SNP Allele 1` + tbl_snp$`SNP Allele 2` - 2, nrow = n_nr_ob, ncol = 1)
+vec_y <- mat_w * mu_true + mat_x * snp_effect_true + rnorm(n_nr_ob, sd = error_sd_true)
+vec_y
+```
+
+```{r tab-ex, echo=FALSE}
+tbl_small_ex <- tibble::tibble(Animal = c(1:n_nr_ob),
+                               Phenotype = round(vec_y, digits = 2),
+                               `SNP Allele 1` = tbl_snp$`SNP Allele 1`,
+                               `SNP Allele 2` = tbl_snp$`SNP Allele 2`)
 
 knitr::kable(tbl_small_ex,
              format   = ifelse(knitr::is_latex_output(), 'latex', 'html'),
