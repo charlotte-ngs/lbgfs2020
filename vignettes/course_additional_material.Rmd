@@ -145,7 +145,7 @@ tbl_nb <- tibble::tibble(Nr = c(7, 8, 8, 10, 12, 13),
                            paste0("[Setting up MME](", s_nb_url, "20201106_mme_setup.nb.html)", collapse = ''),
                            paste0("[Kronecker Product](", s_nb_url, "20201120_kron_prod.nb.html)", collapse = ''),
                            paste0("[Variance Components](", s_nb_url, "20201204_nb_vc.nb.html)", collapse = ''),
-                           paste0("[Multi-Trait BLUP](", s_nb_url, "20201211_mt_blup.nb.html", collapse = '')
+                           paste0("[Multi-Trait BLUP](", s_nb_url, "20201211_mt_blup.nb.html)", collapse = '')
                          ))
 knitr::kable(tbl_nb)
 ```

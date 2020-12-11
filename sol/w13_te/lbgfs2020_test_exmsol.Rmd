@@ -63,9 +63,9 @@ Institute of Agricultural Sciences\\
 \vspace{15ex}
 \begin{center}
 \huge
-Solutions To Exam\\ \vspace{1ex}
+Solutions To Test Exam\\ \vspace{1ex}
 Livestock Breeding and Genomics \\  \vspace{1ex}
-FS 2019 \\
+FS 2020 \\
 
 \normalsize
 \vspace{7ex}
@@ -74,7 +74,7 @@ Peter von Rohr
 
 \vspace{7ex}
 \begin{tabular}{p{5cm}lr}
-  & \textsc{Date}  & \textsc{\emph{20. December 2019}} \\
+  & \textsc{Date}  & \textsc{\emph{11. December 2020}} \\
   & \textsc{Begin} & \textsc{\emph{09:15 }}\\
   & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
 \end{tabular}
