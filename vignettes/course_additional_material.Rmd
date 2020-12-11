@@ -130,20 +130,22 @@ knitr::kable(tbl_ohp)
 
 ```{r nb-table, echo=FALSE}
 s_nb_url <- 'https://charlotte-ngs.github.io/lbgfs2020/nb/'
-tbl_nb <- tibble::tibble(Nr = c(7, 8, 8, 10, 12),
+tbl_nb <- tibble::tibble(Nr = c(7, 8, 8, 10, 12, 13),
                          Date = c(
                            "2020-10-30",
                            "2020-11-06",
                            "2020-11-06",
                            "2020-11-20",
-                           "2020-12-04"
+                           "2020-12-04",
+                           "2020-12-11"
                          ),
                          Topic = c(
                            paste0("[Notebook with Decomposition Matrices of Numerator Relationship Matrix](", s_nb_url, "20201030_nm_inv_inb_nb.nb.html)", collapse = ''),
                            paste0("[Notebook on Strings and Factors](", s_nb_url, "20201106_strings_factors.nb.html)", collapse = ''),
                            paste0("[Setting up MME](", s_nb_url, "20201106_mme_setup.nb.html)", collapse = ''),
                            paste0("[Kronecker Product](", s_nb_url, "20201120_kron_prod.nb.html)", collapse = ''),
-                           paste0("[Variance Components](", s_nb_url, "20201204_nb_vc.nb.html)", collapse = '')
+                           paste0("[Variance Components](", s_nb_url, "20201204_nb_vc.nb.html)", collapse = ''),
+                           paste0("[Multi-Trait BLUP](", s_nb_url, "20201211_mt_blup.nb.html", collapse = '')
                          ))
 knitr::kable(tbl_nb)
 ```
