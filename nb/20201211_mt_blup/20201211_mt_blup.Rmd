@@ -1,0 +1,311 @@
+---
+title: "Multi-Trait BLUP"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+```
+
+# Disclaimer
+This is notebook explains in more detail how to solve a problem with multi-trait BLUP of breeding values. The terms 'multi-trait' and 'multi-variate' are used as synonyms.
+
+
+# Data
+The same dataset as in Problems 1 and 2 of Exercise 9 (https://charlotte-ngs.github.io/lbgfs2020/ex/lbgfs2020_w10_ex09.pdf) is used. The dataset is shown in the following table. 
+
+```{r}
+n_nr_trait <- 2
+n_nr_founder <- 3
+n_nr_animal <- 8
+n_nr_observation <- n_nr_animal - n_nr_founder
+tbl_data_sol12p01 <- tibble::tibble(Animal = c((n_nr_founder+1):n_nr_animal),
+                                        Sex = c("Male", "Female","Female","Male","Male"),
+                                        Sire = c(1,3,1,4,3),
+                                        Dam = c(NA,2,2,5,6),
+                                        WWG = c(4.5,2.9,3.9,3.5,5.0),
+                                        PWG = c(6.8,5.0,6.8,6.0,7.5))
+tbl_data_sol12p01
+```
+
+The variables defined before the data have the following meaning
+
+* `n_nr_trait`: number of traits - traits are WWG and PWG, hence it is 2
+* `n_nr_founder`: number of founders - animals without parents 
+* `n_nr_animal`: total number of animals in the pedigree
+* `n_nr_observation`: number of observations for a single trait
+
+
+# Parameter
+The parameters that are given consist of the genetic variance-covariance matrix $G_0$ between the two traits WWG and PWG and the variance-covariance matrix $R_0$ between the traits. These matrices are
+
+```{r}
+(mat_G0 <- matrix(data = c(20,18,18,40), nrow = n_nr_trait, byrow = TRUE))
+```
+
+and 
+
+```{r}
+(mat_R0 <- matrix(data = c(40,11,11,30), nrow = n_nr_trait, byrow = TRUE))
+```
+
+
+# Model
+The multi-trait model for estimating fixed effects and for predicting breeding values looks the same as the model for only one trait.
+
+$$y = X\beta + Zu + e$$
+
+Although, the model looks the same, the components must be adapted to the situation of multiple traits. This adaptation is different for the vectors $y$, $\beta$, $u$ and $e$ in the model compared to the matrices $X$ and $Z$. 
+
+
+## Vectors
+For the vectors, the versions of the single traits are just appended to each other. For the vector $y$ this means that
+
+$$y = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix}$$
+where $y_1$ are all the observations for the trait 'WWG' and $y_2$ are all the observations for the trait 'PWG'. Inserting the numbers this means
+
+```{r}
+(y1 <- tbl_data_sol12p01$WWG)
+```
+
+and 
+
+```{r}
+(y2 <- tbl_data_sol12p01$PWG)
+```
+
+and appending $y_2$ at the end of $y_1$ leads to
+
+```{r}
+(y <- c(y1,y2))
+```
+
+The same is done for all the other vectors. Because, 'sex' with two levels 'female' and 'male' is the only fixed effect, the vector $\beta$ for the multi-trait model looks as follows
+
+$$\beta = \begin{bmatrix} \beta_{M,WWG} \\\beta_{F,WWG} \\\beta_{M,PWG} \\\beta_{F,PWG}\end{bmatrix}$$ 
+
+The vector $u$ of breeding values contains as components all breeding values for all animals in the pedigree. 
+
+$$u = \begin{bmatrix} u_{WWG} \\ u_{PWG} \end{bmatrix}$$
+where $u_{WWG}$ is the vector with breeding values for 'WWG' of all animals in the pedigree and $u_{PWG}$ is the vector with breeding values for 'PWG' of all animals in the pedigree.
+
+
+## Matrices
+The dimensions of the design matrices must match the number of observations and the length of their associated effects. Hence for the matrix $X$ which has the vector $\beta$ of fixed effects as the associated effect, it must have 4 columns as their are two fixed effect levels for each of the two traits. 
+
+The matrix $X$ is the design matrix for the vector of fixed effects $\beta$. 
+
+$$X = \left[
+  \begin{array}{lr}
+  X_1  &  0 \\
+  0    &  X_2
+  \end{array}
+\right]$$
+
+where $X_1$ and $X_2$ are the design matrix for the fixed effects for the single traits 'WWG' and 'PWG'. 
+
+```{r}
+mat_X1 <- matrix(c(1, 0,
+                   0, 1,
+                   0, 1,
+                   1, 0,
+                   1, 0), ncol = n_nr_trait, byrow = TRUE)
+mat_X2 <- mat_X1
+mat_Xzero <- matrix(0, nrow = n_nr_observation, ncol = n_nr_trait)
+(mat_X <- rbind(cbind(mat_X1, mat_Xzero), cbind(mat_Xzero, mat_X2)))
+```
+
+The matrix $Z$ links breeding values to observations. 
+
+```{r}
+mat_Zfounder <- matrix(0, nrow = n_nr_observation, ncol = n_nr_founder)
+mat_Z1 <- cbind(mat_Zfounder, diag(1, nrow = n_nr_observation))
+mat_Z2 <- mat_Z1
+mat_Zzero <- matrix(0, nrow = n_nr_observation, ncol = n_nr_animal)
+(mat_Z <- rbind(cbind(mat_Z1, mat_Zzero), cbind(mat_Zzero, mat_Z2)))
+```
+
+
+# Solutions
+Solutions are obtained by mixed-model equations. 
+
+$$
+\begin{bmatrix}
+X^TR^{-1}X  &  X^TR^{-1}Z \\
+Z^TR^{-1}X  &  Z^TR^{-1}Z + G^{-1}
+\end{bmatrix}
+\begin{bmatrix}
+\hat{\beta} \\
+\hat{u}
+\end{bmatrix}
+=
+\begin{bmatrix}
+X^TR^{-1}y \\
+Z^TR^{-1}y
+\end{bmatrix}
+$$
+
+In the multi-trait case, we have to use the general form of mixed-model equations, because the variance-covariance matrix of the random error terms does not have the simple form of $R = I *\sigma_e^2$. In the multi-trait case the variance-covariance matrix $R = R_0 \otimes I_n$ where $n$ is the number of observations for a single trait. For the mixed model equations, the inverse $R^{-1}$ of $R$ is needed. This can be computed as 
+
+$$R^{-1} = R_0^{-1} \otimes I_n$$
+
+
+```{r}
+mat_R0inv <- solve(mat_R0)
+(mat_Rinv <- mat_R0inv %x% diag(1, nrow = n_nr_observation))
+```
+
+The matrix $G^{-1}$ in the mixed model equations corresponds to the inverse of the variance-covariance matrix of all breeding values and is computed as 
+
+$$G^{-1} = G_0^{-1} \otimes A^{-1}$$
+```{r}
+mat_G0inv <- solve(mat_G0)
+(ped <- pedigreemm::pedigree(sire = c(rep(NA, n_nr_founder), tbl_data_sol12p01$Sire), 
+                             dam = c(rep(NA, n_nr_founder), tbl_data_sol12p01$Dam), 
+                             label = as.character(1:n_nr_animal)))
+mat_Ainv <- as.matrix(pedigreemm::getAInv(ped = ped))
+mat_Ginv <- mat_G0inv %x% mat_Ainv
+#round(mat_Ginv, digits = 4)
+```
+
+
+## Coefficient Matrix $C$
+The setup of the mixed model equations starts with the coefficient matrix $C$
+
+$$
+C = \begin{bmatrix}
+X^TR^{-1}X  &  X^TR^{-1}Z \\
+Z^TR^{-1}X  &  Z^TR^{-1}Z + G^{-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+C_{11}  &  C_{12}  \\
+C_{21}  &  C_{22}
+\end{bmatrix}
+$$
+with 
+
+$$C_{11} =  X^TR^{-1}X$$
+$$C_{12} = X^TR^{-1}Z$$
+$$C_{21} = Z^TR^{-1}X$$
+$$C_{22} = Z^TR^{-1}Z + G^{-1}$$
+Because the matrix C is symmetric, $C_{21} = C_{12}^T$
+
+The coefficient matrix $C$ can be constructed as
+
+```{r}
+mat_C11 <- t(mat_X) %*% mat_Rinv %*% mat_X
+mat_C12 <- t(mat_X) %*% mat_Rinv %*% mat_Z
+mat_C21 <- t(mat_Z) %*% mat_Rinv %*% mat_X
+mat_C22 <- t(mat_Z) %*% mat_Rinv %*% mat_Z + mat_Ginv
+mat_C <- rbind(cbind(mat_C11, mat_C12), cbind(mat_C21, mat_C22))
+#round(mat_C, digits = 3)
+```
+
+
+## Right-Hand Side $r$
+The vector $r$ consists of the right-hand side of the mixed-model equations. 
+
+$$
+r = \begin{bmatrix}
+r_1 \\ 
+r_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+X^TR^{-1}y \\
+Z^TR^{-1}y
+\end{bmatrix}
+$$
+```{r}
+(vec_r <- rbind(t(mat_X) %*% mat_Rinv %*% y, t(mat_Z) %*% mat_Rinv %*% y))
+```
+
+
+## Solution Vector
+The solution vector $s$ is
+
+$$s = \begin{bmatrix}
+\hat{\beta} \\
+\hat{u}
+\end{bmatrix} = C^{-1}r 
+$$
+
+```{r}
+s <- solve(mat_C, vec_r)
+s
+```
+
+
+# Reliabilities
+The reliability $B_i$ of a predicted breeding value $\hat{u}_i$ of animal $i$ for a given trait is computed according to formula (7.4) on page 80 of the course notes
+
+$$
+B_i = r_{u_i,\hat{u}_i}^2 = 1 - \frac{C_{ii}^{22}}{var(u_i)}
+$$
+where $C_{ii}^{22}$ is the i-th diagnoal element of the matrix $C^{22}$ and $var(u_i)$ is the genetic additive variance of the trait for which we want to compute $B_i$
+
+The matrix $C^{22}$ is obtained from the inverse ($C^{-1}$) of the coeffient matrix $C$ of the mixed model equations. 
+
+$$
+C^{-1} 
+= 
+\begin{bmatrix}
+X^TR^{-1}X  &  X^TR^{-1}Z \\
+Z^TR^{-1}X  &  Z^TR^{-1}Z + G^{-1}
+\end{bmatrix}^{-1}
+= 
+\begin{bmatrix}
+C^{11}  &  C^{12} \\
+C^{21}  &  C^{22}
+\end{bmatrix}
+$$
+
+For our data the matrix $C^{22}$ is extracted from $C^{-1}$ by taking the sub-matrix in the lower right corner with dimensions $16 \times 16$. The dimension is given by the number of traits (2) time the number of animals with predicted breeding values (8).
+
+```{r}
+mat_Cinv <- solve(mat_C)
+mat_Cinv22 <- mat_Cinv[5:20,5:20]
+round(mat_Cinv22, digits = 3)
+```
+
+Let us assume that we want to compute the reliability of the predicted breeding value for animal 1 in the trait WWG. Then we have to extract the element $C_{11}^{22}$ from the matrix $C^{22}$. This element corresponds to the element shown in the diagram below. 
+
+```{r rel-comp, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = 'odg/rel-comp.odg')
+knitr::include_graphics(path = "odg/rel-comp.png")
+
+```
+
+Hence the computation of reliability $B_1$ for animal 1 for the trait WWG is done as 
+
+```{r}
+B1_WWG <- 1 - mat_Cinv22[1,1] / mat_G0[1,1]
+B1_WWG
+```
+
+where $var(u_i)$ is the genetic additive variance of the trait WWG and is extracted from the matrix $G0$.
+
+The computation of the reliability $B_1$ for the trait PWG depends on the element $C_{88}^{22}$, with that $B_1$ for PWG is
+
+```{r}
+B_1_PWG <- 1 - mat_Cinv22[9,9] / mat_G0[2,2]
+B_1_PWG
+```
+
+For all animals and all traits, this is obtained by
+
+```{r}
+n_nr_sol <- dim(mat_Cinv)[1]
+vec_c22_diag <- diag(mat_Cinv)[(n_nr_sol - n_nr_trait * n_nr_animal + 1):n_nr_sol]
+vec_rel <- 1 - vec_c22_diag / c(rep(mat_G0[1,1], n_nr_animal), rep(mat_G0[2,2], n_nr_animal))
+vec_rel
+```
+
+
+# Appendix
+Proof:
+According to the mixed-product property: $(A \otimes B)(C \otimes D) = AC \otimes BD$
+$$I = RR^{-1} = (R_0 \otimes I_n)(R_0^{-1} \otimes I_n) = R_0R_0^{-1} \otimes I_nI_n = I$$
+ 
