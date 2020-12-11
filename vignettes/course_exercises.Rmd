@@ -18,7 +18,7 @@ The links to the exercises are given in the following table.
 
 ```{r exercise-table, echo=FALSE}
 s_ex_url <- 'https://charlotte-ngs.github.io/lbgfs2020/ex/'
-tbl_ex <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+tbl_ex <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
                          Date = c(
                            "2020-09-25",
                            "2020-10-02",
@@ -30,7 +30,8 @@ tbl_ex <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
                            "2020-11-13",
                            "2020-11-20",
                            "2020-11-27",
-                           "2020-12-04"),
+                           "2020-12-04",
+                           "2020-12-11"),
                          Topic  = c(
                            paste0("[Linear Algebra](", s_ex_url, "lbgfs2020_w02_ex01_linalg.pdf)", collapse = ''),
                            paste0("[Quantitative Genetics](", s_ex_url, "lbgfs2020_w03_ex02.pdf)", collapse = ''),
@@ -42,7 +43,8 @@ tbl_ex <- tibble::tibble(Nr = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
                            paste0("[Additional Aspects of BLUP](", s_ex_url, "lbgfs2019_w09_ex08.pdf)", collapse = ''),
                            paste0("[Multi-Trait BLUP](", s_ex_url, "lbgfs2020_w10_ex09.pdf)", collapse = ''),
                            paste0("[Genomics](", s_ex_url, "lbgfs2020_w11_ex10.pdf)", collapse = ''),
-                           paste0("[Variance Components](", s_ex_url, "lbgfs2020_w12_ex11.pdf)", collapse = '')
+                           paste0("[Variance Components](", s_ex_url, "lbgfs2020_w12_ex11.pdf)", collapse = ''),
+                           paste0("[Test Exam](", s_ex_url, "lbgfs2020_test_exam.pdf)", collapse = '')
                            ))
 knitr::kable(tbl_ex)
 ```

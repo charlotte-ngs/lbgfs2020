@@ -16,7 +16,7 @@ library(dplyr)
 
 
 ```{r TaskCounts, echo=FALSE}
-cnt <- rmddochelper::R6ClassCount$new()
+cnt <- rmdhelp::R6ClassCount$new()
 cnt$set_prefix(ps_prefix = "## Problem")
 ```
 
@@ -63,9 +63,9 @@ Institute of Agricultural Sciences\\
 \vspace{15ex}
 \begin{center}
 \huge
-Exam\\ \vspace{1ex}
+Test Exam\\ \vspace{1ex}
 Livestock Breeding and Genomics \\  \vspace{1ex}
-FS 2019 \\
+FS 2020 \\
 
 \normalsize
 \vspace{7ex}
@@ -74,7 +74,7 @@ Peter von Rohr
 
 \vspace{7ex}
 \begin{tabular}{p{5cm}lr}
-  & \textsc{Date}  & \textsc{\emph{20. December 2019}} \\
+  & \textsc{Date}  & \textsc{\emph{11. December 2020}} \\
   & \textsc{Begin} & \textsc{\emph{09:15 }}\\
   & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
 \end{tabular}
@@ -466,11 +466,7 @@ The genomic relationship matrix $G$ is given by
 \textit{Die genomische Verwandtschaftsmatrix $G$ ist gegeben als}
 
 ```{r show-genomic-reltionship-matrix, echo=FALSE, results='asis'}
-cat("$$\n")
-cat("G = \\left[\n")
-cat(paste0(rmddochelper::sConvertMatrixToLaTexArray(pmatAMatrix = matG_star, pnDigits = 3), collapse = "\n"), "\n")
-cat("\\right]\n")
-cat("$$\n")
+cat(paste(rmdhelp::bmatrix(pmat = round(matG_star, digits = 3), ps_name = 'G', ps_env = '$$')))
 ```
 
 \clearpage
