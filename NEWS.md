@@ -1,3 +1,7 @@
+# lbgfs2020 0.13.1
+
+* Added solutions to test exam and notebook for multi-trait BLUP
+
 # lbgfs2020 0.13.0
 
 * Added Test Exam
