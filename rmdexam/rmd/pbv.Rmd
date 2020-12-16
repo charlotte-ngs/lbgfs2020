@@ -1,0 +1,10 @@
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Prediction of Breeding Values"), "\n")
+```
+
+The following dataset is used to predict breeding values. 
+
+```{r data-table, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_pbv)
+```
+

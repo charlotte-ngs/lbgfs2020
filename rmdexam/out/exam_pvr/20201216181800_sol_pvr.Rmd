@@ -1,0 +1,242 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/preamble.tex
+    fig_caption: false
+    keep_tex: true
+documentclass: article
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+library(dplyr)
+```
+
+
+```{r TaskCounts, echo=FALSE}
+cnt <- rmdhelp::R6ClassCount$new()
+cnt$set_prefix(ps_prefix = "## Problem")
+```
+
+```{r PointAssignment, echo=FALSE}
+# Assign Points for Q1
+lPointsQ1 <- list(TaskA = 0,
+                  TaskB = 0,
+                  TaskC = 0,
+                  TaskD = 0)
+nPointQ1Total <- sum(unlist(lPointsQ1))
+# Assign Points for Q2
+lPointsQ2 <- list(TaskA = 0,
+                  TaskB = 0,
+                  TaskC = 0)
+nPointQ2Total <- sum(unlist(lPointsQ2))
+# Assign Points for Q3
+lPointsQ3 <- list(TaskA = 0,
+                  TaskB = 0,
+                  TaskC = 0)
+nPointQ3Total <- sum(unlist(lPointsQ3))
+# Assign Points for Q4
+lPointsQ4 <- list(TaskA = 0,
+                  TaskB = 0,
+                  TaskC = 0)
+nPointQ4Total <- sum(unlist(lPointsQ4))
+# Assign Points for Q5
+lPointsQ5 <- list(TaskA = 0,
+                  TaskB = 0,
+                  TaskC = 0)
+nPointQ5Total <- sum(unlist(lPointsQ5))
+# compute overal sum of points
+nPointOverallTotal <- nPointQ1Total + nPointQ2Total + nPointQ3Total + nPointQ4Total + nPointQ5Total
+```
+
+
+\thispagestyle{empty}
+
+\begin{tabular}{l}
+ETH Zurich \\
+D-USYS\\
+Institute of Agricultural Sciences\\
+\end{tabular}
+
+\vspace{15ex}
+\begin{center}
+\huge
+Solutions To Exam\\ \vspace{1ex}
+Livestock Breeding and Genomics \\  \vspace{1ex}
+FS 2020 \\
+
+\normalsize
+\vspace{7ex}
+Peter von Rohr 
+\end{center}
+
+\vspace{7ex}
+\begin{tabular}{p{5cm}lr}
+  & \textsc{Date}  & \textsc{\emph{18. December 2020}} \\
+  & \textsc{Begin} & \textsc{\emph{09:15 }}\\
+  & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
+\end{tabular}
+
+\vspace{5ex}
+<!-- Table with Name -->
+\large
+\begin{tabular}{p{2.5cm}p{3cm}p{6cm}}
+  &  Name:     &  \\
+  &            &  \\
+  &  Legi-Nr:  & \\
+\end{tabular}
+\normalsize
+
+<!-- Table with Points -->
+
+\vspace{9ex}
+\begin{center}
+\begin{tabular}{|p{3cm}|c|c|}
+\hline
+Problem  &  Maximum Number of Points  &  Number of Points Reached \\
+\hline
+1        &  `r nPointQ1Total`         & \\
+\hline
+2        &  `r nPointQ2Total`         & \\
+\hline
+3        &  `r nPointQ3Total`         & \\
+\hline
+4        &  `r nPointQ4Total`          & \\
+\hline
+5        &  `r nPointQ5Total`          & \\
+\hline
+Total    &  `r nPointOverallTotal`    & \\
+\hline
+\end{tabular}
+\end{center} 
+
+\clearpage
+\pagebreak
+
+```{r problem setup, echo=FALSE, results='hide'}
+tbl_ped_nrm <- tibble::tibble(ID = c(5,6,7,8,9,10), Sex = c('M','F','M','F','M','M'), Sire = c(3,1,5,5,7,9), Dam = c(2,4,6,6,8,8))
+dam_id <- tbl_ped_nrm$Dam[length(tbl_ped_nrm$Dam)]
+sire_id <- tbl_ped_nrm$Sire[length(tbl_ped_nrm$Sire)] 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Numerator Relationship Matrix and Inbreeding"), "\n")
+```
+
+We are given the following pedigree. 
+
+\textit{Das folgende Pedigree ist gegeben.}
+
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(tbl_ped_nrm)
+```
+
+\begin{enumerate}
+\item[a)] Compute the additive genetic relationship matrix $A$ for the above pedigree.
+
+\textit{Berechnen Sie die additiv-genetische Verwandtschaftsmatrix $A$ für das oben angegebene Pedigree}
+\points{`r lPointsQ1$TaskA`}
+\end{enumerate}
+
+\solstart
+
+The numerator relationship matrix is computed using `pedigreemm::getA()`. In a first step, we have to extend the pedigree to contain the founder animals in the ID-column. 
+
+```{r sol-nrm-a, echo=TRUE, results='markup'}
+vec_founder_sire <- setdiff(tbl_ped_nrm$Sire, tbl_ped_nrm$ID)
+n_nr_founder_sire <- length(vec_founder_sire)
+vec_founder_dam <- setdiff(tbl_ped_nrm$Dam, tbl_ped_nrm$ID)
+n_nr_founder_dam <- length(vec_founder_dam)
+
+# check that founder_sire and founder_dam are not the same
+if (length(intersect(vec_founder_sire, vec_founder_dam)) != 0) 
+  stop(" * ERROR: Founder sires and founder dams are not exclusive")
+tbl_ped_nrm_ext <- dplyr::bind_rows(
+  tibble::tibble(ID = vec_founder_sire[order(vec_founder_sire)],
+                 Sex = rep('M', n_nr_founder_sire),
+                 Sire = rep(NA, n_nr_founder_sire),
+                 Dam  = rep(NA, n_nr_founder_sire)),
+  tibble::tibble(ID = vec_founder_dam[order(vec_founder_dam)],
+                 Sex = rep('F', n_nr_founder_dam),
+                 Sire = rep(NA, n_nr_founder_dam),
+                 Dam  = rep(NA, n_nr_founder_dam)),
+  tbl_ped_nrm)
+
+ped_nrm <- pedigreemm::pedigree(sire = tbl_ped_nrm_ext$Sire, 
+                                dam = tbl_ped_nrm_ext$Dam, 
+                                label = as.character(tbl_ped_nrm_ext$ID))
+(matA_nrm <- as.matrix(pedigreemm::getA(ped = ped_nrm)))
+```
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the inbreeding coefficients of all animals in the given pedigree. Complete the following table and indicate which of the animals are inbred.
+
+\textit{Berechnen Sie die Inzuchtkoeffizienten aller Tiere im gegebenen Pedigree. Vervollständigen Sie die folgende Tabelle und geben an, welche Tiere ingezuchtet sind.}
+\points{`r lPointsQ1$TaskB`}
+\end{enumerate}
+
+\solstart
+
+\vspace{3ex}
+```{r table-nrm-b, echo=FALSE, results='asis'}
+n_nr_animal <- length(tbl_ped_nrm_ext$ID)
+tbl_inb_empty <- tibble::tibble(ID = tbl_ped_nrm_ext$ID, 
+                          `Inbreeding Coefficient` = rep('', n_nr_animal),
+                          `Animal Inbred (TRUE/FALSE)` = rep('', n_nr_animal))
+
+knitr::kable(tbl_inb_empty,
+             booktabs = TRUE, 
+             escape = FALSE,
+             format = 'latex')
+```
+
+\vspace{5ex}
+The numeric solution is
+
+```{r sol-nrm-b, echo=TRUE, results='markup'}
+vec_inbr_yn <- ifelse(diag(matA_nrm) > 1, "TRUE", "FALSE")
+vec_inbr_coef <- diag(matA_nrm) - 1
+# tibble for table
+(tbl_inb_sol <- tibble::tibble(ID = tbl_ped_nrm_ext$ID, 
+                          `Inbreeding Coefficient` = round(vec_inbr_coef, digits = 3),
+                          `Animal Inbred (TRUE/FALSE)` = vec_inbr_yn))
+```
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[c)] Assume that dam `r dam_id` and sire `r sire_id` are mated. What is the inbreeding coefficient of their offspring?   
+
+\textit{Wir nehmen an, dass die Mutter `r dam_id` mit dem Vater `r sire_id` angepaart wird. Wie gross ist der Inzuchtkoeffizient des Nachkommens aus dieser Paarung?}
+\points{`r lPointsQ1$TaskC`}
+\end{enumerate}
+
+\solstart
+
+The inbreeding coefficient of the offspring of dam `r dam_id` and sire `r sire_id` is half of the relationship between the parents.
+
+```{r sol-nrm-c, echo=TRUE, results='markup'}
+0.5 * matA_nrm[sire_id, dam_id]
+```
+
+\solend
+ 
+
+\clearpage
+\pagebreak
+

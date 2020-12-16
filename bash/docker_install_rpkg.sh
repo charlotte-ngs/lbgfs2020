@@ -93,3 +93,22 @@ docker exec -it xenamarie.mapel_rstudio R -e "remotes::install_github(repo = 'pv
 docker exec -it kmessmer_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
 docker exec -it clemence.nanchen_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
 
+# AlphaSimR
+docker exec -it pvr_rstudio R -e "install.packages('AlphaSimR')"
+
+docker exec -it deuberj_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it fomasid_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it pahofman_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it jungenr_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it penlin_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it xenamarie.mapel_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it kmessmer_rstudio R -e "install.packages('AlphaSimR')"
+sleep 2
+docker exec -it clemence.nanchen_rstudio R -e "install.packages('AlphaSimR')"
+
