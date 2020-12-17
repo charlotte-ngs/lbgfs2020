@@ -22,29 +22,29 @@ cnt$set_prefix(ps_prefix = "## Problem")
 
 ```{r PointAssignment, echo=FALSE}
 # Assign Points for Q1
-lPointsQ1 <- list(TaskA = 0,
-                  TaskB = 0,
-                  TaskC = 0,
+lPointsQ1 <- list(TaskA = 20,
+                  TaskB = 20,
+                  TaskC = 5,
                   TaskD = 0)
 nPointQ1Total <- sum(unlist(lPointsQ1))
 # Assign Points for Q2
-lPointsQ2 <- list(TaskA = 0,
-                  TaskB = 0,
+lPointsQ2 <- list(TaskA = 10,
+                  TaskB = 30,
                   TaskC = 0)
 nPointQ2Total <- sum(unlist(lPointsQ2))
 # Assign Points for Q3
-lPointsQ3 <- list(TaskA = 0,
-                  TaskB = 0,
+lPointsQ3 <- list(TaskA = 12,
+                  TaskB = 6,
                   TaskC = 0)
 nPointQ3Total <- sum(unlist(lPointsQ3))
 # Assign Points for Q4
-lPointsQ4 <- list(TaskA = 0,
-                  TaskB = 0,
-                  TaskC = 0)
+lPointsQ4 <- list(TaskA = 4,
+                  TaskB = 10,
+                  TaskC = 2)
 nPointQ4Total <- sum(unlist(lPointsQ4))
 # Assign Points for Q5
-lPointsQ5 <- list(TaskA = 0,
-                  TaskB = 0,
+lPointsQ5 <- list(TaskA = 5,
+                  TaskB = 5,
                   TaskC = 0)
 nPointQ5Total <- sum(unlist(lPointsQ5))
 # compute overal sum of points

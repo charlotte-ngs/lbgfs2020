@@ -6,10 +6,14 @@ We are given the following pedigree.
 
 \textit{Das folgende Pedigree ist gegeben.}
 
-
+\begin{center}
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(tbl_ped_nrm)
+knitr::kable(tbl_ped_nrm,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
 ```
+\end{center}
 
 \begin{enumerate}
 \item[a)] Compute the additive genetic relationship matrix $A$ for the above pedigree.
@@ -58,11 +62,10 @@ ped_nrm <- pedigreemm::pedigree(sire = tbl_ped_nrm_ext$Sire,
 \begin{enumerate}
 \item[b)] Compute the inbreeding coefficients of all animals in the given pedigree. Complete the following table and indicate which of the animals are inbred.
 
-\textit{Berechnen Sie die Inzuchtkoeffizienten aller Tiere im gegebenen Pedigree. Vervollständigen Sie die folgende Tabelle und geben an, welche Tiere ingezuchtet sind.}
+\textit{Berechnen Sie die Inzuchtkoeffizienten aller Tiere im gegebenen Pedigree. Vervollständigen Sie die folgende Tabelle und geben an, welche Tiere ingezüchtet sind.}
 \points{`r lPointsQ1$TaskB`}
 \end{enumerate}
 
-\solstart
 
 \vspace{3ex}
 ```{r table-nrm-b, echo=FALSE, results='asis'}
@@ -72,10 +75,12 @@ tbl_inb_empty <- tibble::tibble(ID = tbl_ped_nrm_ext$ID,
                           `Animal Inbred (TRUE/FALSE)` = rep('', n_nr_animal))
 
 knitr::kable(tbl_inb_empty,
-             booktabs = TRUE, 
+             booktabs = TRUE,
              escape = FALSE,
              format = 'latex')
 ```
+
+\solstart
 
 \vspace{5ex}
 The numeric solution is

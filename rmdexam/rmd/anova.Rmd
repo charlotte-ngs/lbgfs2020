@@ -1,0 +1,83 @@
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Variance Components"), "\n")
+```
+We are given the following dataset for the trait live weight (`LiveWeight`) for cattle.
+
+\textit{Der folgende Datensatz umfasst das Merkmal Lebendgewicht (`LiveWeight`) von Rindern.}
+
+```{r data-table-anova, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_anova,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\begin{enumerate}
+\item[a)] Compute the estimate of the error variance $\sigma_e^2$ from the residuals of the fixed linear model specified below.
+
+\textit{Schätzen Sie die Fehlervarianz $\sigma_e^2$ basierend auf den Residuen des folgenden fixen Modells.}
+\points{`r lPointsQ5$TaskA`}
+\end{enumerate}
+
+
+The fixed linear model that is used is 
+
+$$y = Xb + e$$
+where $y$ is the vector of all live weight values, $b$ is the vector of the effects caused by the different farms. The fixed linear model is specified in R by
+
+```{r, echo=TRUE, results='markup'}
+tbl_data_anova$Farm <- as.factor(tbl_data_anova$Farm)
+lm_lweight <- lm(LiveWeight ~ 0 + Farm, data = tbl_data_anova)
+```
+
+The resulting effects of the farms are 
+
+```{r, echo=TRUE, results='markup'}
+(vec_coef_lweight <- coefficients(lm_lweight))
+```
+
+
+\solstart
+
+The esimate of the error variance is computed based on the resiudals. The residuals can be obtained by the function `residuals()` in R.
+
+```{r sol-anova-a, echo=TRUE, results='markup'}
+vec_res <- residuals(lm_lweight)
+ssq_res <- crossprod(vec_res)
+(n_est_res_var <- ssq_res / (nrow(tbl_data_anova)-length(vec_coef_lweight)))
+```
+
+The error standard deviation is 
+
+```{r, echo=TRUE, results='markup'}
+(n_est_res_sd <- sqrt(n_est_res_var))
+```
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+
+\begin{enumerate}
+\item[b)] Verify your result from task a) with the output of the `summary()`-function applied to the result of the `lm()`-function
+
+\textit{Verifizieren Sie das Resultat aus Aufgabe a) anhand des Outputs der `summary`-Funktion angewendet auf das Resultat der `lm()`-Funktion}
+\points{`r lPointsQ5$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+From the task, we have the result object of the `lm()`-function which is called `lm_lweight`. Applying the `summary()`-method leads to
+
+```{r anova-sol-b, echo=TRUE, results='markup'}
+summary(lm_lweight)
+```
+
+The number next to `Residual standard error: ` corresponds to the estimated value of the error standard deviation.
+
+\solend
+

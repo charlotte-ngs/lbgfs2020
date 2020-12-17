@@ -1,0 +1,93 @@
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Genomics"), "\n")
+```
+
+Given is the following data set of SNP-Genotyping results. 
+
+\textit{Gegeben sind die Genotypisierungsresultate in der nachfolgenden Tabelle.}
+
+```{r data-table-gnm, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_gnm,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use a marker effect model to estimate the fixed effects of both markers on the observation. Please specify the fixed-effect model that you use, name all the model components and insert the information from the data into the components where possible. 
+
+\textit{Verwenden Sie eine Marker-Effekt Modell zur Schätzung der fixen Effekte der beiden Marker auf die Beobachtung. Bitte spezifizieren Sie das fixe Modell, benennen Sie alle Modellkomponenten und fügen Sie die Daten aus der obigen Tabelle in die Modellkomponenten ein, wo das möglich ist.}
+\points{`r lPointsQ3$TaskA`}
+\end{enumerate}
+
+
+\solstart
+
+## Model
+The fixed effect model to estimate the marker effects is given by
+
+$$y = Xb + e$$
+
+where $y$ is the vector of observations, $b$ is the vector of fixed effects containing intercept and effect of both markers, $e$ is the vector of random error terms.
+
+## Information in Model
+The model vectors are
+
+```{r model-gnm-a, echo=FALSE, results='asis'}
+vec_y <- tbl_data_gnm$Observation
+n_nr_obs <- length(vec_y)
+vec_b <- rmdhelp::vecGetVecElem(psBaseElement = 'b', pnVecLen = n_nr_snp, psResult = 'latex')
+vec_e <- rmdhelp::vecGetVecElem(psBaseElement = 'e', pnVecLen = n_nr_obs, psResult = 'latex')
+cat("$$\n")
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y'), collapse = '\n'), '\n')
+cat('\\text{, }')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_b, ps_name = 'b'), collapse = '\n'), '\n')
+cat('\\text{, }')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_e, ps_name = 'e'), collapse = '\n'), '\n')
+cat("$$\n")
+```
+
+## Marker Effects
+The marker effects are estimated using `lm()`
+
+```{r mrk-eff-gnm-a}
+vec_mrk_names <- grep('SNP', colnames(tbl_data_gnm), value = TRUE) 
+lm_mrk_eff <- lm(as.formula(paste0('Observation ~ ', paste0(vec_mrk_names, collapse = ' + '), collapse = '')), data = tbl_data_gnm)
+summary(lm_mrk_eff)
+```
+
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Predict the direct genomic breeding values for all animals of the dataset using the marker effects estimated in Task a). 
+
+\textit{ Schätzen Sie die direkt-genomischen Zuchtwerte für alle Tiere im Datensatz unter Verwendung der aus Aufgabe a) geschätzten Markereffekte.}
+\points{`r lPointsQ3$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+Direct genomic breeding values $\hat{g}_i$ for animal $i$ corresponds to the sums of the marker effects, hence 
+
+$$\hat{g}_i = x_i^T \cdot \hat{b}$$
+where $\hat{b}$ is the vector of estimated marker effects and $x_i^T$ is the row $i$ of the design matrix $X$ corresponding to animal $i$. 
+
+```{r sol-gnm-b, echo=TRUE, results='markup'}
+vec_mrk_eff <- coefficients(lm_mrk_eff)
+n_intercept_pos <- which(names(vec_mrk_eff) == '(Intercept)')
+if (length(n_intercept_pos) > 0) vec_mrk_eff <- vec_mrk_eff[-n_intercept_pos]
+vec_snp_names <- names(vec_mrk_eff)
+mat_geno_gnm <- as.matrix(tbl_data_gnm[, vec_snp_names])
+(vec_hat_g <- crossprod(t(mat_geno_gnm), vec_mrk_eff))
+```
+
+\solend
+

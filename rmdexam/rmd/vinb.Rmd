@@ -1,0 +1,137 @@
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Variance and Inbreeding"), "\n")
+```
+
+In dairy cattle semen and embryos of the breeds Brown Swiss and Holstein are often imported from North America. For the Brown Swiss breed, the North American population is based on `r n_nr_base_animals` female animals. The following assumptions can be made.
+
+* Although, cattle does not follow the same mode of inheritance as the organism shown in the lecture, the computations as shown in the lecture can be used as an approximation.
+* In contrast to the size $N$ of the subpopulations that was assumed to be the number of individuals, here $N$ is the number of female animals in a given subpopulation.
+
+\textit{Samen und Embryos der Rassen Brown Swiss und Holstein werden oft aus Nordamerika importiert. Für die Rasse Brown Swiss basiert die Nordamerikanische Population auf `r n_nr_base_animals` weiblichen Tieren. Die folgenden Annahmen können getroffen werden.}
+
+* \textit{Obwohl das Rind nicht den gleichen Vererbungsmodus zeigt, wie die Organismen, welche in den Vorlesungsunterlagen verwendet wurden, können die dort eingeführten Berechnungen der Inzucht als Annäherungen verwendet werden.}
+* \textit{Die Populationsgrösse $N$ hier entspricht der Anzahl weiblichen Tiere.}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] What is the expected level of inbreeding ($F$) of imported semen in the Brown Swiss breed after `r n_nr_gen` generations?
+
+\textit{Welches ist der erwartet Wert der Inzucht ($F$) von importiertem Samen in der Rasse Brown Swiss nach `r n_nr_gen` Generationen?}
+\points{`r lPointsQ4$TaskA`}
+\end{enumerate}
+
+
+\solstart
+
+The level of inbreeding $F_t$ after $t$ generations is computed as 
+
+$$F_t = 1 - (1 - \Delta F)^t$$
+with $\Delta F = 1/(2N)$ and $N$ being the number of female animals in the base population.
+
+```{r sol-vinb-a, echo=TRUE, results='markup'}
+(inb_level_ft <- 1 - (1 - 1/(2*n_nr_base_animals))^n_nr_gen)
+```
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the between-line, the within-line and the total genetic variance for a single additive Locus where the difference between the homozygous genotypes is `r n_hom_diff`, the allele frequency $p = `r n_maf`$ and the level of inbreeding is `r n_level_inb`. 
+
+\textit{Berechnen Sie die Innerhalb-Linie, Zwischen-Linie und die totale genetische Varianz für einen additiven Lokus, wobei die Differenz der homozygoten Genotypen `r n_hom_diff` entspricht, die Allelefrequenz $p = `r n_maf`$ ist und der Inzuchtwert `r n_level_inb` ist.}
+\points{`r lPointsQ4$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+The variance according to the sources are computed as
+
+```{r, echo=FALSE, results='asis'}
+tbl_gen_anova <- tibble::tibble(Source = c("Between lines", "Within lines","Total"),
+                                Variance = c("$2FV_G$", "$(1-F)V_G$", "$(1+F)V_G$"))
+
+knitr::kable(tbl_gen_anova,
+             booktabs = TRUE, 
+             escape = FALSE,
+             format = 'latex')
+
+```
+
+```{r, echo=FALSE}
+n_vg <- 2 * n_maf * (1-n_maf) * (n_hom_diff/2)^2
+```
+
+with
+$$V_G = 2pqa^2 = 2 * `r n_maf` * `r 1-n_maf` * `r (n_hom_diff/2)^2` = `r n_vg`$$
+Inserting the values, we get
+
+```{r, echo=FALSE, results='asis'}
+tbl_gen_anova_result <- dplyr::bind_cols(tbl_gen_anova, tibble::tibble(Results = c(2*n_level_inb*n_vg,
+                                                                                   (1-n_level_inb)*n_vg,
+                                                                                   (1+n_level_inb)*n_vg)))
+knitr::kable(tbl_gen_anova_result,
+             booktabs = TRUE, 
+             escape = FALSE,
+             format = 'latex')
+```
+
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[c)] After how many generations is the expected inbreeding depression bigger than `r n_inb_dep` in a population with $N = `r n_nr_base_animals`$ animals. The following assumptions can be made
+
+\textit{Nach wie vielen Generationen ist die erwartete Inzuchtdepression grösser als `r n_inb_dep` in einer Population von $N = `r n_nr_base_animals`$ Tieren. Die folgenden Annahmen können getroffen werden.}
+\points{`r lPointsQ4$TaskC`}
+\end{enumerate}
+
+* single bi-allelic locus
+* minor allele frequency $p = `r n_maf`$
+* dominance deviation $d = `r n_dom_dev`$
+
+* \textit{einzelner Locus mit zwei Allelen}
+* \textit{Frequenz des seltenen Alleles $p = `r n_maf`$}
+* \textit{Dominanzabweichung $d = `r n_dom_dev`$}
+
+
+\solstart
+
+```{r vinb-sol-c, echo=FALSE, results='hide'}
+n_inb_f <- n_inb_dep / (2*n_dom_dev*n_maf*(1-n_maf))
+n_nr_dgen <- log(1-n_inb_f) / log(1 - 1/(2*n_nr_base_animals))
+```
+
+Inbreeding depression is computed as 
+
+$$M_0 - M_F = 2dp(1-p)F = `r n_inb_dep`$$
+hence
+
+$$F = \frac{M_0 - M_F}{2dp(1-p)} = \frac{`r n_inb_dep`}{2 * `r  n_dom_dev` * `r n_maf` * (1- `r n_maf`)} = `r n_inb_f`$$
+
+From 
+
+$$F_t = 1 - (1 - \Delta F)^t$$
+
+we get
+
+$$(1 - \Delta F)^t = 1-F_t$$
+
+and
+
+$$t = \frac{log(1-F_t)}{log(1 - \Delta F)} = `r n_nr_dgen`$$
+
+Hence after `r ceiling(n_nr_dgen)` generations the inbreeding depression is bigger than `r n_inb_dep`
+
+\solend
+
+

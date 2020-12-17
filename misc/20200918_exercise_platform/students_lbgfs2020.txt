@@ -1,3 +1,4 @@
+adrian.bertschi,adrian.bertschi@bsse.ethz.ch,Bertschi,Adrian
 deuberj,deuberj@student.ethz.ch,Deuber,Jessica
 fomasid,fomasid@student.ethz.ch,Fomasi,Diana
 pahofman,pahofman@student.ethz.ch,Hofmann,Pascal

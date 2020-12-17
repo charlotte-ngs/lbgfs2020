@@ -63,14 +63,12 @@ generate_problem_setup <- function(pl_input = NULL){
 
   # put together phenotypes
   vec_pheno <- as.vector(vec_fix_eff + vec_u[as.integer(tbl_ped_pbv$ID)] + rnorm(nrow(tbl_data_pbv), mean = 0, sd = sqrt(n_var_e)))
-  tbl_data_pbv <- dplyr::bind_cols(tbl_data_pbv, `Phenotypic Observation` = vec_pheno)
+  tbl_data_pbv <- dplyr::bind_cols(tbl_data_pbv, `Phenotypic Observation` = round(vec_pheno, digits = 2))
 
   # tbl_data_pbv
   return(list(tbl_result = tbl_data_pbv,
               rstmt      = paste0('tbl_data_pbv <- tibble::tibble(ID = ',
                                   rmdexam::numeric_vector_as_def_string(tbl_data_pbv$ID),
-                                  ', Sex = ',
-                                  rmdexam::character_vector_as_def_string(tbl_data_pbv$Sex),
                                   ', Sire = ',
                                   rmdexam::numeric_vector_as_def_string(tbl_data_pbv$Sire),
                                   ', Dam = ',
@@ -79,5 +77,9 @@ generate_problem_setup <- function(pl_input = NULL){
                                   rmdexam::character_vector_as_def_string(tbl_data_pbv$Herd),
                                   ', `Phenotypic Observation` = ',
                                   rmdexam::numeric_vector_as_def_string(tbl_data_pbv$`Phenotypic Observation`),
+                                  ')\n',
+                                  'n_var_u <- ', n_var_u, '\n',
+                                  'n_var_e <- ', n_var_e, '\n',
+                                  'n_h2 <- ', n_h2, '\n',
                                   collapse = '')))
 }

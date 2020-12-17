@@ -4,7 +4,187 @@ cat(cnt$out(ps_suffix = "Prediction of Breeding Values"), "\n")
 
 The following dataset is used to predict breeding values. 
 
+\textit{Der folgende Datensatz soll für die Schätzung von Zuchtwerten verwendet werden.}
+
 ```{r data-table, echo=FALSE, results='asis'}
-knitr::kable(tbl_data_pbv)
+knitr::kable(tbl_data_pbv,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
 ```
+
+## Assumptions
+* the error variance is: $\sigma_e^2 = `r n_var_e`$
+* the heritability is: $h^2 = `r n_h2`$
+* the genetic additive variance is: $\sigma_u^2 = `r n_var_u`$
+* the population mean $\mu$ can be taken as the mean of the given phenotypic observations
+
+
+## \textit{Annahmen}
+* \textit{die Restvarianz beträgt:} $\sigma_e^2 = `r n_var_e`$
+* \textit{die Heritabilität beträgt:} $h^2 = `r n_h2`$
+* \textit{die genetisch-additive Varianz beträgt:} $\sigma_u^2 = `r n_var_u`$
+* \textit{das Populationsmittel $\mu$ kann als Mittelwert der phänotypischen Beobachtungen angenommen werden.}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use the regression method to predict breeding values based on own-performance records for the animals in the table given above.
+
+\textit{Verwenden Sie die Regressionsmethode zur Schätzung der Zuchtwerte basierend auf der Eigenleistung der Tiere in der obigen Tabelle.}
+\points{`r lPointsQ2$TaskA`}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+According to the regression method, the predicted breeding value ($\hat{u}_i$) for animal $i$ is 
+
+$$\hat{u}_i = h^2(y_i - \mu)$$
+where $y_i$ is the phenotypic observation of animal $i$, $h^2$ is the heritability and $\mu$ is the population mean. 
+
+
+\vspace{3ex}
+```{r sol-pbv-a, echo=TRUE, results='markup'}
+vec_y <- tbl_data_pbv$`Phenotypic Observation`
+n_mu <- mean(vec_y)
+vec_uhat <- n_h2 * (vec_y - n_mu)
+```
+
+```{r tbl-pbv-a, echo=FALSE, results='asis'}
+tbl_sol <- tibble::tibble(ID = tbl_data_pbv$ID, PBV = vec_uhat)
+knitr::kable(tbl_sol,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\solend
+
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Use a BLUP animal model to predict the breeding values for all animals in the pedigree based on the data given in the table above. Specify the model to predict breeding values, name all model components, compute the expected values and the variance-covariance matrices for all random model components. Insert the information from the above table into the model components where possible. Set up the mixed model equations and compute the solutions for the estimates of fixed effects and for the predicted breeding values. 
+
+\textit{Verwenden Sie ein BLUP Tiermodell zur Schätzung der Zuchtwerte aller Tiere im Pedigree basierend auf den Daten in der obigen Tabelle. Spezifizieren Sie das Modell für die Schätzung der Zuchtwerte, benennen Sie alle Modellkomponenten, berechnen Sie die Erwartungswerte und die Varianz-Kovarianz Matrizen aller zufälligen Effekte im Modell. Setzen Sie die verfügbaren Information aus dem Datensatz in die Modellkomponenten ein. Stellen Sie die Mischmodellgleichungen auf und berechnen Sie die Schätzungen der fixen Effekte und der Zuchtwerte.}
+\points{`r lPointsQ2$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+## Model
+The BLUP animal model corresponds to the following mixed-effects model
+
+$$y = Xb + Zu + e$$
+where $y$ is the vector of observations, $b$ is the vector of fixed effects for the two herds, $u$ is the vector of breeding values for all animals in the pedigree and $e$ is the vector of random residuals. The design matrices $X$ and $Z$ link the fixed effects and the breeding values to the observations, respectively.
+
+## Expected Values and Variance-Covariance Matrices
+Expected values and variance-covariance matrices of the random components $y$, $u$ and $e$
+
+$$
+E \left[\begin{array}{c} y \\ u\\ e\end{array}\right]  = \left[\begin{array}{c} Xb \\ 0 \\ 0\end{array}\right] \text{, }
+var \left[\begin{array}{c} y \\ u \\ e\end{array}\right]  =  \left[\begin{array}{ccc} ZGZ^T+R & ZG  &  0 \\ GZ^T & G & 0 \\ 0  &  0 & R \end{array}\right]
+$$
+
+
+## Informations in Model Components
+The model vectors are
+```{r pbv-sol-b-model-vec, echo=FALSE, results='asis'}
+vec_y <- tbl_data_pbv$`Phenotypic Observation`
+n_nr_obs <- length(vec_y)
+n_nr_fix <- nlevels(as.factor(tbl_data_pbv$Herd))
+vec_b <- rmdhelp::vecGetVecElem(psBaseElement = 'b', pnVecLen = n_nr_fix, psResult = 'latex')
+n_nr_animal_pedigree <- length(unique(c(tbl_data_pbv$ID, tbl_data_pbv$Sire, tbl_data_pbv$Dam)))
+vec_u <- rmdhelp::vecGetVecElem(psBaseElement = 'u', pnVecLen = n_nr_animal_pedigree, psResult = 'latex')
+vec_e <- rmdhelp::vecGetVecElem(psBaseElement = 'e', pnVecLen = n_nr_obs, psResult = 'latex')
+cat('$$\n')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_y, ps_name = 'y'), collapse = '\n'))
+cat('\\text{, }')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_b, ps_name = 'b'), collapse = '\n'))
+cat('\\text{, }')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_u, ps_name = 'u'), collapse = '\n'))
+cat('\\text{, }')
+cat(paste(rmdhelp::bcolumn_vector(pvec = vec_e, ps_name = 'e'), collapse = '\n'), '\n')
+cat('$$\n')
+```
+
+The model matrices
+
+```{r pbv-sol-b-model-mat, echo=FALSE, results='asis'}
+# matrix X
+model_mat <- model.matrix(lm(`Phenotypic Observation` ~ Herd, data = tbl_data_pbv))
+mat_X <- model_mat[,]
+dimnames(mat_X) <- NULL
+mat_X[, 1] <- mat_X[, 1] - mat_X[, 2]
+# matrix Z
+mat_Z <- cbind(matrix(0, nrow = n_nr_obs, ncol = (n_nr_animal_pedigree-n_nr_obs)), diag(1, nrow = n_nr_obs, ncol = n_nr_obs))
+# output
+cat('$$\n')
+cat(paste(rmdhelp::bmatrix(pmat = mat_X, ps_name = 'X'), collapse = '\n'), '\n')
+cat('\\text{, }')
+cat(paste(rmdhelp::bmatrix(pmat = mat_Z, ps_name = 'Z'), collapse = '\n'), '\n')
+cat('$$\n')
+```
+
+## Mixed Model Equations
+
+\begin{equation}
+\left[
+  \begin{array}{lr}
+  X^TX  &  X^TZ \\
+  Z^TX  &  Z^TZ + A^{-1}* \lambda
+  \end{array}
+\right]
+\left[
+  \begin{array}{c}
+  \hat{b} \\
+  \hat{u}
+  \end{array}
+\right]
+=
+\left[
+  \begin{array}{c}
+  X^Ty \\
+  Z^Ty
+  \end{array}
+\right]
+\notag
+\end{equation}
+
+## Solution
+
+```{r}
+# nrm A
+tbl_ped_pbv_ext <- rmdexam::extend_pedigree(ptbl_ped = tbl_data_pbv[,c('ID', 'Sire', 'Dam')])
+ped_pbv <- pedigreemm::pedigree(sire  = tbl_ped_pbv_ext$Sire, 
+                                dam   = tbl_ped_pbv_ext$Dam,
+                                label = as.character(tbl_ped_pbv_ext$ID))
+mat_Ainv_pbv <- as.matrix(pedigreemm::getAInv(ped = ped_pbv))
+lambda <- n_var_e / n_var_u
+
+# coefficient matrix
+mat_xtx <- crossprod(mat_X)
+mat_xtz <- crossprod(mat_X, mat_Z)
+mat_ztx <- crossprod(mat_Z, mat_X)
+mat_ztz_ainv_lambda <- crossprod(mat_Z) + lambda * mat_Ainv_pbv
+mat_coef <- rbind(cbind(mat_xtx,mat_xtz), cbind(mat_ztx,mat_ztz_ainv_lambda))
+
+# rhs
+mat_xty <- crossprod(mat_X, vec_y)
+mat_zty <- crossprod(mat_Z, vec_y)
+mat_rhs <- rbind(mat_xty, mat_zty)
+
+# solutions
+(mat_sol <- solve(mat_coef, mat_rhs))
+```
+
+
+
+\solend
+
+
 

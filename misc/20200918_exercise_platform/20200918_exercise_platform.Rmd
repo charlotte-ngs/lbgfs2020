@@ -110,6 +110,13 @@ do
 done
 ```
 
+New student
+
+```
+
+```
+
+
 Stopping all instances 
 
 ```

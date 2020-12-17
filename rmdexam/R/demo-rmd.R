@@ -9,6 +9,10 @@ rm(list = ls())
 #' set seed
 set.seed(20201216)
 
+#' set wd
+setwd("/Users/pvr/Data/Projects/Github/charlotte-ngs/lbgfs2020_ghroot/master/lbgfs2020")
+s_out_dir <- 'rmdexam/out'
+if (dir.exists(s_out_dir)) fs::dir_delete(s_out_dir)
 
 #' read input record for test student
 s_test_student_input_path <- here::here('misc/20200918_exercise_platform/test_students_lbgfs2020.txt')
@@ -18,7 +22,7 @@ close(con = con_test_student)
 vec_test_student_user <- sapply(vec_test_student_rec, function(x) unlist(strsplit(x, split = ',', fixed = TRUE))[1], USE.NAMES = FALSE)
 
 #' call exam generation function for test student
-rmdexam::exam2rmd(pvec_problem = c('nrm', 'pbv'),
+rmdexam::exam2rmd(pvec_problem = c('nrm', 'pbv', 'gnm', 'vinb', 'anova'),
                   pvec_names   = vec_test_student_user,
                   pn_nr_exam   = length(vec_test_student_user),
                   ps_rmd_dir   = 'rmdexam/rmd',
@@ -35,7 +39,7 @@ close(con = con_student)
 vec_student_user <- sapply(vec_student_rec, function(x) unlist(strsplit(x, split = ',', fixed = TRUE))[1], USE.NAMES = FALSE)
 
 #' call exam generation function for students
-rmdexam::exam2rmd(pvec_problem = c('nrm'),
+rmdexam::exam2rmd(pvec_problem = c('nrm', 'pbv', 'gnm', 'vinb', 'anova'),
                   pvec_names   = vec_student_user,
                   pn_nr_exam   = length(vec_student_user),
                   ps_rmd_dir   = 'rmdexam/rmd',
