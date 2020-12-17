@@ -51,7 +51,14 @@ generate_problem_setup <- function(pl_input = NULL){
   vec_eff_herd <- c(3.1, 5.2) # intercept and difference between the herds
   tbl_data_pbv <- dplyr::bind_cols(tbl_ped_pbv,
                                    tibble::tibble(Herd = sample(vec_herds, nrow(tbl_ped_pbv), replace = TRUE)))
-  mat_model_herd <- model.matrix(lm(y ~ Herd, data = dplyr::bind_cols(tbl_data_pbv, tibble::tibble(y = rnorm(nrow(tbl_data_pbv))))))
+  # check that not all herds are the same
+  if (nlevels(as.factor(tbl_data_pbv$Herd)) == 1){
+    # set the first herd to the one not chosen
+    tbl_data_pbv$Herd[1] <- setdiff(vec_herds, tbl_data_pbv$Herd[1])
+  }
+  tbl_pseudo <- dplyr::bind_cols(tibble::tibble(Herd = as.factor(tbl_data_pbv$Herd)),
+                                 tibble::tibble(y = rnorm(nrow(tbl_data_pbv))))
+  mat_model_herd <- model.matrix(lm(y ~ Herd, data = tbl_pseudo))
   vec_fix_eff <- crossprod(t(mat_model_herd), vec_eff_herd)
 
   # put together phenotypes
