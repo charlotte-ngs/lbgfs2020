@@ -114,6 +114,25 @@ New student
 
 ```
 
+LBGHOME=/home/quagadmin/lbgfs2020/home
+cd /home/quagadmin/lbgfs2020
+echo 'adrian.bertschi,adrian.bertschi@bsse.ethz.ch,Bertschi,Adrian' > new_student_lbgfs2020.txt
+RSTPORT=10096
+cat new_student_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  email=$(echo $s | cut -d ',' -f2)
+  pass=`tr -dc A-Za-z0-9_ < /dev/urandom | head -c8`
+  dcmd="docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse"
+  echo $dcmd
+  docker run -d -p $RSTPORT:8787 -e PASSWORD=$pass -v $LBGHOME/${user}:/home/rstudio --name ${user}_rstudio rocker/verse
+  sudo chmod -R 777 $LBGHOME/${user}
+  printf "To: $email \nSubject: Exercise Platform \n\nDear $firstname $name \nThis e-mail contains the required information for the exercise platform. \n\nPort: $RSTPORT \nPassword: $pass \n\nBest regards, Peter" > ${user}_email.txt
+  # firewall
+  #sudo ufw allow $RSTPORT/tcp
+  RSTPORT=$((RSTPORT+1))
+  sleep 2
+done
 ```
 
 
@@ -187,6 +206,19 @@ do
   git clone https://github.com/charlotte-ngs/lbgfs2020.git -b rexpf
   sleep 2
 done
+
+# new student
+LBGHOME=/home/quagadmin/lbgfs2020/home
+cd /home/quagadmin/lbgfs2020
+cat new_student_lbgfs2020.txt | while read s
+do
+  user=$(echo $s | cut -d ',' -f1)
+  cd $LBGHOME/$user
+  echo " * Cloning repo for $user ..."
+  git clone https://github.com/charlotte-ngs/lbgfs2020.git -b rexpf
+  sleep 2
+done
+
 
 ```
 
