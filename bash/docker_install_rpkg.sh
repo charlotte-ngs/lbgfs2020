@@ -112,3 +112,5 @@ docker exec -it kmessmer_rstudio R -e "install.packages('AlphaSimR')"
 sleep 2
 docker exec -it clemence.nanchen_rstudio R -e "install.packages('AlphaSimR')"
 
+# new student
+docker exec -it adrian.bertschi_rstudio R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools');remotes::install_github(repo = 'charlotte-ngs/rmdhelp');install.packages(c('pedigreemm','kableExtra'))"
