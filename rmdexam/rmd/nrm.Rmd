@@ -69,8 +69,8 @@ ped_nrm <- pedigreemm::pedigree(sire = tbl_ped_nrm_ext$Sire,
 
 \vspace{3ex}
 ```{r table-nrm-b, echo=FALSE, results='asis'}
-n_nr_animal <- length(tbl_ped_nrm_ext$ID)
-tbl_inb_empty <- tibble::tibble(ID = tbl_ped_nrm_ext$ID, 
+n_nr_animal <- max(tbl_ped_nrm$ID)
+tbl_inb_empty <- tibble::tibble(ID = 1:n_nr_animal, 
                           `Inbreeding Coefficient` = rep('', n_nr_animal),
                           `Animal Inbred (TRUE/FALSE)` = rep('', n_nr_animal))
 
