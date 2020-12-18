@@ -1,0 +1,452 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/preamble.tex
+    fig_caption: false
+    keep_tex: true
+documentclass: article
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+library(dplyr)
+```
+
+
+```{r TaskCounts, echo=FALSE}
+cnt <- rmdhelp::R6ClassCount$new()
+cnt$set_prefix(ps_prefix = "## Problem")
+```
+
+```{r PointAssignment, echo=FALSE}
+# Assign Points for Q1
+lPointsQ1 <- list(TaskA = 20,
+                  TaskB = 20,
+                  TaskC = 5,
+                  TaskD = 0)
+nPointQ1Total <- sum(unlist(lPointsQ1))
+# Assign Points for Q2
+lPointsQ2 <- list(TaskA = 10,
+                  TaskB = 30,
+                  TaskC = 0)
+nPointQ2Total <- sum(unlist(lPointsQ2))
+# Assign Points for Q3
+lPointsQ3 <- list(TaskA = 12,
+                  TaskB = 6,
+                  TaskC = 0)
+nPointQ3Total <- sum(unlist(lPointsQ3))
+# Assign Points for Q4
+lPointsQ4 <- list(TaskA = 4,
+                  TaskB = 10,
+                  TaskC = 2)
+nPointQ4Total <- sum(unlist(lPointsQ4))
+# Assign Points for Q5
+lPointsQ5 <- list(TaskA = 5,
+                  TaskB = 5,
+                  TaskC = 0)
+nPointQ5Total <- sum(unlist(lPointsQ5))
+# compute overal sum of points
+nPointOverallTotal <- nPointQ1Total + nPointQ2Total + nPointQ3Total + nPointQ4Total + nPointQ5Total
+```
+
+
+\thispagestyle{empty}
+
+\begin{tabular}{l}
+ETH Zurich \\
+D-USYS\\
+Institute of Agricultural Sciences\\
+\end{tabular}
+
+\vspace{15ex}
+\begin{center}
+\huge
+Exam\\ \vspace{1ex}
+Livestock Breeding and Genomics \\  \vspace{1ex}
+FS 2020 \\
+
+\normalsize
+\vspace{7ex}
+Peter von Rohr 
+\end{center}
+
+\vspace{7ex}
+\begin{tabular}{p{5cm}lr}
+  & \textsc{Date}  & \textsc{\emph{18. December 2020}} \\
+  & \textsc{Begin} & \textsc{\emph{09:15 }}\\
+  & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
+\end{tabular}
+
+\vspace{5ex}
+<!-- Table with Name -->
+\large
+\begin{tabular}{p{2.5cm}p{3cm}p{6cm}}
+  &  Name:     &  \\
+  &            &  \\
+  &  Legi-Nr:  & \\
+\end{tabular}
+\normalsize
+
+<!-- Table with Points -->
+
+\vspace{9ex}
+\begin{center}
+\begin{tabular}{|p{3cm}|c|c|}
+\hline
+Problem  &  Maximum Number of Points  &  Number of Points Reached \\
+\hline
+1        &  `r nPointQ1Total`         & \\
+\hline
+2        &  `r nPointQ2Total`         & \\
+\hline
+3        &  `r nPointQ3Total`         & \\
+\hline
+4        &  `r nPointQ4Total`          & \\
+\hline
+5        &  `r nPointQ5Total`          & \\
+\hline
+Total    &  `r nPointOverallTotal`    & \\
+\hline
+\end{tabular}
+\end{center} 
+
+\clearpage
+\pagebreak
+
+```{r nrm-problem-setup, echo=FALSE, results='hide'}
+tbl_ped_nrm <- tibble::tibble(ID = c(5,6,7,8,9,10), Sex = c('M','F','M','F','M','M'), Sire = c(3,1,5,5,7,9), Dam = c(2,4,6,6,8,8))
+dam_id <- tbl_ped_nrm$Dam[length(tbl_ped_nrm$Dam)]
+sire_id <- tbl_ped_nrm$Sire[length(tbl_ped_nrm$Sire)] 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Numerator Relationship Matrix and Inbreeding"), "\n")
+```
+
+We are given the following pedigree. 
+
+\textit{Das folgende Pedigree ist gegeben.}
+
+\begin{center}
+```{r, echo=FALSE, results='asis'}
+knitr::kable(tbl_ped_nrm,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+\end{center}
+
+\begin{enumerate}
+\item[a)] Compute the additive genetic relationship matrix $A$ for the above pedigree.
+
+\textit{Berechnen Sie die additiv-genetische Verwandtschaftsmatrix $A$ für das oben angegebene Pedigree}
+\points{`r lPointsQ1$TaskA`}
+\end{enumerate}
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the inbreeding coefficients of all animals in the given pedigree. Complete the following table and indicate which of the animals are inbred.
+
+\textit{Berechnen Sie die Inzuchtkoeffizienten aller Tiere im gegebenen Pedigree. Vervollständigen Sie die folgende Tabelle und geben an, welche Tiere ingezüchtet sind.}
+\points{`r lPointsQ1$TaskB`}
+\end{enumerate}
+
+
+\vspace{3ex}
+```{r table-nrm-b, echo=FALSE, results='asis'}
+n_nr_animal <- max(tbl_ped_nrm$ID)
+tbl_inb_empty <- tibble::tibble(ID = 1:n_nr_animal, 
+                          `Inbreeding Coefficient` = rep('', n_nr_animal),
+                          `Animal Inbred (TRUE/FALSE)` = rep('', n_nr_animal))
+
+knitr::kable(tbl_inb_empty,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[c)] Assume that dam `r dam_id` and sire `r sire_id` are mated. What is the inbreeding coefficient of their offspring?   
+
+\textit{Wir nehmen an, dass die Mutter `r dam_id` mit dem Vater `r sire_id` angepaart wird. Wie gross ist der Inzuchtkoeffizient des Nachkommens aus dieser Paarung?}
+\points{`r lPointsQ1$TaskC`}
+\end{enumerate}
+
+\solstart 
+
+\clearpage
+\pagebreak
+
+```{r pbv-problem-setup, echo=FALSE, results='hide'}
+tbl_data_pbv <- tibble::tibble(ID = c(4,5,6,7,8), Sire = c(1,3,4,4,6), Dam = c(2,2,5,5,7), Herd = c('Planta','Moos','Moos','Moos','Moos'), `Phenotypic Observation` = c(7.53,8.48,0.26,6.6,2.44))
+n_var_u <- 7.2
+n_var_e <- 28.8
+n_h2 <- 0.2
+ 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Prediction of Breeding Values"), "\n")
+```
+
+The following dataset is used to predict breeding values. 
+
+\textit{Der folgende Datensatz soll für die Schätzung von Zuchtwerten verwendet werden.}
+
+```{r data-table, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_pbv,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+## Assumptions
+* the error variance is: $\sigma_e^2 = `r n_var_e`$
+* the heritability is: $h^2 = `r n_h2`$
+* the genetic additive variance is: $\sigma_u^2 = `r n_var_u`$
+* the population mean $\mu$ can be taken as the mean of the given phenotypic observations
+
+
+## \textit{Annahmen}
+* \textit{die Restvarianz beträgt:} $\sigma_e^2 = `r n_var_e`$
+* \textit{die Heritabilität beträgt:} $h^2 = `r n_h2`$
+* \textit{die genetisch-additive Varianz beträgt:} $\sigma_u^2 = `r n_var_u`$
+* \textit{das Populationsmittel $\mu$ kann als Mittelwert der phänotypischen Beobachtungen angenommen werden.}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use the regression method to predict breeding values based on own-performance records for the animals in the table given above.
+
+\textit{Verwenden Sie die Regressionsmethode zur Schätzung der Zuchtwerte basierend auf der Eigenleistung der Tiere in der obigen Tabelle.}
+\points{`r lPointsQ2$TaskA`}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Use a BLUP animal model to predict the breeding values for all animals in the pedigree based on the data given in the table above. Specify the model to predict breeding values, name all model components, compute the expected values and the variance-covariance matrices for all random model components. Insert the information from the above table into the model components where possible. Set up the mixed model equations and compute the solutions for the estimates of fixed effects and for the predicted breeding values. 
+
+\textit{Verwenden Sie ein BLUP Tiermodell zur Schätzung der Zuchtwerte aller Tiere im Pedigree basierend auf den Daten in der obigen Tabelle. Spezifizieren Sie das Modell für die Schätzung der Zuchtwerte, benennen Sie alle Modellkomponenten, berechnen Sie die Erwartungswerte und die Varianz-Kovarianz Matrizen aller zufälligen Effekte im Modell. Setzen Sie die verfügbaren Information aus dem Datensatz in die Modellkomponenten ein. Stellen Sie die Mischmodellgleichungen auf und berechnen Sie die Schätzungen der fixen Effekte und der Zuchtwerte.}
+\points{`r lPointsQ2$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+
+ 
+
+\clearpage
+\pagebreak
+
+```{r gnm-problem-setup, echo=FALSE, results='hide'}
+tbl_data_gnm <- tibble::tibble(Animal = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15), `SNPLGH` = c(-1,1,1,0,-1,0,-1,1,1,0,1,0,1,-1,1), `SNPFS2` = c(0,1,1,0,0,-1,-1,0,0,-1,-1,0,0,1,0), Observation = c(12.7,46,32.7,19.3,14.8,6.7,2.4,33,29.4,4.9,14.4,19.5,25.6,19.1,25.6))
+n_nr_snp <- 2 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Genomics"), "\n")
+```
+
+Given is the following data set of SNP-Genotyping results. 
+
+\textit{Gegeben sind die Genotypisierungsresultate in der nachfolgenden Tabelle.}
+
+```{r data-table-gnm, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_gnm,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use a marker effect model to estimate the fixed effects of both markers on the observation. Please specify the fixed-effect model that you use, name all the model components and insert the information from the data into the components where possible. 
+
+\textit{Verwenden Sie eine Marker-Effekt Modell zur Schätzung der fixen Effekte der beiden Marker auf die Beobachtung. Bitte spezifizieren Sie das fixe Modell, benennen Sie alle Modellkomponenten und fügen Sie die Daten aus der obigen Tabelle in die Modellkomponenten ein, wo das möglich ist.}
+\points{`r lPointsQ3$TaskA`}
+\end{enumerate}
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Predict the direct genomic breeding values for all animals of the dataset using the marker effects estimated in Task a). 
+
+\textit{ Schätzen Sie die direkt-genomischen Zuchtwerte für alle Tiere im Datensatz unter Verwendung der aus Aufgabe a) geschätzten Markereffekte.}
+\points{`r lPointsQ3$TaskB`}
+\end{enumerate}
+
+
+\solstart 
+
+\clearpage
+\pagebreak
+
+```{r vinb-problem-setup, echo=FALSE, results='hide'}
+n_nr_base_animals <- 280
+n_nr_gen <- 16
+n_hom_diff <- 50
+n_maf <- 0.2
+n_level_inb <- 0.01
+n_inb_dep <- 0.2
+n_dom_dev <- 30
+ 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Variance and Inbreeding"), "\n")
+```
+
+In dairy cattle semen and embryos of the breeds Brown Swiss and Holstein are often imported from North America. For the Brown Swiss breed, the North American population is based on `r n_nr_base_animals` female animals. The following assumptions can be made.
+
+* Although, cattle does not follow the same mode of inheritance as the organism shown in the lecture, the computations as shown in the lecture can be used as an approximation.
+* In contrast to the size $N$ of the subpopulations that was assumed to be the number of individuals, here $N$ is the number of female animals in a given subpopulation.
+
+\textit{Samen und Embryos der Rassen Brown Swiss und Holstein werden oft aus Nordamerika importiert. Für die Rasse Brown Swiss basiert die Nordamerikanische Population auf `r n_nr_base_animals` weiblichen Tieren. Die folgenden Annahmen können getroffen werden.}
+
+* \textit{Obwohl das Rind nicht den gleichen Vererbungsmodus zeigt, wie die Organismen, welche in den Vorlesungsunterlagen verwendet wurden, können die dort eingeführten Berechnungen der Inzucht als Annäherungen verwendet werden.}
+* \textit{Die Populationsgrösse $N$ hier entspricht der Anzahl weiblichen Tiere.}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] What is the expected level of inbreeding ($F$) of imported semen in the Brown Swiss breed after `r n_nr_gen` generations?
+
+\textit{Welches ist der erwartet Wert der Inzucht ($F$) von importiertem Samen in der Rasse Brown Swiss nach `r n_nr_gen` Generationen?}
+\points{`r lPointsQ4$TaskA`}
+\end{enumerate}
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the between-line, the within-line and the total genetic variance for a single additive Locus where the difference between the homozygous genotypes is `r n_hom_diff`, the allele frequency $p = `r n_maf`$ and the level of inbreeding is `r n_level_inb`. 
+
+\textit{Berechnen Sie die Innerhalb-Linie, Zwischen-Linie und die totale genetische Varianz für einen additiven Lokus, wobei die Differenz der homozygoten Genotypen `r n_hom_diff` entspricht, die Allelefrequenz $p = `r n_maf`$ ist und der Inzuchtwert `r n_level_inb` ist.}
+\points{`r lPointsQ4$TaskB`}
+\end{enumerate}
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[c)] After how many generations is the expected inbreeding depression bigger than `r n_inb_dep` in a population with $N = `r n_nr_base_animals`$ animals. The following assumptions can be made
+
+\textit{Nach wie vielen Generationen ist die erwartete Inzuchtdepression grösser als `r n_inb_dep` in einer Population von $N = `r n_nr_base_animals`$ Tieren. Die folgenden Annahmen können getroffen werden.}
+\points{`r lPointsQ4$TaskC`}
+\end{enumerate}
+
+* single bi-allelic locus
+* minor allele frequency $p = `r n_maf`$
+* dominance deviation $d = `r n_dom_dev`$
+
+* \textit{einzelner Locus mit zwei Allelen}
+* \textit{Frequenz des seltenen Alleles $p = `r n_maf`$}
+* \textit{Dominanzabweichung $d = `r n_dom_dev`$}
+
+
+\solstart
+
+ 
+
+\clearpage
+\pagebreak
+
+```{r anova-problem-setup, echo=FALSE, results='hide'}
+tbl_data_anova <- tibble::tibble(Animal = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20), Farm = c(3,1,2,3,1,2,3,1,2,1,2,1,2,2,1,1,1,2,3,3), LiveWeight = c(613,621,630,614,629,611,612,614,606,621,621,623,608,603,589,599,610,595,612,616))
+ 
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Variance Components"), "\n")
+```
+We are given the following dataset for the trait live weight (`LiveWeight`) for cattle.
+
+\textit{Der folgende Datensatz umfasst das Merkmal Lebendgewicht (`LiveWeight`) von Rindern.}
+
+```{r data-table-anova, echo=FALSE, results='asis'}
+knitr::kable(tbl_data_anova,
+             booktabs = TRUE,
+             escape = FALSE,
+             format = 'latex')
+```
+
+\begin{enumerate}
+\item[a)] Compute the estimate of the error variance $\sigma_e^2$ from the residuals of the fixed linear model specified below.
+
+\textit{Schätzen Sie die Fehlervarianz $\sigma_e^2$ basierend auf den Residuen des folgenden fixen Modells.}
+\points{`r lPointsQ5$TaskA`}
+\end{enumerate}
+
+
+The fixed linear model that is used is 
+
+$$y = Xb + e$$
+where $y$ is the vector of all live weight values, $b$ is the vector of the effects caused by the different farms. The fixed linear model is specified in R by
+
+```{r, echo=TRUE, results='markup'}
+tbl_data_anova$Farm <- as.factor(tbl_data_anova$Farm)
+lm_lweight <- lm(LiveWeight ~ 0 + Farm, data = tbl_data_anova)
+```
+
+The resulting effects of the farms are 
+
+```{r, echo=TRUE, results='markup'}
+(vec_coef_lweight <- coefficients(lm_lweight))
+```
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+
+\begin{enumerate}
+\item[b)] Verify your result from task a) with the output of the `summary()`-function applied to the result of the `lm()`-function
+
+\textit{Verifizieren Sie das Resultat aus Aufgabe a) anhand des Outputs der `summary`-Funktion angewendet auf das Resultat der `lm()`-Funktion}
+\points{`r lPointsQ5$TaskB`}
+\end{enumerate}
+
+
+\solstart 
