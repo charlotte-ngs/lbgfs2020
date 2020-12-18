@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 # wd
 cd Data/Projects/Github/charlotte-ngs/lbgfs2020_ghroot/master/lbgfs2020
